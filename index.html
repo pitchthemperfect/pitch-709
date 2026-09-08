@@ -504,7 +504,6 @@
               <button type="button" class="pill-btn" onclick="setPill('audienceAge', '31-35', this)">31-35</button>
               <button type="button" class="pill-btn" onclick="setPill('audienceAge', '36-40', this)">36-40</option>
               <button type="button" class="pill-btn" onclick="setPill('audienceAge', '40+', this)">40+</button>
-              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '50+', this)">50+</button>
             </div>
             <div class="err" id="err-audienceAge"></div>
           </div>
@@ -584,21 +583,21 @@
           </div>
 
           <!-- 3. Will both of you attend together -->
-          <div class="field">
-            <label>Will both of you attend together?</label>
-            <div class="yn-group">
-              <button type="button" class="yn-btn" data-val="Yes" onclick="setAttendTogether('Yes')">Yes</button>
-              <button type="button" class="yn-btn" data-val="No" onclick="setAttendTogether('No')">No</button>
-            </div>
-            <div class="err" id="err-attendTogether"></div>
-          </div>
+   <div class="field">
+  <label>Will both of you attend together?</label>
+  <div class="pill-group" data-field="attendTogether">
+    <button type="button" class="pill-btn" onclick="setPill('attendTogether', 'Yes', this)">Yes</button>
+    <button type="button" class="pill-btn" onclick="setPill('attendTogether', 'No', this)">No</button>
+  </div>
+  <div class="err" id="err-attendTogether"></div>
+</div>
 
           <!-- 4. Tell us about them -->
           <div class="field">
-            <label for="pleadCase">Tell us about them & pitch them! *</label>
-            <textarea class="input" id="pleadCase" rows="5" placeholder="Who are they? What makes them special?&#10;Why should the room fall in love with them?&#10;• Make it charming, funny, heartfelt — whatever makes your pitch unforgettable"></textarea>
-            <div class="err" id="err-pleadCase"></div>
-          </div>
+  <label for="pleadCase">Tell us about them & pitch them! *</label>
+  <textarea class="input" id="pleadCase" rows="6" placeholder="Who are they? What makes them special?&#10;&#10;Why should the room fall in love with them?&#10;&#10;• Make it charming, funny, heartfelt — whatever makes your pitch unforgettable"></textarea>
+  <div class="err" id="err-pleadCase"></div>
+</div>
 
           <!-- 5. Share any links -->
           <div class="field">
