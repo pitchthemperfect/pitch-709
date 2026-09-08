@@ -151,8 +151,6 @@
   .faq-a-wrap { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
   .faq-item.open .faq-a-wrap { max-height: 500px; }
   .faq-a { padding: 0 20px 16px; font-size: 14px; line-height: 1.7; color: var(--muted); margin: 0; }
-  
-  /* Fixed list typography to match .faq-a perfectly */
   .faq-a ul { margin: 12px 0 0 20px; padding: 0; }
   .faq-a li { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 8px; }
   .faq-a li:last-child { margin-bottom: 0; }
@@ -222,11 +220,11 @@
   .role-card .rtitle { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 0 0 4px; }
   .role-card .rsub { font-size: 12px; color: var(--muted2); margin: 0; }
 
-  .pitcher-box {
+  .pitcher-box, .watcher-box {
     border: 1px solid var(--border); border-radius: 14px; background: var(--cream-card);
     padding: 20px; margin-top: 24px;
   }
-  .pitcher-box .heading { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 0 0 16px; }
+  .pitcher-box .heading, .watcher-box .heading { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 0 0 16px; }
 
   .yn-group { display: flex; gap: 12px; }
   .yn-btn {
@@ -234,6 +232,20 @@
     padding: 6px 16px; font-size: 14px; color: var(--burgundy);
   }
   .yn-btn.active { background: var(--copper); border-color: var(--copper); color: var(--cream); }
+
+  .checkbox-field { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; }
+  .checkbox-field input[type="checkbox"] { margin-top: 3px; accent-color: var(--copper); }
+  .checkbox-field label { font-size: 13px; line-height: 1.5; color: var(--burgundy); margin: 0; }
+
+  .file-upload-box {
+    border: 2px dashed var(--border-soft); border-radius: 12px; background: #fff;
+    padding: 20px; text-align: center; cursor: pointer; transition: border-color 0.2s;
+  }
+  .file-upload-box:hover { border-color: var(--copper); }
+  .file-upload-box.error { border-color: var(--error); }
+  .file-upload-box input[type="file"] { display: none; }
+  .file-upload-box p { margin: 0; font-size: 13px; color: var(--muted); }
+  .file-name-display { font-size: 12px; font-weight: 600; color: var(--copper); margin-top: 6px; }
 
   .summary-card {
     border: 1px solid var(--border); border-radius: 14px; background: var(--cream-card);
@@ -459,6 +471,63 @@
           <p class="rsub">Watcher ticket · choose your own seats</p>
         </button>
 
+        <!-- WATCHER AUDIENCE DETAILS -->
+        <div class="watcher-box" id="watcher-fields" style="display:none;">
+          <p class="heading">Audience details</p>
+          <div class="grid-2">
+            <div class="field">
+              <label for="audienceGender">Are you:</label>
+              <select class="input" id="audienceGender">
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <div class="err" id="err-audienceGender"></div>
+            </div>
+            <div class="field">
+              <label for="audienceAge">Age category</label>
+              <select class="input" id="audienceAge">
+                <option value="">Select category</option>
+                <option value="21-25">21-25</option>
+                <option value="26-30">26-30</option>
+                <option value="31-35">31-35</option>
+                <option value="36-40">36-40</option>
+                <option value="40+">40+</option>
+                <option value="50+">50+</option>
+              </select>
+              <div class="err" id="err-audienceAge"></div>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <div class="field">
+              <label for="audienceStatus">Status</label>
+              <select class="input" id="audienceStatus">
+                <option value="">Select status</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Divorced">Divorced</option>
+                <option value="It's complicated">It's complicated</option>
+              </select>
+              <div class="err" id="err-audienceStatus"></div>
+            </div>
+            <div class="field">
+              <label for="audienceNationality">Nationality</label>
+              <select class="input nationality-select" id="audienceNationality">
+                <option value="">Select nationality</option>
+              </select>
+              <div class="err" id="err-audienceNationality"></div>
+            </div>
+          </div>
+
+          <div class="checkbox-field">
+            <input type="checkbox" id="watcherConsent" />
+            <label for="watcherConsent">I'm happy for Pitch Them Perfect to contact me via WhatsApp and email about this event and future editions. *</label>
+          </div>
+          <div class="err" id="err-watcherConsent"></div>
+        </div>
+
+        <!-- PITCHER DETAILS -->
         <div class="pitcher-box" id="pitcher-fields" style="display:none;">
           <p class="heading">Tell us about your pitchee</p>
           <div class="grid-2">
@@ -474,27 +543,40 @@
             </div>
           </div>
 
-          <div class="field">
-            <label for="relationship">Relationship to pitchee</label>
-            <select class="input" id="relationship">
-              <option value="">Select one</option>
-              <option value="Friend">Friend</option>
-              <option value="Family">Family</option>
-              <option value="Colleague">Colleague</option>
-              <option value="Other">Other</option>
-            </select>
-            <div class="err" id="err-relationship"></div>
+          <div class="grid-2">
+            <div class="field">
+              <label for="pitcheeGender">Their gender</label>
+              <select class="input" id="pitcheeGender">
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <div class="err" id="err-pitcheeGender"></div>
+            </div>
+            <div class="field">
+              <label for="relationship">Relationship to pitchee</label>
+              <select class="input" id="relationship">
+                <option value="">Select relationship</option>
+                <option value="Friend">Friend</option>
+                <option value="Family">Family</option>
+                <option value="Colleague">Colleague</option>
+                <option value="Other">Other</option>
+              </select>
+              <div class="err" id="err-relationship"></div>
+            </div>
           </div>
 
           <div class="field">
             <label for="pitcheeNationality">Pitchee nationality</label>
-            <input class="input" id="pitcheeNationality" placeholder="e.g. Lebanese" />
+            <select class="input nationality-select" id="pitcheeNationality">
+              <option value="">Select nationality</option>
+            </select>
             <div class="err" id="err-pitcheeNationality"></div>
           </div>
 
           <div class="field">
-            <label for="pitcheeInstagram">Pitchee Instagram handle</label>
-            <input class="input" id="pitcheeInstagram" placeholder="@handle" />
+            <label for="pitcheeLinks">Share any links that help your case (Optional)</label>
+            <input class="input" id="pitcheeLinks" placeholder="Instagram, Linkedin, portfolio, articles, videos, or anything else" />
           </div>
 
           <div class="field">
@@ -507,10 +589,16 @@
           </div>
 
           <div class="field">
-            <label for="pleadCase">Why are you pitching your friend tonight?</label>
-            <textarea class="input" id="pleadCase" rows="4" placeholder="Plead your case..."></textarea>
+            <label for="pleadCase">Tell us about them & pitch them! *</label>
+            <textarea class="input" id="pleadCase" rows="5" placeholder="Who are they? What makes them special?&#10;Why should the room fall in love with them?&#10;• Make it charming, funny, heartfelt — whatever makes your pitch unforgettable"></textarea>
             <div class="err" id="err-pleadCase"></div>
           </div>
+
+          <div class="checkbox-field">
+            <input type="checkbox" id="pitcherConsent" />
+            <label for="pitcherConsent">I confirm I have my friend's permission to nominate them. *</label>
+          </div>
+          <div class="err" id="err-pitcherConsent"></div>
         </div>
 
         <button class="btn-pill btn-full" style="margin-top:32px;" id="step1-cta" onclick="handleStep1Continue()">CONTINUE TO SEAT SELECTION →</button>
@@ -532,7 +620,7 @@
 
       <!-- STEP 3 -->
       <div class="modal-step" id="step-3">
-        <p style="font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 24px;">Double-check the details below before you pay.</p>
+        <p style="font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 24px;">Double-check the details below and attach your payment receipt before confirming.</p>
         <div class="summary-card">
           <p class="heading">Contact</p>
           <div class="summary-row"><span class="label">Name</span><span class="value" id="sum-fullName">—</span></div>
@@ -555,6 +643,19 @@
           <span class="label">Total due</span>
           <span class="amount serif" id="sum-total">0 AED</span>
         </div>
+
+        <!-- MANDATORY PROOF OF PAYMENT UPLOAD COLUMN -->
+        <div class="field" style="margin-bottom: 24px;">
+          <label>Proof of Payment *</label>
+          <div class="file-upload-box" id="upload-box" onclick="document.getElementById('paymentProof').click()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4532D" stroke-width="2" style="margin: 0 auto 8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <p>Click to upload bank transfer / payment receipt</p>
+            <div class="file-name-display" id="file-name-display"></div>
+            <input type="file" id="paymentProof" accept="image/*,.pdf" onchange="handleFileSelected(this)" />
+          </div>
+          <div class="err" id="err-paymentProof"></div>
+        </div>
+
         <button class="btn-pill btn-full" id="pay-btn" onclick="confirmPayment()">CONFIRM & PAY (0 AED)</button>
       </div>
 
@@ -586,6 +687,39 @@
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
+/* NATIONALITIES LIST */
+const NATIONALITIES = [
+  "Afghan","Albanian","Algerian","American","Andorran","Angolan","Antiguan","Argentine","Armenian","Australian","Austrian","Azerbaijani",
+  "Bahamian","Bahraini","Bangladeshi","Barbadian","Belarusian","Belgian","Belizean","Beninese","Bhutanese","Bolivian","Bosnian","Brazilian",
+  "British","Bruneian","Bulgarian","Burkinabe","Burmese","Burundian","Cambodian","Cameroonian","Canadian","Cape Verdean","Central African",
+  "Chadian","Chilean","Chinese","Colombian","Comoran","Congolese","Costa Rican","Croatian","Cuban","Cypriot","Czech","Danish","Djiboutian",
+  "Dominican","Dutch","East Timorese","Ecuadorean","Egyptian","Emirati","Equatorial Guinean","Eritrean","Estonian","Ethiopian","Fijian",
+  "Filipino","Finnish","French","Gabonese","Gambian","Georgian","German","Ghanaian","Greek","Grenadian","Guatemalan","Guinean","Guyanese",
+  "Haitian","Honduran","Hungarian","Icelander","Indian","Indonesian","Iranian","Iraqi","Irish","Israeli","Italian","Ivorian","Jamaican",
+  "Japanese","Jordanian","Kazakhstani","Kenyan","Kuwaiti","Kyrgyz","Laotian","Latvian","Lebanese","Liberian","Libyan","Liechtensteiner",
+  "Lithuanian","Luxembourgish","Macedonian","Malagasy","Malawian","Malaysian","Maldivian","Malian","Maltese","Marshallese","Mauritanian",
+  "Mauritian","Mexican","Micronesian","Moldovan","Monacan","Mongolian","Montenegrin","Moroccan","Mozambican","Namibian","Nauruan","Nepalese",
+  "New Zealander","Nicaraguan","Nigerien","Nigerian","North Korean","Norwegian","Omani","Pakistani","Palauan","Palestinian","Panamanian",
+  "Papua New Guinean","Paraguayan","Peruvian","Polish","Portuguese","Qatari","Romanian","Russian","Rwandan","Saint Lucian","Salvadoran",
+  "Samoan","San Marinese","Saudi","Senegalese","Serbian","Seychellois","Sierra Leonean","Singaporean","Slovak","Slovenian","Solomon Islander",
+  "Somali","South African","South Korean","Spanish","Sri Lankan","Sudanese","Surinamese","Swazi","Swedish","Swiss","Syrian","Taiwanese",
+  "Tajik","Tanzanian","Thai","Togolese","Tongan","Trinidadian","Tunisian","Turkish","Turkmen","Tuvaluan","Ugandan","Ukrainian","Uruguayan",
+  "Uzbek","Vanuatu","Venezuelan","Vietnamese","Yemeni","Zambian","Zimbabwean"
+];
+
+function populateNationalities() {
+  document.querySelectorAll('.nationality-select').forEach(select => {
+    NATIONALITIES.forEach(nat => {
+      const opt = document.createElement('option');
+      opt.value = nat;
+      opt.textContent = nat;
+      select.appendChild(opt);
+    });
+  });
+}
+populateNationalities();
+
+/* FAQ Order Updated */
 const FAQS = [
   { 
     q: "Is it only for singles?", 
@@ -731,6 +865,7 @@ function updateCheckoutBar() {
 let role = null;
 let currentStep = 1;
 let attendTogetherVal = '';
+let paymentFile = null;
 
 function openModal() {
   document.getElementById('modal-overlay').classList.add('open');
@@ -746,15 +881,22 @@ function resetAll() {
   role = null;
   selectedSeats = [];
   attendTogetherVal = '';
+  paymentFile = null;
   currentStep = 1;
 
-  ['fullName','whatsapp','email','pitcheeName','pitcheeAge','relationship','pitcheeNationality','pitcheeInstagram','pleadCase']
+  ['fullName','whatsapp','email','audienceGender','audienceAge','audienceStatus','audienceNationality','pitcheeName','pitcheeAge','pitcheeGender','relationship','pitcheeNationality','pitcheeLinks','pleadCase','paymentProof']
     .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+
+  document.getElementById('watcherConsent').checked = false;
+  document.getElementById('pitcherConsent').checked = false;
+  document.getElementById('file-name-display').textContent = '';
+  document.getElementById('upload-box').classList.remove('error');
 
   document.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('role-pitcher').classList.remove('active');
   document.getElementById('role-watcher').classList.remove('active');
   document.getElementById('pitcher-fields').style.display = 'none';
+  document.getElementById('watcher-fields').style.display = 'none';
   document.getElementById('step1-cta').textContent = 'CONTINUE TO SEAT SELECTION →';
 
   clearErrors();
@@ -774,10 +916,21 @@ function selectRole(r) {
   document.getElementById('role-pitcher').classList.toggle('active', r === 'pitcher');
   document.getElementById('role-watcher').classList.toggle('active', r === 'watcher');
   document.getElementById('pitcher-fields').style.display = r === 'pitcher' ? 'block' : 'none';
+  document.getElementById('watcher-fields').style.display = r === 'watcher' ? 'block' : 'none';
+  
   document.getElementById('step1-cta').textContent = r === 'pitcher'
     ? 'PROCEED TO CHECKOUT (250 AED) →'
     : 'CONTINUE TO SEAT SELECTION →';
   clearError('role');
+}
+
+function handleFileSelected(input) {
+  if (input.files && input.files[0]) {
+    paymentFile = input.files[0];
+    document.getElementById('file-name-display').textContent = 'Attached: ' + paymentFile.name;
+    clearError('paymentProof');
+    document.getElementById('upload-box').classList.remove('error');
+  }
 }
 
 function clearErrors() {
@@ -812,13 +965,29 @@ function validateStep1() {
   if (!val('email')) { setError('email', 'Enter an email address.'); ok = false; }
   if (!role) { document.getElementById('err-role').textContent = "Choose whether you're pitching or watching."; ok = false; }
 
+  if (role === 'watcher') {
+    if (!val('audienceGender')) { setError('audienceGender', 'Select your gender.'); ok = false; }
+    if (!val('audienceAge')) { setError('audienceAge', 'Select an age category.'); ok = false; }
+    if (!val('audienceStatus')) { setError('audienceStatus', 'Select your status.'); ok = false; }
+    if (!val('audienceNationality')) { setError('audienceNationality', 'Select your nationality.'); ok = false; }
+    if (!document.getElementById('watcherConsent').checked) {
+      document.getElementById('err-watcherConsent').textContent = "Please consent to contact regarding this event.";
+      ok = false;
+    }
+  }
+
   if (role === 'pitcher') {
     if (!val('pitcheeName')) { setError('pitcheeName', 'Who are you pitching?'); ok = false; }
     if (!val('pitcheeAge')) { setError('pitcheeAge', 'Enter their age.'); ok = false; }
+    if (!val('pitcheeGender')) { setError('pitcheeGender', 'Select their gender.'); ok = false; }
     if (!val('relationship')) { setError('relationship', 'Select a relationship.'); ok = false; }
-    if (!val('pitcheeNationality')) { setError('pitcheeNationality', 'Enter their nationality.'); ok = false; }
+    if (!val('pitcheeNationality')) { setError('pitcheeNationality', 'Select their nationality.'); ok = false; }
     if (!attendTogetherVal) { document.getElementById('err-attendTogether').textContent = "Let us know if you're attending together."; ok = false; }
-    if (!val('pleadCase')) { setError('pleadCase', 'Tell us why they deserve the spotlight.'); ok = false; }
+    if (!val('pleadCase')) { setError('pleadCase', 'Tell us about them & pitch them.'); ok = false; }
+    if (!document.getElementById('pitcherConsent').checked) {
+      document.getElementById('err-pitcherConsent').textContent = "Confirmation of friend's permission is required.";
+      ok = false;
+    }
   }
   return ok;
 }
@@ -851,7 +1020,7 @@ function populateSummary() {
   if (role === 'pitcher') {
     pitcherBox.style.display = 'block';
     watcherBox.style.display = 'none';
-    document.getElementById('sum-pitchee').textContent = `${val('pitcheeName')} (${val('pitcheeAge')})`;
+    document.getElementById('sum-pitchee').textContent = `${val('pitcheeName')} (${val('pitcheeAge')}, ${val('pitcheeGender')})`;
     document.getElementById('sum-relationship').textContent = val('relationship') || '—';
     document.getElementById('sum-nationality').textContent = val('pitcheeNationality') || '—';
     document.getElementById('sum-attend').textContent = attendTogetherVal || '—';
@@ -871,6 +1040,13 @@ function populateSummary() {
 }
 
 function confirmPayment() {
+  const fileInput = document.getElementById('paymentProof');
+  if (!fileInput.files || fileInput.files.length === 0) {
+    document.getElementById('err-paymentProof').textContent = 'Please attach your proof of payment receipt.';
+    document.getElementById('upload-box').classList.add('error');
+    return;
+  }
+
   document.getElementById('success-msg').textContent =
     `A confirmation is on its way to ${val('email') || 'your inbox'}. See you 26 September, 7 PM at Soul Kitchen Dubai.`;
   goToStep(4);
