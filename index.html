@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pitch Them Perfect — Confessions · Dubai</title>
+<title>Pitch Them Perfect — Pitch Them Perfect · Dubai</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
@@ -24,30 +24,25 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body {
-    font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     background: var(--cream);
     color: var(--burgundy);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, .serif { font-family: 'Playfair Display', Georgia, 'Times New Roman', serif; }
+  h1, h2, h3, .serif { font-family: 'Playfair Display', Georgia, serif; }
   a { text-decoration: none; }
   button { font-family: inherit; cursor: pointer; border: none; }
-  img, svg { display: block; }
 
   .wrap { max-width: 1152px; margin: 0 auto; padding: 0 20px; }
   @media (min-width: 640px) { .wrap { padding: 0 32px; } }
 
-  /* ---------- NAV ---------- */
+  /* NAV */
   header.nav {
     position: sticky; top: 0; z-index: 30;
     background: var(--cream);
     border-bottom: 1px solid var(--border);
   }
-  .nav-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 0;
-  }
-  .nav-inner .wrap { width: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
   .logo { display: flex; align-items: center; gap: 10px; }
   .logo-badge {
     width: 36px; height: 36px; border-radius: 999px;
@@ -56,7 +51,9 @@
     font-size: 16px;
   }
   .logo-name { font-size: 15px; font-weight: 600; color: var(--burgundy); }
-  .nav-links { display: none; align-items: center; gap: 32px; }
+  
+  /* Pushed links to the far right */
+  .nav-links { display: none; align-items: center; gap: 32px; margin-left: auto; }
   .nav-links a { font-size: 14px; color: var(--burgundy); }
   @media (min-width: 768px) { .nav-links { display: flex; } .nav-burger { display: none; } }
 
@@ -64,28 +61,22 @@
     border-radius: 999px; padding: 10px 20px;
     font-size: 12px; font-weight: 600; letter-spacing: .04em;
     background: var(--burgundy); color: var(--cream);
+    transition: opacity 0.2s;
   }
   .btn-pill-cream { background: var(--cream); color: var(--burgundy); }
   .btn-pill:disabled { opacity: .4; cursor: not-allowed; }
   .btn-full { width: 100%; padding: 14px 0; }
 
-  .nav-burger {
-    background: none; border: none; padding: 4px;
-    display: flex; align-items: center; justify-content: center;
-  }
+  .nav-burger { background: none; border: none; padding: 4px; display: flex; }
   .mobile-menu {
     display: none; flex-direction: column; gap: 16px;
     padding: 16px 20px 20px; border-top: 1px solid var(--border);
   }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a { font-size: 14px; color: var(--burgundy); }
 
-  /* ---------- HERO ---------- */
+  /* HERO */
   .hero { background: var(--burgundy); overflow: hidden; position: relative; }
-  .hero .wrap {
-    display: grid; gap: 40px;
-    padding: 64px 20px;
-  }
+  .hero .wrap { display: grid; gap: 40px; padding: 64px 20px; }
   @media (min-width: 640px) { .hero .wrap { padding: 96px 32px; } }
   @media (min-width: 1024px) {
     .hero .wrap { grid-template-columns: 1.1fr .9fr; padding: 112px 32px; align-items: center; }
@@ -124,14 +115,14 @@
   .event-card .date { margin: 12px 0 6px; font-size: 18px; font-weight: 600; color: var(--burgundy); }
   .event-card .venue { font-size: 12px; line-height: 1.6; color: var(--muted); margin: 0; }
 
-  /* ---------- VALUE PROP ---------- */
+  /* VALUE PROP */
   .value-prop { padding: 64px 0; }
   @media (min-width: 640px) { .value-prop { padding: 80px 0; } }
   .value-prop .inner { max-width: 720px; margin: 0 auto; text-align: center; padding: 0 20px; }
   .value-prop p.big { font-size: 24px; line-height: 1.35; color: var(--burgundy); margin: 0; }
   @media (min-width: 640px) { .value-prop p.big { font-size: 30px; } }
 
-  /* ---------- HOW IT WORKS ---------- */
+  /* HOW IT WORKS */
   .how { background: var(--burgundy); padding: 64px 0; }
   @media (min-width: 640px) { .how { padding: 96px 0; } }
   .how .wrap { display: grid; gap: 48px; }
@@ -150,7 +141,7 @@
   .step .title { font-size: 14px; font-weight: 600; letter-spacing: .1em; color: var(--cream); margin: 0 0 8px; }
   .step .desc { font-size: 15px; line-height: 1.7; color: #D9C4B8; margin: 0; max-width: 420px; }
 
-  /* ---------- FAQ ---------- */
+  /* FAQ */
   .faq { padding: 64px 0; }
   @media (min-width: 640px) { .faq { padding: 96px 0; } }
   .faq .inner { max-width: 640px; margin: 0 auto; padding: 0 20px; }
@@ -166,27 +157,24 @@
   }
   .faq-q svg { flex-shrink: 0; transition: transform .2s ease; }
   .faq-item.open .faq-q svg { transform: rotate(180deg); }
-  .faq-a-wrap { max-height: 0; overflow: hidden; transition: max-height .25s ease; }
-  .faq-item.open .faq-a-wrap { max-height: 260px; }
+  .faq-a-wrap { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .faq-item.open .faq-a-wrap { max-height: 500px; }
   .faq-a { padding: 0 20px 16px; font-size: 14px; line-height: 1.7; color: var(--muted); margin: 0; }
+  .faq-a ul { margin: 8px 0 0 20px; padding: 0; }
 
-  /* ---------- FOOTER ---------- */
+  /* FOOTER */
   footer { background: var(--burgundy); padding: 56px 0 0; }
-  .footer-top {
-    display: flex; flex-direction: column; gap: 32px;
-    justify-content: space-between; padding: 0 20px 40px;
-  }
-  @media (min-width: 640px) { .footer-top { flex-direction: row; align-items: flex-start; padding: 0 32px 40px; } }
+  .footer-top { display: flex; flex-direction: column; gap: 32px; justify-content: space-between; padding-bottom: 40px; }
+  @media (min-width: 640px) { .footer-top { flex-direction: row; align-items: flex-start; } }
   .footer-top h3 { color: var(--cream); font-size: 26px; margin: 0 0 8px; }
   .footer-top .venue { color: #C9AFA1; font-size: 14px; line-height: 1.7; max-width: 340px; margin: 0; }
   .socials { display: flex; align-items: center; gap: 16px; }
   .footer-bottom {
-    border-top: 1px solid #4A222A; padding: 24px 20px;
-    font-size: 12px; color: #9C8577; max-width: 1152px; margin: 0 auto;
+    border-top: 1px solid #4A222A; padding: 24px 0;
+    font-size: 12px; color: #9C8577;
   }
-  @media (min-width: 640px) { .footer-bottom { padding: 24px 32px; } }
 
-  /* ---------- MODAL ---------- */
+  /* MODAL */
   .modal-overlay {
     position: fixed; inset: 0; z-index: 50; display: none;
     justify-content: flex-end;
@@ -196,22 +184,23 @@
   .modal-drawer {
     position: relative; height: 100%; width: 100%; max-width: 480px;
     background: var(--cream); display: flex; flex-direction: column;
-    overflow-y: auto;
+    z-index: 2;
   }
-  .modal-drawer::-webkit-scrollbar { width: 6px; }
-  .modal-drawer::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 999px; }
 
   .modal-header {
-    position: sticky; top: 0; z-index: 5; background: var(--cream);
+    background: var(--cream);
     border-bottom: 1px solid var(--border);
     display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 24px;
+    padding: 16px 24px; flex-shrink: 0;
   }
   .modal-header .left { display: flex; align-items: center; gap: 12px; }
   .modal-header .title { font-size: 15px; font-weight: 600; color: var(--burgundy); }
   .icon-btn { background: none; padding: 4px; display: flex; }
 
-  .modal-body { flex: 1; padding: 24px; }
+  .modal-body { flex: 1; padding: 24px; overflow-y: auto; }
+  .modal-body::-webkit-scrollbar { width: 6px; }
+  .modal-body::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 999px; }
+
   .modal-step { display: none; }
   .modal-step.active { display: block; }
 
@@ -231,6 +220,7 @@
   .role-card {
     border: 1px solid var(--border-soft); border-radius: 14px; background: #fff;
     padding: 16px 20px; text-align: left; width: 100%; display: block; margin-bottom: 12px;
+    transition: all 0.2s ease;
   }
   .role-card.active { border-color: var(--copper); background: #F6E4DA; }
   .role-card .rtitle { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 0 0 4px; }
@@ -254,10 +244,7 @@
     padding: 20px; margin-bottom: 20px;
   }
   .summary-card .heading { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 0 0 12px; }
-  .summary-row {
-    display: flex; justify-content: space-between; gap: 16px;
-    font-size: 14px; margin-bottom: 6px;
-  }
+  .summary-row { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; margin-bottom: 6px; }
   .summary-row .label { color: var(--muted2); }
   .summary-row .value { color: var(--burgundy); font-weight: 500; text-align: right; }
 
@@ -276,7 +263,7 @@
   .success-wrap h3 { font-size: 24px; color: var(--burgundy); margin: 0 0 8px; }
   .success-wrap p { max-width: 280px; font-size: 14px; line-height: 1.7; color: var(--muted); margin: 0; }
 
-  /* seat map */
+  /* SEAT MAP */
   .stage-banner {
     max-width: 420px; margin: 0 auto 32px; border-radius: 999px; padding: 10px 0;
     text-align: center; font-size: 12px; font-weight: 600; letter-spacing: .2em;
@@ -289,12 +276,12 @@
   .seat-aisle { width: 18px; }
   @media (min-width: 640px) { .seat-aisle { width: 24px; } }
   .seat {
-    width: 24px; height: 24px; border-radius: 6px 6px 0 0; border: 1px solid;
+    width: 24px; height: 24px; border-radius: 6px 6px 0 0; border: 1px solid; transition: background-color 0.15s;
   }
   @media (min-width: 640px) { .seat { width: 28px; height: 28px; } }
   .seat.front { background: #F1D9CB; border-color: #E3B79A; cursor: pointer; }
   .seat.main { background: #EAE2D3; border-color: #D6C7A8; cursor: pointer; }
-  .seat.selected { background: var(--copper); border-color: var(--copper); }
+  .seat.selected { background: var(--copper) !important; border-color: var(--copper) !important; }
   .seat.reserved { background: #E4D7C4; border-color: #C9B79B; cursor: not-allowed; }
   .seat.occupied { background: #E9E4DA; border-color: #D8D0C2; cursor: not-allowed; }
 
@@ -303,8 +290,8 @@
   .legend-dot { width: 12px; height: 12px; border-radius: 2px; border: 1px solid; }
 
   .checkout-bar {
-    position: sticky; bottom: 0; background: var(--cream); border-top: 1px solid var(--border);
-    padding: 16px 24px;
+    background: var(--cream); border-top: 1px solid var(--border);
+    padding: 16px 24px; flex-shrink: 0;
   }
   .checkout-items { max-height: 96px; overflow-y: auto; font-size: 12px; line-height: 1.7; color: var(--muted); margin-bottom: 12px; }
   .checkout-summary { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
@@ -320,10 +307,10 @@
 </head>
 <body>
 
-<!-- ================= NAV ================= -->
+<!-- NAV -->
 <header class="nav">
-  <div class="nav-inner">
-    <div class="wrap">
+  <div class="wrap">
+    <div class="nav-inner">
       <div class="logo">
         <span class="logo-badge serif">P</span>
         <span class="logo-name serif">Pitch Them Perfect</span>
@@ -341,15 +328,15 @@
   <div class="mobile-menu" id="mobile-menu">
     <a href="#how" onclick="toggleMobileMenu()">How It Works</a>
     <a href="#faq" onclick="toggleMobileMenu()">FAQ</a>
-    <button class="btn-pill" onclick="openModal()">GET YOUR TICKETS</button>
+    <button class="btn-pill" onclick="openModal(); toggleMobileMenu();">GET YOUR TICKETS</button>
   </div>
 </header>
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <section class="hero">
   <div class="wrap">
     <div class="hero-anim">
-      <p class="eyebrow">CONFESSIONS · DUBAI</p>
+      <p class="eyebrow">PITCH THEM PERFECT · DUBAI</p>
       <h1>Your best friend deserves better than the apps. Pitch them live.</h1>
       <p class="sub">No profiles, no algorithms, no awkward swiping. Just a room full of people willing to stand up, tell the truth about someone they love, and let a live audience decide who's worth meeting. Real stories, real laughs, real connections.</p>
       <button class="btn-pill btn-pill-cream" onclick="openModal()">GET YOUR TICKETS</button>
@@ -365,7 +352,7 @@
   </div>
 </section>
 
-<!-- ================= VALUE PROP ================= -->
+<!-- VALUE PROP -->
 <section class="value-prop">
   <div class="inner">
     <p class="eyebrow eyebrow-dark" style="margin-bottom:20px;">A BETTER WAY TO MEET PEOPLE</p>
@@ -373,7 +360,7 @@
   </div>
 </section>
 
-<!-- ================= HOW IT WORKS ================= -->
+<!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="wrap">
     <div class="how-photo"></div>
@@ -403,7 +390,7 @@
   </div>
 </section>
 
-<!-- ================= FAQ ================= -->
+<!-- FAQ -->
 <section class="faq" id="faq">
   <div class="inner">
     <p class="eyebrow eyebrow-dark" style="margin-bottom:12px;">GOOD TO KNOW</p>
@@ -412,23 +399,25 @@
   </div>
 </section>
 
-<!-- ================= FOOTER ================= -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-top">
-    <div>
-      <h3 class="serif">See you on the 26th.</h3>
-      <p class="venue">Soul Kitchen Dubai — Marasi Dr, Business Bay, Dubai, United Arab Emirates</p>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <h3 class="serif">See you on the 26th.</h3>
+        <p class="venue">Soul Kitchen Dubai — Marasi Dr, Business Bay, Dubai, United Arab Emirates</p>
+      </div>
+      <div class="socials">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      </div>
     </div>
-    <div class="socials">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-    </div>
+    <div class="footer-bottom">© <span id="year"></span> Pitch Them Perfect. All rights reserved.</div>
   </div>
-  <div class="footer-bottom">© <span id="year"></span> Pitch Them Perfect. All rights reserved.</div>
 </footer>
 
-<!-- ================= MODAL ================= -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-backdrop" onclick="closeModal()"></div>
   <div class="modal-drawer">
@@ -445,23 +434,22 @@
     </div>
 
     <div class="modal-body">
-
       <!-- STEP 1 -->
       <div class="modal-step active" id="step-1">
         <p style="font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 24px;">Tell us who you are, then choose how you're joining us on the 26th.</p>
 
         <div class="field">
-          <label>Full name</label>
+          <label for="fullName">Full name</label>
           <input class="input" id="fullName" placeholder="Your full name" />
           <div class="err" id="err-fullName"></div>
         </div>
         <div class="field">
-          <label>WhatsApp number</label>
+          <label for="whatsapp">WhatsApp number</label>
           <input class="input" id="whatsapp" type="tel" placeholder="+971 5X XXX XXXX" />
           <div class="err" id="err-whatsapp"></div>
         </div>
         <div class="field">
-          <label>Email address</label>
+          <label for="email">Email address</label>
           <input class="input" id="email" type="email" placeholder="you@email.com" />
           <div class="err" id="err-email"></div>
         </div>
@@ -482,37 +470,37 @@
           <p class="heading">Tell us about your pitchee</p>
           <div class="grid-2">
             <div class="field">
-              <label>Pitchee name</label>
+              <label for="pitcheeName">Pitchee name</label>
               <input class="input" id="pitcheeName" placeholder="Their name" />
               <div class="err" id="err-pitcheeName"></div>
             </div>
             <div class="field">
-              <label>Pitchee age</label>
+              <label for="pitcheeAge">Pitchee age</label>
               <input class="input" id="pitcheeAge" placeholder="Age" />
               <div class="err" id="err-pitcheeAge"></div>
             </div>
           </div>
 
           <div class="field">
-            <label>Relationship to pitchee</label>
+            <label for="relationship">Relationship to pitchee</label>
             <select class="input" id="relationship">
               <option value="">Select one</option>
-              <option>Friend</option>
-              <option>Family</option>
-              <option>Colleague</option>
-              <option>Other</option>
+              <option value="Friend">Friend</option>
+              <option value="Family">Family</option>
+              <option value="Colleague">Colleague</option>
+              <option value="Other">Other</option>
             </select>
             <div class="err" id="err-relationship"></div>
           </div>
 
           <div class="field">
-            <label>Pitchee nationality</label>
+            <label for="pitcheeNationality">Pitchee nationality</label>
             <input class="input" id="pitcheeNationality" placeholder="e.g. Lebanese" />
             <div class="err" id="err-pitcheeNationality"></div>
           </div>
 
           <div class="field">
-            <label>Pitchee Instagram handle</label>
+            <label for="pitcheeInstagram">Pitchee Instagram handle</label>
             <input class="input" id="pitcheeInstagram" placeholder="@handle" />
           </div>
 
@@ -526,7 +514,7 @@
           </div>
 
           <div class="field">
-            <label>Why are you pitching your friend tonight?</label>
+            <label for="pleadCase">Why are you pitching your friend tonight?</label>
             <textarea class="input" id="pleadCase" rows="4" placeholder="Plead your case..."></textarea>
             <div class="err" id="err-pleadCase"></div>
           </div>
@@ -588,7 +576,6 @@
           <button class="btn-pill" style="margin-top:32px;padding:12px 28px;" onclick="closeModal()">DONE</button>
         </div>
       </div>
-
     </div>
 
     <!-- checkout bar for step 2 -->
@@ -606,14 +593,28 @@
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ---------------- FAQ ---------------- */
+/* FAQ */
 const FAQS = [
-  { q: "Do I need to bring the friend I'm pitching?", a: "It's more fun with them there, but it's not required. Some of the best pitches have been surprises — just be ready to introduce them to whoever they end up talking to." },
-  { q: "I'm not single. Can I still come?", a: "Absolutely. Plenty of our audience are there to cheer on a friend, scout for a cousin, or just enjoy a night of great stories and live comedy energy." },
-  { q: "What happens if I sign up to pitch?", a: "Your 250 AED bundle covers two seats — one for you, one for your pitchee — reserved stage-side. You'll get a short briefing before doors open on how the pitch format works." },
-  { q: "Is there a dress code?", a: "Come as you are, or come dressed to be noticed. Smart-casual is the average, but the stage has seen everything from suits to sequins." },
-  { q: "Can I change my seats after booking?", a: "Reach out to us on WhatsApp at least 24 hours before the event and we'll do our best to move things around, subject to availability." },
-  { q: "What's the refund policy?", a: "Tickets are non-refundable but fully transferable. Send us the new attendee's name and WhatsApp number any time before doors open." }
+  { 
+    q: "What if I register and suddenly can't make it?", 
+    a: "No worries! We offer refunds based on when you cancel:<ul><li><strong>More than 24 hours before the event:</strong> Full refund, minus the bank processing fee.</li><li><strong>Between 24 and 5 hours before the event:</strong> 60% refund, minus the bank processing fee.</li><li><strong>Less than 5 hours before the event:</strong> No refund.</li></ul>" 
+  },
+  { 
+    q: "Is it only for singles?", 
+    a: "Mostly, but not exclusively! Singles are definitely welcome, but couples can join too — whether you're looking for a fun night out or coming along to pitch your single friend." 
+  },
+  { 
+    q: "What should I prepare?", 
+    a: "Just bring yourself, an open mind, and your best energy. Come ready for a fun night, good conversations, and maybe a little unexpected chemistry. 😉" 
+  },
+  { 
+    q: "Is there a dress code?", 
+    a: "Come as you are, or come dressed to be noticed. Smart-casual is the average, but the stage has seen everything from suits to sequins." 
+  },
+  { 
+    q: "Can I change my seats after booking?", 
+    a: "Reach out to us on WhatsApp at least 24 hours before the event and we'll do our best to move things around, subject to availability." 
+  }
 ];
 
 const faqList = document.getElementById('faq-list');
@@ -630,20 +631,20 @@ FAQS.forEach((item, i) => {
   faqList.appendChild(div);
 });
 
-/* ---------------- MOBILE NAV ---------------- */
+/* MOBILE NAV */
 function toggleMobileMenu() {
   document.getElementById('mobile-menu').classList.toggle('open');
 }
 
-/* ---------------- SEAT MAP CONFIG ---------------- */
-const ROWS = 10, SEATS_PER_ROW = 8;
+/* SEAT MAP CONFIG */
+const ROWS = 10;
 const RESERVED = new Set(['1-1','1-2','1-7','1-8']);
 const OCCUPIED = new Set(['2-3','3-6','4-1','5-8','6-4','7-2','9-5','10-7','3-2']);
 const tierOf = (row) => row <= 3 ? 'front' : 'main';
 const priceOf = (row) => row <= 3 ? 155 : 130;
 const tierLabel = (row) => row <= 3 ? 'Front View' : 'Main View';
 
-let selectedSeats = []; // {id, row, seat, tier, price}
+let selectedSeats = [];
 
 function buildSeatMap() {
   const container = document.getElementById('seat-rows');
@@ -680,8 +681,6 @@ function makeSeatBtn(row, seat) {
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.id = `seat-${id}`;
-  btn.dataset.row = row;
-  btn.dataset.seat = seat;
 
   if (RESERVED.has(id)) {
     btn.className = 'seat reserved';
@@ -692,7 +691,8 @@ function makeSeatBtn(row, seat) {
     btn.disabled = true;
     btn.title = 'Already booked';
   } else {
-    btn.className = 'seat ' + tierOf(row);
+    const isSelected = selectedSeats.some(s => s.id === id);
+    btn.className = `seat ${tierOf(row)}` + (isSelected ? ' selected' : '');
     btn.title = `Row ${row}, Seat ${seat} — ${priceOf(row)} AED`;
     btn.onclick = () => toggleSeat(row, seat);
   }
@@ -706,10 +706,8 @@ function toggleSeat(row, seat) {
   if (idx >= 0) {
     selectedSeats.splice(idx, 1);
     btn.classList.remove('selected');
-    btn.classList.add(tierOf(row));
   } else {
     selectedSeats.push({ id, row, seat, tier: tierOf(row), price: priceOf(row) });
-    btn.classList.remove('front', 'main');
     btn.classList.add('selected');
   }
   updateCheckoutBar();
@@ -742,9 +740,10 @@ function updateCheckoutBar() {
   cta.disabled = selectedSeats.length === 0;
 }
 
-/* ---------------- MODAL / FORM STATE ---------------- */
-let role = null; // 'pitcher' | 'watcher'
+/* FORM STATE */
+let role = null;
 let currentStep = 1;
+let attendTogetherVal = '';
 
 function openModal() {
   document.getElementById('modal-overlay').classList.add('open');
@@ -759,24 +758,28 @@ function closeModal() {
 function resetAll() {
   role = null;
   selectedSeats = [];
+  attendTogetherVal = '';
   currentStep = 1;
+
   ['fullName','whatsapp','email','pitcheeName','pitcheeAge','relationship','pitcheeNationality','pitcheeInstagram','pleadCase']
     .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+
   document.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('role-pitcher').classList.remove('active');
   document.getElementById('role-watcher').classList.remove('active');
   document.getElementById('pitcher-fields').style.display = 'none';
   document.getElementById('step1-cta').textContent = 'CONTINUE TO SEAT SELECTION →';
+
   clearErrors();
   buildSeatMap();
   updateCheckoutBar();
   goToStep(1);
 }
 
-let attendTogetherVal = '';
 function setAttendTogether(val) {
   attendTogetherVal = val;
   document.querySelectorAll('.yn-btn').forEach(b => b.classList.toggle('active', b.dataset.val === val));
+  clearError('attendTogether');
 }
 
 function selectRole(r) {
@@ -794,10 +797,14 @@ function clearErrors() {
   document.querySelectorAll('.err').forEach(e => e.textContent = '');
   document.querySelectorAll('.input').forEach(e => e.classList.remove('error'));
 }
+
 function clearError(field) {
-  const el = document.getElementById('err-' + field);
-  if (el) el.textContent = '';
+  const errEl = document.getElementById('err-' + field);
+  if (errEl) errEl.textContent = '';
+  const inputEl = document.getElementById(field);
+  if (inputEl) inputEl.classList.remove('error');
 }
+
 function setError(field, msg) {
   const errEl = document.getElementById('err-' + field);
   if (errEl) errEl.textContent = msg;
@@ -805,7 +812,10 @@ function setError(field, msg) {
   if (inputEl) inputEl.classList.add('error');
 }
 
-function val(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+function val(id) {
+  const el = document.getElementById(id);
+  return el ? el.value.trim() : '';
+}
 
 function validateStep1() {
   clearErrors();
@@ -901,7 +911,7 @@ function goBack() {
   }
 }
 
-/* init */
+/* Initialization */
 buildSeatMap();
 </script>
 
