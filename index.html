@@ -198,8 +198,8 @@
   .modal-step { display: none; }
   .modal-step.active { display: block; }
 
-  .field { margin-bottom: 16px; }
-  .field label { display: block; font-size: 14px; font-weight: 500; color: var(--burgundy); margin-bottom: 6px; }
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 14px; font-weight: 500; color: var(--burgundy); margin-bottom: 8px; }
   .field .err { margin-top: 4px; font-size: 12px; color: var(--error); }
   .input, select.input, textarea.input {
     width: 100%; border-radius: 10px; border: 1px solid var(--border-soft);
@@ -224,18 +224,30 @@
     border: 1px solid var(--border); border-radius: 14px; background: var(--cream-card);
     padding: 20px; margin-top: 24px;
   }
-  .pitcher-box .heading, .watcher-box .heading { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 0 0 16px; }
+  .pitcher-box .heading, .watcher-box .heading { font-size: 15px; font-weight: 600; color: var(--burgundy); margin: 0 0 18px; }
 
-  .yn-group { display: flex; gap: 12px; }
-  .yn-btn {
-    border-radius: 999px; border: 1px solid var(--border-soft); background: transparent;
-    padding: 6px 16px; font-size: 14px; color: var(--burgundy);
+  /* PILL BUTTON GROUP */
+  .pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill-btn {
+    border-radius: 999px; border: 1px solid var(--border-soft); background: #fff;
+    padding: 8px 16px; font-size: 13px; color: var(--burgundy); transition: all 0.15s ease;
   }
-  .yn-btn.active { background: var(--copper); border-color: var(--copper); color: var(--cream); }
+  .pill-btn.active { background: var(--copper); border-color: var(--copper); color: var(--cream); font-weight: 500; }
 
   .checkbox-field { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; }
   .checkbox-field input[type="checkbox"] { margin-top: 3px; accent-color: var(--copper); }
   .checkbox-field label { font-size: 13px; line-height: 1.5; color: var(--burgundy); margin: 0; }
+
+  /* PAYMENT BOX & PROOF UPLOAD */
+  .payment-instructions-box {
+    border: 1px solid var(--border); border-radius: 12px; background: #fff;
+    padding: 16px 20px; margin-bottom: 20px; text-align: center;
+  }
+  .payment-instructions-box p { margin: 0 0 12px; font-size: 13px; color: var(--muted); }
+  .pay-link-btn {
+    display: inline-block; background: var(--copper); color: var(--cream);
+    padding: 10px 20px; border-radius: 999px; font-size: 12px; font-weight: 600;
+  }
 
   .file-upload-box {
     border: 2px dashed var(--border-soft); border-radius: 12px; background: #fff;
@@ -258,7 +270,7 @@
 
   .total-bar {
     display: flex; align-items: center; justify-content: space-between;
-    background: var(--burgundy); border-radius: 14px; padding: 16px 20px; margin-bottom: 24px;
+    background: var(--burgundy); border-radius: 14px; padding: 16px 20px; margin-bottom: 20px;
   }
   .total-bar .label { font-size: 14px; font-weight: 500; color: var(--cream); }
   .total-bar .amount { font-size: 18px; font-weight: 600; color: var(--cream); }
@@ -471,53 +483,49 @@
           <p class="rsub">Watcher ticket · choose your own seats</p>
         </button>
 
-        <!-- WATCHER AUDIENCE DETAILS -->
+        <!-- WATCHER AUDIENCE DETAILS (Stacked 1-by-1 with Pill Buttons) -->
         <div class="watcher-box" id="watcher-fields" style="display:none;">
           <p class="heading">Audience details</p>
-          <div class="grid-2">
-            <div class="field">
-              <label for="audienceGender">Are you:</label>
-              <select class="input" id="audienceGender">
-                <option value="">Select gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-              <div class="err" id="err-audienceGender"></div>
+          
+          <div class="field">
+            <label>Are you:</label>
+            <div class="pill-group" data-field="audienceGender">
+              <button type="button" class="pill-btn" onclick="setPill('audienceGender', 'Male', this)">Male</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceGender', 'Female', this)">Female</button>
             </div>
-            <div class="field">
-              <label for="audienceAge">Age category</label>
-              <select class="input" id="audienceAge">
-                <option value="">Select category</option>
-                <option value="21-25">21-25</option>
-                <option value="26-30">26-30</option>
-                <option value="31-35">31-35</option>
-                <option value="36-40">36-40</option>
-                <option value="40+">40+</option>
-                <option value="50+">50+</option>
-              </select>
-              <div class="err" id="err-audienceAge"></div>
-            </div>
+            <div class="err" id="err-audienceGender"></div>
           </div>
 
-          <div class="grid-2">
-            <div class="field">
-              <label for="audienceStatus">Status</label>
-              <select class="input" id="audienceStatus">
-                <option value="">Select status</option>
-                <option value="Single">Single</option>
-                <option value="Married">Married</option>
-                <option value="Divorced">Divorced</option>
-                <option value="It's complicated">It's complicated</option>
-              </select>
-              <div class="err" id="err-audienceStatus"></div>
+          <div class="field">
+            <label>Age category</label>
+            <div class="pill-group" data-field="audienceAge">
+              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '21-25', this)">21-25</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '26-30', this)">26-30</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '31-35', this)">31-35</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '36-40', this)">36-40</option>
+              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '40+', this)">40+</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '50+', this)">50+</button>
             </div>
-            <div class="field">
-              <label for="audienceNationality">Nationality</label>
-              <select class="input nationality-select" id="audienceNationality">
-                <option value="">Select nationality</option>
-              </select>
-              <div class="err" id="err-audienceNationality"></div>
+            <div class="err" id="err-audienceAge"></div>
+          </div>
+
+          <div class="field">
+            <label>Status</label>
+            <div class="pill-group" data-field="audienceStatus">
+              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'Single', this)">Single</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'Married', this)">Married</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'Divorced', this)">Divorced</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'It\'s complicated', this)">It's complicated</button>
             </div>
+            <div class="err" id="err-audienceStatus"></div>
+          </div>
+
+          <div class="field">
+            <label for="audienceNationality">Nationality</label>
+            <select class="input nationality-select" id="audienceNationality">
+              <option value="">Select nationality</option>
+            </select>
+            <div class="err" id="err-audienceNationality"></div>
           </div>
 
           <div class="checkbox-field">
@@ -527,9 +535,11 @@
           <div class="err" id="err-watcherConsent"></div>
         </div>
 
-        <!-- PITCHER DETAILS -->
+        <!-- PITCHER DETAILS (Re-ordered according to requested flow) -->
         <div class="pitcher-box" id="pitcher-fields" style="display:none;">
           <p class="heading">Tell us about your pitchee</p>
+          
+          <!-- 1. Pitchee Name & Age -->
           <div class="grid-2">
             <div class="field">
               <label for="pitcheeName">Pitchee name</label>
@@ -543,29 +553,28 @@
             </div>
           </div>
 
-          <div class="grid-2">
-            <div class="field">
-              <label for="pitcheeGender">Their gender</label>
-              <select class="input" id="pitcheeGender">
-                <option value="">Select gender</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-              <div class="err" id="err-pitcheeGender"></div>
+          <!-- 2. Gender & Relationship (Pills) -->
+          <div class="field">
+            <label>Their gender</label>
+            <div class="pill-group" data-field="pitcheeGender">
+              <button type="button" class="pill-btn" onclick="setPill('pitcheeGender', 'Male', this)">Male</button>
+              <button type="button" class="pill-btn" onclick="setPill('pitcheeGender', 'Female', this)">Female</button>
             </div>
-            <div class="field">
-              <label for="relationship">Relationship to pitchee</label>
-              <select class="input" id="relationship">
-                <option value="">Select relationship</option>
-                <option value="Friend">Friend</option>
-                <option value="Family">Family</option>
-                <option value="Colleague">Colleague</option>
-                <option value="Other">Other</option>
-              </select>
-              <div class="err" id="err-relationship"></div>
-            </div>
+            <div class="err" id="err-pitcheeGender"></div>
           </div>
 
+          <div class="field">
+            <label>Relationship to pitchee</label>
+            <div class="pill-group" data-field="relationship">
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Friend', this)">Friend</button>
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Family', this)">Family</button>
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Colleague', this)">Colleague</button>
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Other', this)">Other</button>
+            </div>
+            <div class="err" id="err-relationship"></div>
+          </div>
+
+          <!-- Nationality Dropdown -->
           <div class="field">
             <label for="pitcheeNationality">Pitchee nationality</label>
             <select class="input nationality-select" id="pitcheeNationality">
@@ -574,11 +583,7 @@
             <div class="err" id="err-pitcheeNationality"></div>
           </div>
 
-          <div class="field">
-            <label for="pitcheeLinks">Share any links that help your case (Optional)</label>
-            <input class="input" id="pitcheeLinks" placeholder="Instagram, Linkedin, portfolio, articles, videos, or anything else" />
-          </div>
-
+          <!-- 3. Will both of you attend together -->
           <div class="field">
             <label>Will both of you attend together?</label>
             <div class="yn-group">
@@ -588,10 +593,17 @@
             <div class="err" id="err-attendTogether"></div>
           </div>
 
+          <!-- 4. Tell us about them -->
           <div class="field">
             <label for="pleadCase">Tell us about them & pitch them! *</label>
             <textarea class="input" id="pleadCase" rows="5" placeholder="Who are they? What makes them special?&#10;Why should the room fall in love with them?&#10;• Make it charming, funny, heartfelt — whatever makes your pitch unforgettable"></textarea>
             <div class="err" id="err-pleadCase"></div>
+          </div>
+
+          <!-- 5. Share any links -->
+          <div class="field">
+            <label for="pitcheeLinks">Share any links that help your case (Optional)</label>
+            <input class="input" id="pitcheeLinks" placeholder="Instagram, Linkedin, portfolio, articles, videos, or anything else" />
           </div>
 
           <div class="checkbox-field">
@@ -618,45 +630,54 @@
         </div>
       </div>
 
-      <!-- STEP 3 -->
+      <!-- STEP 3 (Payment Link -> Proof Upload -> Confirm) -->
       <div class="modal-step" id="step-3">
-        <p style="font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 24px;">Double-check the details below and attach your payment receipt before confirming.</p>
+        <p style="font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 20px;">Review your total, make your payment via the link below, and attach your payment receipt to complete booking.</p>
+        
         <div class="summary-card">
           <p class="heading">Contact</p>
           <div class="summary-row"><span class="label">Name</span><span class="value" id="sum-fullName">—</span></div>
           <div class="summary-row"><span class="label">WhatsApp</span><span class="value" id="sum-whatsapp">—</span></div>
           <div class="summary-row"><span class="label">Email</span><span class="value" id="sum-email">—</span></div>
         </div>
+        
         <div class="summary-card" id="sum-pitcher-box" style="display:none;">
           <p class="heading">Pitcher package</p>
           <div class="summary-row"><span class="label">Pitching</span><span class="value" id="sum-pitchee">—</span></div>
-          <div class="summary-row"><span class="label">Relationship</span><span class="value" id="sum-relationship">—</span></div>
           <div class="summary-row"><span class="label">Nationality</span><span class="value" id="sum-nationality">—</span></div>
           <div class="summary-row"><span class="label">Attending together</span><span class="value" id="sum-attend">—</span></div>
           <div class="summary-row"><span class="label">Seats</span><span class="value">2 stage-side seats (reserved)</span></div>
         </div>
+        
         <div class="summary-card" id="sum-watcher-box" style="display:none;">
           <p class="heading">Selected seats</p>
           <div id="sum-seats-list"></div>
         </div>
+
         <div class="total-bar">
           <span class="label">Total due</span>
           <span class="amount serif" id="sum-total">0 AED</span>
         </div>
 
-        <!-- MANDATORY PROOF OF PAYMENT UPLOAD COLUMN -->
+        <!-- PAYMENT LINK & INSTRUCTIONS -->
+        <div class="payment-instructions-box">
+          <p>Tap the link below to pay via Bank Transfer / Payment Gateway:</p>
+          <a href="https://buy.stripe.com/example" target="_blank" class="pay-link-btn" id="stripe-link">PAY VIA PAYMENT LINK →</a>
+        </div>
+
+        <!-- MANDATORY PROOF OF PAYMENT UPLOAD -->
         <div class="field" style="margin-bottom: 24px;">
           <label>Proof of Payment *</label>
           <div class="file-upload-box" id="upload-box" onclick="document.getElementById('paymentProof').click()">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4532D" stroke-width="2" style="margin: 0 auto 8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            <p>Click to upload bank transfer / payment receipt</p>
+            <p>Click to upload payment receipt or screenshot</p>
             <div class="file-name-display" id="file-name-display"></div>
             <input type="file" id="paymentProof" accept="image/*,.pdf" onchange="handleFileSelected(this)" />
           </div>
           <div class="err" id="err-paymentProof"></div>
         </div>
 
-        <button class="btn-pill btn-full" id="pay-btn" onclick="confirmPayment()">CONFIRM & PAY (0 AED)</button>
+        <button class="btn-pill btn-full" id="pay-btn" onclick="confirmPayment()">CONFIRM PAYMENT & BOOK</button>
       </div>
 
       <!-- STEP 4 -->
@@ -666,7 +687,7 @@
             <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <h3 class="serif">You're on the list.</h3>
-          <p id="success-msg">A confirmation is on its way to your inbox. See you 26 September, 7 PM at Soul Kitchen Dubai.</p>
+          <p id="success-msg">Your payment proof has been submitted. A confirmation will be sent to your email shortly.</p>
           <button class="btn-pill" style="margin-top:32px;padding:12px 28px;" onclick="closeModal()">DONE</button>
         </div>
       </div>
@@ -865,7 +886,15 @@ function updateCheckoutBar() {
 let role = null;
 let currentStep = 1;
 let attendTogetherVal = '';
-let paymentFile = null;
+let pillValues = {};
+
+function setPill(field, value, btnEl) {
+  pillValues[field] = value;
+  const parent = btnEl.closest('.pill-group');
+  parent.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+  clearError(field);
+}
 
 function openModal() {
   document.getElementById('modal-overlay').classList.add('open');
@@ -881,18 +910,19 @@ function resetAll() {
   role = null;
   selectedSeats = [];
   attendTogetherVal = '';
-  paymentFile = null;
+  pillValues = {};
   currentStep = 1;
 
-  ['fullName','whatsapp','email','audienceGender','audienceAge','audienceStatus','audienceNationality','pitcheeName','pitcheeAge','pitcheeGender','relationship','pitcheeNationality','pitcheeLinks','pleadCase','paymentProof']
+  ['fullName','whatsapp','email','audienceNationality','pitcheeName','pitcheeAge','pitcheeNationality','pitcheeLinks','pleadCase','paymentProof']
     .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
 
+  document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('watcherConsent').checked = false;
   document.getElementById('pitcherConsent').checked = false;
   document.getElementById('file-name-display').textContent = '';
   document.getElementById('upload-box').classList.remove('error');
 
-  document.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('role-pitcher').classList.remove('active');
   document.getElementById('role-watcher').classList.remove('active');
   document.getElementById('pitcher-fields').style.display = 'none';
@@ -926,8 +956,7 @@ function selectRole(r) {
 
 function handleFileSelected(input) {
   if (input.files && input.files[0]) {
-    paymentFile = input.files[0];
-    document.getElementById('file-name-display').textContent = 'Attached: ' + paymentFile.name;
+    document.getElementById('file-name-display').textContent = 'Attached: ' + input.files[0].name;
     clearError('paymentProof');
     document.getElementById('upload-box').classList.remove('error');
   }
@@ -966,9 +995,9 @@ function validateStep1() {
   if (!role) { document.getElementById('err-role').textContent = "Choose whether you're pitching or watching."; ok = false; }
 
   if (role === 'watcher') {
-    if (!val('audienceGender')) { setError('audienceGender', 'Select your gender.'); ok = false; }
-    if (!val('audienceAge')) { setError('audienceAge', 'Select an age category.'); ok = false; }
-    if (!val('audienceStatus')) { setError('audienceStatus', 'Select your status.'); ok = false; }
+    if (!pillValues['audienceGender']) { setError('audienceGender', 'Select your gender.'); ok = false; }
+    if (!pillValues['audienceAge']) { setError('audienceAge', 'Select an age category.'); ok = false; }
+    if (!pillValues['audienceStatus']) { setError('audienceStatus', 'Select your status.'); ok = false; }
     if (!val('audienceNationality')) { setError('audienceNationality', 'Select your nationality.'); ok = false; }
     if (!document.getElementById('watcherConsent').checked) {
       document.getElementById('err-watcherConsent').textContent = "Please consent to contact regarding this event.";
@@ -979,8 +1008,8 @@ function validateStep1() {
   if (role === 'pitcher') {
     if (!val('pitcheeName')) { setError('pitcheeName', 'Who are you pitching?'); ok = false; }
     if (!val('pitcheeAge')) { setError('pitcheeAge', 'Enter their age.'); ok = false; }
-    if (!val('pitcheeGender')) { setError('pitcheeGender', 'Select their gender.'); ok = false; }
-    if (!val('relationship')) { setError('relationship', 'Select a relationship.'); ok = false; }
+    if (!pillValues['pitcheeGender']) { setError('pitcheeGender', 'Select their gender.'); ok = false; }
+    if (!pillValues['relationship']) { setError('relationship', 'Select relationship.'); ok = false; }
     if (!val('pitcheeNationality')) { setError('pitcheeNationality', 'Select their nationality.'); ok = false; }
     if (!attendTogetherVal) { document.getElementById('err-attendTogether').textContent = "Let us know if you're attending together."; ok = false; }
     if (!val('pleadCase')) { setError('pleadCase', 'Tell us about them & pitch them.'); ok = false; }
@@ -1020,8 +1049,7 @@ function populateSummary() {
   if (role === 'pitcher') {
     pitcherBox.style.display = 'block';
     watcherBox.style.display = 'none';
-    document.getElementById('sum-pitchee').textContent = `${val('pitcheeName')} (${val('pitcheeAge')}, ${val('pitcheeGender')})`;
-    document.getElementById('sum-relationship').textContent = val('relationship') || '—';
+    document.getElementById('sum-pitchee').textContent = `${val('pitcheeName')} (${val('pitcheeAge')}, ${pillValues['pitcheeGender'] || ''})`;
     document.getElementById('sum-nationality').textContent = val('pitcheeNationality') || '—';
     document.getElementById('sum-attend').textContent = attendTogetherVal || '—';
     total = 250;
@@ -1036,7 +1064,7 @@ function populateSummary() {
   }
 
   document.getElementById('sum-total').textContent = `${total} AED`;
-  document.getElementById('pay-btn').textContent = `CONFIRM & PAY (${total} AED)`;
+  document.getElementById('pay-btn').textContent = `CONFIRM PAYMENT & BOOK`;
 }
 
 function confirmPayment() {
@@ -1048,7 +1076,7 @@ function confirmPayment() {
   }
 
   document.getElementById('success-msg').textContent =
-    `A confirmation is on its way to ${val('email') || 'your inbox'}. See you 26 September, 7 PM at Soul Kitchen Dubai.`;
+    `Your payment proof has been submitted. A confirmation is on its way to ${val('email') || 'your inbox'}.`;
   goToStep(4);
 }
 
