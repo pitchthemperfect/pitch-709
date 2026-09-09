@@ -905,12 +905,26 @@ function handleFileSelected(input) {
 }
 
 async function confirmPayment() {
+  const fileInput = document.getElementById('paymentProof');
+  let fileData = null;
+  let fileName = "";
+
   if (!isCurrentWaitlist) {
-    const fileInput = document.getElementById('paymentProof');
     if (!fileInput.files || fileInput.files.length === 0) {
       document.getElementById('err-paymentProof').textContent = 'Please attach proof of payment.';
       return;
     }
+
+    const file = fileInput.files[0];
+    fileName = `${val('fullName').replace(/\s+/g, '_')}_${Date.now()}_${file.name}`;
+    
+    // Convert File to Base64 String
+    fileData = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+      reader.readAsDataURL(file);
+    });
   }
 
   const payload = {
@@ -928,9 +942,12 @@ async function confirmPayment() {
     relationship: pillValues['relationship'] || '',
     pitcheeNationality: val('pitcheeNationality'),
     isWaitlist: isCurrentWaitlist,
-    seats: selectedSeats.map(s => s.id)
+    seats: selectedSeats.map(s => s.id),
+    fileData: fileData,
+    fileName: fileName
   };
 
+  // Submit Data to Google Apps Script
   fetch(GOOGLE_SCRIPT_URL, {
     method: "POST",
     body: JSON.stringify(payload)
