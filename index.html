@@ -1010,24 +1010,31 @@ async function confirmPayment() {
     fileName: fileName
   };
 
-try {
-    await fetch(GOOGLE_SCRIPT_URL, {
+  try {
+    const res = await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
-      mode: "no-cors", // <--- ADD THIS LINE
       headers: {
-        "Content-Type": "text/plain"
+        "Content-Type": "text/plain;charset=utf-8"
       },
       body: JSON.stringify(payload)
     });
 
-    document.getElementById('success-msg').textContent = isCurrentWaitlist
-      ? "You've been added to the waitlist. We will notify you if a slot opens up."
-      : `Your registration and receipt have been submitted. A confirmation will be sent to ${val('email')}.`;
+    const result = await res.json();
 
-    goToStep(4);
+    if (result.status === "success") {
+      document.getElementById('success-msg').textContent = isCurrentWaitlist
+        ? "You've been added to the waitlist. We will notify you if a slot opens up."
+        : `Your registration and receipt have been submitted. A confirmation will be sent to ${val('email')}.`;
+      goToStep(4);
+    } else {
+      alert("Error: " + (result.message || "Failed to save registration."));
+    }
   } catch (err) {
     console.error("Submission error:", err);
     alert("There was an issue submitting your form. Please try again.");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = isCurrentWaitlist ? 'SUBMIT WAITLIST REGISTRATION' : 'CONFIRM PAYMENT & BOOK';
   }
 }
 
