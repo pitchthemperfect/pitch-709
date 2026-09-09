@@ -151,6 +151,814 @@
   .faq-a-wrap { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
   .faq-item.open .faq-a-wrap { max-height: 500px; }
   .faq-a { padding: 0 20px 16px; font-size: 14px; line-height: 1.7; color: var(--muted); margin: 0; }
+
+  /* FOOTER */
+  footer { background: var(--burgundy); padding: 56px 0 0; }
+  .footer-top { display: flex; flex-direction: column; gap: 32px; justify-content: space-between; padding-bottom: 40px; }
+  @media (min-width: 640px) { .footer-top { flex-direction: row; align-items: flex-start; } }
+  .footer-top h3 { color: var(--cream); font-size: 26px; margin: 0 0 8px; }
+  .footer-top .venue { color: #C9AFA1; font-size: 14px; line-height: 1.7; max-width: 340px; margin: 0; }
+  .socials { display: flex; align-items: center; gap: 16px; }
+  .footer-bottom { border-top: 1px solid #4A222A; padding: 24px 0; font-size: 12px; color: #9C8577; }
+
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; z-index: 50; display: none; justify-content: flex-end; }
+  .modal-overlay.open { display: flex; }
+  .modal-backdrop { position: absolute; inset: 0; background: rgba(20,6,8,0.55); }
+  .modal-drawer { position: relative; height: 100%; width: 100%; max-width: 520px; background: var(--cream); display: flex; flex-direction: column; z-index: 2; }
+
+  .modal-header { background: var(--cream); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; flex-shrink: 0; }
+  .modal-header .left { display: flex; align-items: center; gap: 12px; }
+  .modal-header .title { font-size: 15px; font-weight: 600; color: var(--burgundy); }
+  .icon-btn { background: none; padding: 4px; display: flex; }
+
+  .modal-body { flex: 1; padding: 24px; overflow-y: auto; }
+  .modal-step { display: none; }
+  .modal-step.active { display: block; }
+
+  .field { margin-bottom: 20px; }
+  .field label { display: block; font-size: 14px; font-weight: 500; color: var(--burgundy); margin-bottom: 8px; }
+  .field .err { margin-top: 4px; font-size: 12px; color: var(--error); }
+  .input, select.input, textarea.input {
+    width: 100%; border-radius: 10px; border: 1px solid var(--border-soft);
+    padding: 10px 14px; font-size: 14px; outline: none; background: #fff; color: var(--burgundy);
+  }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .role-heading { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 28px 0 12px; }
+  .role-card {
+    border: 1px solid var(--border-soft); border-radius: 14px; background: #fff;
+    padding: 16px 20px; text-align: left; width: 100%; display: block; margin-bottom: 12px;
+    transition: all 0.2s ease;
+  }
+  .role-card.active { border-color: var(--copper); background: #F6E4DA; }
+  .role-card .rtitle { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 0 0 4px; }
+  .role-card .rsub { font-size: 12px; color: var(--muted2); margin: 0; }
+
+  .pitcher-box, .watcher-box { border: 1px solid var(--border); border-radius: 14px; background: var(--cream-card); padding: 20px; margin-top: 24px; }
+  .pitcher-box .heading, .watcher-box .heading { font-size: 15px; font-weight: 600; color: var(--burgundy); margin: 0 0 18px; }
+
+  .pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill-btn { border-radius: 999px; border: 1px solid var(--border-soft); background: #fff; padding: 8px 16px; font-size: 13px; color: var(--burgundy); }
+  .pill-btn.active { background: var(--copper); border-color: var(--copper); color: var(--cream); font-weight: 500; }
+
+  .checkbox-field { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; }
+  .checkbox-field input[type="checkbox"] { margin-top: 3px; accent-color: var(--copper); }
+
+  .waitlist-banner { background: #FAF0D7; border: 1px solid #E5C17C; border-radius: 10px; padding: 12px 16px; margin-bottom: 18px; font-size: 13px; color: #7A5310; display: none; }
+
+  .payment-instructions-box { border: 1px solid var(--border); border-radius: 12px; background: #fff; padding: 18px 20px; margin-bottom: 20px; text-align: center; }
+  .pay-link-btn { display: inline-block; background: var(--copper); color: var(--cream); padding: 12px 24px; border-radius: 999px; font-size: 13px; font-weight: 600; }
+
+  .file-upload-box { border: 2px dashed var(--border-soft); border-radius: 12px; background: #fff; padding: 20px; text-align: center; cursor: pointer; }
+  .file-upload-box input[type="file"] { display: none; }
+
+  .summary-card { border: 1px solid var(--border); border-radius: 14px; background: var(--cream-card); padding: 20px; margin-bottom: 20px; }
+  .summary-row { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; margin-bottom: 6px; }
+
+  .total-bar { display: flex; align-items: center; justify-content: space-between; background: var(--burgundy); border-radius: 14px; padding: 16px 20px; margin-bottom: 20px; }
+  .total-bar .label { font-size: 14px; font-weight: 500; color: var(--cream); }
+  .total-bar .amount { font-size: 18px; font-weight: 600; color: var(--cream); }
+
+  /* FLOOR PLAN SEAT MAP */
+  .floor-plan-container { display: flex; gap: 12px; justify-content: center; align-items: stretch; margin-bottom: 24px; padding: 10px 0; }
+  .bar-element { width: 32px; background: #EDE5D8; border: 1px solid var(--border-soft); border-radius: 6px; display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 11px; font-weight: 700; letter-spacing: 0.25em; color: var(--burgundy); }
+  .seating-layout { display: flex; flex-direction: column; align-items: center; flex: 1; }
+  .stage-banner-floor { width: 100%; border-radius: 6px; padding: 14px 0; text-align: center; font-size: 14px; font-weight: 700; letter-spacing: .25em; background: var(--burgundy); color: var(--cream); margin-top: 14px; }
+  .seat-rows { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; }
+  .seat-row { display: flex; align-items: center; gap: 6px; }
+  .row-label { width: 16px; text-align: right; font-size: 11px; font-weight: 600; color: var(--muted2); }
+  .seat-grid { display: flex; gap: 5px; }
+  .seat { width: 26px; height: 26px; border-radius: 5px; border: 1px solid; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; }
+  @media (min-width: 480px) { .seat { width: 30px; height: 30px; font-size: 11px; } }
+  .seat.front { background: #F1D9CB; border-color: #E3B79A; cursor: pointer; }
+  .seat.main { background: #EAE2D3; border-color: #D6C7A8; cursor: pointer; }
+  .seat.selected { background: var(--copper) !important; border-color: var(--copper) !important; color: #fff !important; }
+  .seat.occupied { background: #E9E4DA; border-color: #D8D0C2; color: #A89F91; cursor: not-allowed; }
+
+  .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 18px; margin-top: 24px; font-size: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; color: #6B5B4B; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 3px; border: 1px solid; }
+
+  .checkout-bar { background: var(--cream); border-top: 1px solid var(--border); padding: 16px 24px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-inner">
+      <div class="logo">
+        <span class="logo-badge serif">P</span>
+        <span class="logo-name serif">Pitch Them Perfect</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#how">How It Works</a>
+        <a href="#faq">FAQ</a>
+        <button class="btn-pill" onclick="openModal()">GET YOUR TICKETS</button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">PITCH THEM PERFECT · DUBAI</p>
+      <h1>Your best friend deserves better than the apps. Pitch them live.</h1>
+      <p class="sub">No profiles, no algorithms, no awkward swiping. Just a room full of people willing to stand up, tell the truth about someone they love, and let a live audience decide who's worth meeting.</p>
+      <button class="btn-pill btn-pill-cream" onclick="openModal()">GET YOUR TICKETS</button>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-photo"></div>
+      <div class="event-card">
+        <span class="badge-next">NEXT UP</span>
+        <p class="date serif">26 SEPT · 7 PM</p>
+        <p class="venue">Soul Kitchen Dubai — Marasi Dr, Business Bay, Dubai, United Arab Emirates</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-backdrop" onclick="closeModal()"></div>
+  <div class="modal-drawer">
+    <div class="modal-header">
+      <div class="left">
+        <button class="icon-btn" id="back-btn" onclick="goBack()" style="display:none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E0D12" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        </button>
+        <span class="title serif" id="modal-title">Register</span>
+      </div>
+      <button class="icon-btn" onclick="closeModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2E0D12" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <!-- STEP 1 -->
+      <div class="modal-step active" id="step-1">
+        <p style="font-size:14px;color:var(--muted);margin:0 0 24px;">Tell us who you are, then choose how you're joining us on the 26th.</p>
+
+        <div class="field">
+          <label for="fullName">Full name</label>
+          <input class="input" id="fullName" placeholder="Your full name" />
+          <div class="err" id="err-fullName"></div>
+        </div>
+        <div class="field">
+          <label for="whatsapp">WhatsApp number</label>
+          <input class="input" id="whatsapp" type="tel" placeholder="+971 5X XXX XXXX" />
+          <div class="err" id="err-whatsapp"></div>
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input class="input" id="email" type="email" placeholder="you@email.com" />
+          <div class="err" id="err-email"></div>
+        </div>
+
+        <p class="role-heading">How are you joining us?</p>
+        <div class="err" id="err-role" style="margin-bottom:8px;"></div>
+
+        <button type="button" class="role-card" id="role-pitcher" onclick="selectRole('pitcher')">
+          <p class="rtitle">I'm here to pitch someone</p>
+          <p class="rsub">Pitcher package · 250 AED for 2 pax · reserved stage-side seats</p>
+        </button>
+        <button type="button" class="role-card" id="role-watcher" onclick="selectRole('watcher')">
+          <p class="rtitle">I'm here to watch the pitches</p>
+          <p class="rsub">Watcher ticket · choose your seats (up to 5 seats)</p>
+        </button>
+
+        <!-- WATCHER AUDIENCE DETAILS -->
+        <div class="watcher-box" id="watcher-fields" style="display:none;">
+          <div class="waitlist-banner" id="watcher-waitlist-banner">ℹ Watcher seats are currently full. Submitting this form will add you to our <strong>Waitlist</strong>.</div>
+          <p class="heading">Audience details</p>
+          <div class="field">
+            <label>Are you:</label>
+            <div class="pill-group" data-field="audienceGender">
+              <button type="button" class="pill-btn" onclick="setPill('audienceGender', 'Male', this)">Male</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceGender', 'Female', this)">Female</button>
+            </div>
+            <div class="err" id="err-audienceGender"></div>
+          </div>
+          <div class="field">
+            <label>Age category</label>
+            <div class="pill-group" data-field="audienceAge">
+              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '21-25', this)">21-25</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '26-30', this)">26-30</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '31-35', this)">31-35</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '36-40', this)">36-40</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '40+', this)">40+</button>
+            </div>
+            <div class="err" id="err-audienceAge"></div>
+          </div>
+          <div class="field">
+            <label>Status</label>
+            <div class="pill-group" data-field="audienceStatus">
+              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'Single', this)">Single</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'Married', this)">Married</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'Divorced', this)">Divorced</button>
+              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'It\'s complicated', this)">It's complicated</button>
+            </div>
+            <div class="err" id="err-audienceStatus"></div>
+          </div>
+          <div class="field">
+            <label for="audienceNationality">Nationality</label>
+            <select class="input nationality-select" id="audienceNationality"><option value="">Select nationality</option></select>
+            <div class="err" id="err-audienceNationality"></div>
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox" id="watcherConsent" />
+            <label for="watcherConsent">I consent to contact regarding this event and future editions. *</label>
+          </div>
+          <div class="err" id="err-watcherConsent"></div>
+        </div>
+
+        <!-- PITCHER DETAILS -->
+        <div class="pitcher-box" id="pitcher-fields" style="display:none;">
+          <div class="waitlist-banner" id="pitcher-waitlist-banner">ℹ Slots for this pitchee gender are currently full. Submitting will add you to our <strong>Waitlist</strong>.</div>
+          <p class="heading">Tell us about your pitchee</p>
+          <div class="grid-2">
+            <div class="field">
+              <label for="pitcheeName">Pitchee name</label>
+              <input class="input" id="pitcheeName" placeholder="Their name" />
+              <div class="err" id="err-pitcheeName"></div>
+            </div>
+            <div class="field">
+              <label for="pitcheeAge">Pitchee age</label>
+              <input class="input" id="pitcheeAge" placeholder="Age" />
+              <div class="err" id="err-pitcheeAge"></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Their gender</label>
+            <div class="pill-group" data-field="pitcheeGender">
+              <button type="button" class="pill-btn" onclick="handlePitcheeGenderSelect('Male', this)">Male</button>
+              <button type="button" class="pill-btn" onclick="handlePitcheeGenderSelect('Female', this)">Female</button>
+            </div>
+            <div class="err" id="err-pitcheeGender"></div>
+          </div>
+          <div class="field">
+            <label>Relationship to pitchee</label>
+            <div class="pill-group" data-field="relationship">
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Friend', this)">Friend</button>
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Family', this)">Family</button>
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Colleague', this)">Colleague</button>
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Other', this)">Other</button>
+            </div>
+            <div class="err" id="err-relationship"></div>
+          </div>
+          <div class="field">
+            <label for="pitcheeNationality">Pitchee nationality</label>
+            <select class="input nationality-select" id="pitcheeNationality"><option value="">Select nationality</option></select>
+            <div class="err" id="err-pitcheeNationality"></div>
+          </div>
+          <div class="field">
+            <label>Will both of you attend together?</label>
+            <div class="pill-group" data-field="attendTogether">
+              <button type="button" class="pill-btn" onclick="setAttendTogether('Yes', this)">Yes</button>
+              <button type="button" class="pill-btn" onclick="setAttendTogether('No', this)">No</button>
+            </div>
+            <div class="err" id="err-attendTogether"></div>
+          </div>
+          <div class="field">
+            <label for="pleadCase">Tell us about them & pitch them! *</label>
+            <textarea class="input" id="pleadCase" rows="4" placeholder="Why should the room fall in love with them?"></textarea>
+            <div class="err" id="err-pleadCase"></div>
+          </div>
+          <div class="field">
+            <label for="pitcheeLinks">Share any links (Optional)</label>
+            <input class="input" id="pitcheeLinks" placeholder="Instagram, LinkedIn, etc." />
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox" id="pitcherConsent" />
+            <label for="pitcherConsent">I confirm I have my friend's permission to nominate them. *</label>
+          </div>
+          <div class="err" id="err-pitcherConsent"></div>
+        </div>
+
+        <button class="btn-pill btn-full" style="margin-top:32px;" id="step1-cta" onclick="handleStep1Continue()">CONTINUE TO SEAT SELECTION →</button>
+      </div>
+
+      <!-- STEP 2 (SEAT MAP) -->
+      <div class="modal-step" id="step-2">
+        <p style="font-size:14px;color:var(--muted);margin:0 0 20px;">Tap open seats to select them (up to 5 seats). Tap again to remove.</p>
+        <div class="floor-plan-container">
+          <div class="bar-element">BAR</div>
+          <div class="seating-layout">
+            <div class="seat-rows" id="seat-rows"></div>
+            <div class="stage-banner-floor">STAGE</div>
+          </div>
+        </div>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-dot" style="background:#F1D9CB;border-color:#E3B79A;"></span>Front view · 155 AED</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#EAE2D3;border-color:#D6C7A8;"></span>Main view · 130 AED</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#C4532D;border-color:#C4532D;"></span>Selected</div>
+          <div class="legend-item"><span class="legend-dot" style="background:#E9E4DA;border-color:#D8D0C2;"></span>Already booked</div>
+        </div>
+      </div>
+
+      <!-- STEP 3 (PAYMENT / SUMMARY) -->
+      <div class="modal-step" id="step-3">
+        <div id="payment-section-wrapper">
+          <p style="font-size:14px;color:var(--muted);margin:0 0 20px;">Review your selection, pay the total via Ziina, and attach your receipt below.</p>
+          <div class="summary-card">
+            <p class="heading" style="font-weight:600;margin-bottom:12px;">Contact</p>
+            <div class="summary-row"><span class="label">Name</span><span class="value" id="sum-fullName">—</span></div>
+            <div class="summary-row"><span class="label">WhatsApp</span><span class="value" id="sum-whatsapp">—</span></div>
+            <div class="summary-row"><span class="label">Email</span><span class="value" id="sum-email">—</span></div>
+          </div>
+          <div class="summary-card" id="sum-pitcher-box" style="display:none;">
+            <p class="heading" style="font-weight:600;margin-bottom:12px;">Pitcher package</p>
+            <div class="summary-row"><span class="label">Pitching</span><span class="value" id="sum-pitchee">—</span></div>
+            <div class="summary-row"><span class="label">Seats</span><span class="value">2 stage-side seats (reserved)</span></div>
+          </div>
+          <div class="summary-card" id="sum-watcher-box" style="display:none;">
+            <p class="heading" style="font-weight:600;margin-bottom:12px;">Selected seats</p>
+            <div id="sum-seats-list"></div>
+          </div>
+          <div class="total-bar">
+            <span class="label">Total due</span>
+            <span class="amount serif" id="sum-total">0 AED</span>
+          </div>
+          <div class="payment-instructions-box">
+            <p>Please enter exactly <strong id="ziina-calculated-amount" style="color:var(--copper);">0 AED</strong> on Ziina:</p>
+            <a href="https://pay.ziina.com/yourbrand" target="_blank" class="pay-link-btn">PAY VIA ZIINA →</a>
+          </div>
+          <div class="field" style="margin-bottom: 24px;">
+            <label>Proof of Payment *</label>
+            <div class="file-upload-box" id="upload-box" onclick="document.getElementById('paymentProof').click()">
+              <p>Click to upload payment receipt or screenshot</p>
+              <div class="file-name-display" id="file-name-display" style="color:var(--copper);font-weight:600;margin-top:6px;"></div>
+              <input type="file" id="paymentProof" accept="image/*,.pdf" onchange="handleFileSelected(this)" />
+            </div>
+            <div class="err" id="err-paymentProof"></div>
+          </div>
+        </div>
+        <button class="btn-pill btn-full" id="pay-btn" onclick="confirmPayment()">SUBMIT REGISTRATION</button>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="modal-step" id="step-4">
+        <div style="text-align:center;padding:40px 0;">
+          <h3 class="serif" style="font-size:24px;margin-bottom:12px;">Submission Received</h3>
+          <p id="success-msg" style="color:var(--muted);font-size:14px;line-height:1.6;"></p>
+          <button class="btn-pill" style="margin-top:24px;" onclick="closeModal()">DONE</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHECKOUT BAR FOR STEP 2 -->
+    <div class="checkout-bar" id="checkout-bar" style="display:none;">
+      <div class="checkout-items" id="checkout-items"></div>
+      <div class="checkout-summary">
+        <span class="count" id="checkout-count">0 seats selected</span>
+        <span class="amount serif" id="checkout-total">0 AED</span>
+      </div>
+      <button class="btn-pill btn-full" id="checkout-cta" onclick="proceedToPaymentFromSeats()" disabled>PROCEED TO PAYMENT</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// GOOGLE APPS SCRIPT WEB APP ENDPOINT
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx98-x3316kN9J6gWwj15ktAAuvvQXYVESuXuCHK2KZzE5juGOnuEx6KUH7c9-ZHCxmag/exec";
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const ROW_NAMES = ['I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'];
+const MAX_SEATS_ALLOWED = 5;
+
+let occupiedSeats = new Set();
+let pitcherMaleFull = false;
+let pitcherFemaleFull = false;
+let watcherFull = false;
+let isCurrentWaitlist = false;
+
+const tierOf = (rowName) => (['A','B','C'].includes(rowName)) ? 'front' : 'main';
+const priceOf = (rowName) => (['A','B','C'].includes(rowName)) ? 155 : 130;
+const tierLabel = (rowName) => (['A','B','C'].includes(rowName)) ? 'Front View' : 'Main View';
+
+let selectedSeats = [];
+let role = null;
+let currentStep = 1;
+let attendTogetherVal = '';
+let pillValues = {};
+
+// Fetch state from Google Sheet backend
+async function fetchBackendState() {
+  try {
+    const res = await fetch(GOOGLE_SCRIPT_URL);
+    const data = await res.json();
+    occupiedSeats = new Set(data.bookedSeats || []);
+    pitcherMaleFull = data.pitcherMaleFull;
+    pitcherFemaleFull = data.pitcherFemaleFull;
+    watcherFull = data.watcherFull;
+    buildSeatMap();
+  } catch (err) {
+    console.error("Error fetching state:", err);
+  }
+}
+
+function buildSeatMap() {
+  const container = document.getElementById('seat-rows');
+  container.innerHTML = '';
+  ROW_NAMES.forEach(rowName => {
+    const rowEl = document.createElement('div');
+    rowEl.className = 'seat-row';
+    const label = document.createElement('span');
+    label.className = 'row-label';
+    label.textContent = rowName;
+    rowEl.appendChild(label);
+
+    const grid = document.createElement('div');
+    grid.className = 'seat-grid';
+    for (let seatNum = 1; seatNum <= 8; seatNum++) {
+      grid.appendChild(makeSeatBtn(rowName, seatNum));
+    }
+    rowEl.appendChild(grid);
+    container.appendChild(rowEl);
+  });
+}
+
+function makeSeatBtn(rowName, seatNum) {
+  const id = `${rowName}-${seatNum}`;
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.id = `seat-${id}`;
+  btn.textContent = seatNum;
+
+  if (occupiedSeats.has(id)) {
+    btn.className = 'seat occupied';
+    btn.disabled = true;
+    btn.title = 'Already booked';
+  } else {
+    const isSelected = selectedSeats.some(s => s.id === id);
+    btn.className = `seat ${tierOf(rowName)}` + (isSelected ? ' selected' : '');
+    btn.onclick = () => toggleSeat(rowName, seatNum);
+  }
+  return btn;
+}
+
+function toggleSeat(rowName, seatNum) {
+  const id = `${rowName}-${seatNum}`;
+  const idx = selectedSeats.findIndex(s => s.id === id);
+  if (idx >= 0) {
+    selectedSeats.splice(idx, 1);
+  } else {
+    if (selectedSeats.length >= MAX_SEATS_ALLOWED) {
+      alert(`Maximum of ${MAX_SEATS_ALLOWED} seats permitted per booking.`);
+      return;
+    }
+    selectedSeats.push({ id, row: rowName, seat: seatNum, tier: tierOf(rowName), price: priceOf(rowName) });
+  }
+
+  ROW_NAMES.forEach(r => {
+    for (let s = 1; s <= 8; s++) {
+      const b = document.getElementById(`seat-${r}-${s}`);
+      if (b && !b.classList.contains('occupied')) {
+        b.classList.toggle('selected', selectedSeats.some(x => x.id === `${r}-${s}`));
+      }
+    }
+  });
+  updateCheckoutBar();
+}
+
+function updateCheckoutBar() {
+  const itemsEl = document.getElementById('checkout-items');
+  itemsEl.innerHTML = selectedSeats.map(s => `<div>Row ${s.row}, Seat ${s.seat} — ${tierLabel(s.row)}</div>`).join('');
+  document.getElementById('checkout-count').textContent = `${selectedSeats.length} seat(s) selected`;
+  const total = selectedSeats.reduce((sum, s) => sum + s.price, 0);
+  document.getElementById('checkout-total').textContent = `${total} AED`;
+  document.getElementById('checkout-cta').disabled = selectedSeats.length === 0;
+}
+
+function setPill(field, value, btnEl) {
+  pillValues[field] = value;
+  const parent = btnEl.closest('.pill-group');
+  parent.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+  clearError(field);
+}
+
+function setAttendTogether(val, btnEl) {
+  attendTogetherVal = val;
+  if (btnEl) {
+    const parent = btnEl.closest('.pill-group');
+    parent.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+    btnEl.classList.add('active');
+  }
+  clearError('attendTogether');
+}
+
+function handlePitcheeGenderSelect(gender, btnEl) {
+  setPill('pitcheeGender', gender, btnEl);
+  const banner = document.getElementById('pitcher-waitlist-banner');
+  if ((gender === 'Male' && pitcherMaleFull) || (gender === 'Female' && pitcherFemaleFull)) {
+    banner.style.display = 'block';
+    isCurrentWaitlist = true;
+  } else {
+    banner.style.display = 'none';
+    isCurrentWaitlist = false;
+  }
+}
+
+function selectRole(r) {
+  role = r;
+  document.getElementById('role-pitcher').classList.toggle('active', r === 'pitcher');
+  document.getElementById('role-watcher').classList.toggle('active', r === 'watcher');
+  document.getElementById('pitcher-fields').style.display = r === 'pitcher' ? 'block' : 'none';
+  document.getElementById('watcher-fields').style.display = r === 'watcher' ? 'block' : 'none';
+
+  if (r === 'watcher') {
+    if (watcherFull) {
+      document.getElementById('watcher-waitlist-banner').style.display = 'block';
+      isCurrentWaitlist = true;
+      document.getElementById('step1-cta').textContent = 'JOIN WATCHER WAITLIST →';
+    } else {
+      document.getElementById('watcher-waitlist-banner').style.display = 'none';
+      isCurrentWaitlist = false;
+      document.getElementById('step1-cta').textContent = 'CONTINUE TO SEAT SELECTION →';
+    }
+  } else {
+    document.getElementById('step1-cta').textContent = isCurrentWaitlist ? 'JOIN PITCHER WAITLIST →' : 'PROCEED TO CHECKOUT (250 AED) →';
+  }
+  clearError('role');
+}
+
+function handleStep1Continue() {
+  if (!validateStep1()) return;
+  if (role === 'pitcher' || isCurrentWaitlist) {
+    populateSummary();
+    goToStep(3);
+  } else {
+    goToStep(2);
+  }
+}
+
+function validateStep1() {
+  clearErrors();
+  let ok = true;
+  if (!val('fullName')) { setError('fullName', 'Enter your full name.'); ok = false; }
+  if (!val('whatsapp')) { setError('whatsapp', 'Enter a WhatsApp number.'); ok = false; }
+  if (!val('email')) { setError('email', 'Enter an email address.'); ok = false; }
+  if (!role) { document.getElementById('err-role').textContent = "Choose your role."; ok = false; }
+
+  if (role === 'watcher') {
+    if (!pillValues['audienceGender']) { setError('audienceGender', 'Select gender.'); ok = false; }
+    if (!pillValues['audienceAge']) { setError('audienceAge', 'Select age.'); ok = false; }
+    if (!pillValues['audienceStatus']) { setError('audienceStatus', 'Select status.'); ok = false; }
+    if (!val('audienceNationality')) { setError('audienceNationality', 'Select nationality.'); ok = false; }
+    if (!document.getElementById('watcherConsent').checked) { setError('watcherConsent', 'Consent required.'); ok = false; }
+  }
+
+  if (role === 'pitcher') {
+    if (!val('pitcheeName')) { setError('pitcheeName', 'Enter pitchee name.'); ok = false; }
+    if (!val('pitcheeAge')) { setError('pitcheeAge', 'Enter pitchee age.'); ok = false; }
+    if (!pillValues['pitcheeGender']) { setError('pitcheeGender', 'Select pitchee gender.'); ok = false; }
+    if (!pillValues['relationship']) { setError('relationship', 'Select relationship.'); ok = false; }
+    if (!val('pitcheeNationality')) { setError('pitcheeNationality', 'Select nationality.'); ok = false; }
+    if (!attendTogetherVal) { setError('attendTogether', 'Select attendance.'); ok = false; }
+    if (!val('pleadCase')) { setError('pleadCase', 'Tell us about them.'); ok = false; }
+    if (!document.getElementById('pitcherConsent').checked) { setError('pitcherConsent', 'Confirmation required.'); ok = false; }
+  }
+  return ok;
+}
+
+function populateSummary() {
+  document.getElementById('sum-fullName').textContent = val('fullName');
+  document.getElementById('sum-whatsapp').textContent = val('whatsapp');
+  document.getElementById('sum-email').textContent = val('email');
+
+  const paymentWrap = document.getElementById('payment-section-wrapper');
+  
+  if (isCurrentWaitlist) {
+    paymentWrap.style.display = 'none';
+    document.getElementById('pay-btn').textContent = 'SUBMIT WAITLIST REGISTRATION';
+    return;
+  }
+
+  paymentWrap.style.display = 'block';
+  document.getElementById('pay-btn').textContent = 'CONFIRM PAYMENT & BOOK';
+
+  let total = 0;
+  if (role === 'pitcher') {
+    document.getElementById('sum-pitcher-box').style.display = 'block';
+    document.getElementById('sum-watcher-box').style.display = 'none';
+    document.getElementById('sum-pitchee').textContent = val('pitcheeName');
+    total = 250;
+  } else {
+    document.getElementById('sum-pitcher-box').style.display = 'none';
+    document.getElementById('sum-watcher-box').style.display = 'block';
+    document.getElementById('sum-seats-list').innerHTML = selectedSeats.map(s => `<div class="summary-row"><span>Row ${s.row}, Seat ${s.seat}</span><span>${s.price} AED</span></div>`).join('');
+    total = selectedSeats.reduce((sum, s) => sum + s.price, 0);
+  }
+
+  document.getElementById('sum-total').textContent = `${total} AED`;
+  document.getElementById('ziina-calculated-amount').textContent = `${total} AED`;
+}
+
+async function confirmPayment() {
+  if (!isCurrentWaitlist) {
+    const fileInput = document.getElementById('paymentProof');
+    if (!fileInput.files || fileInput.files.length === 0) {
+      document.getElementById('err-paymentProof').textContent = 'Please attach proof of payment.';
+      return;
+    }
+  }
+
+  const payload = {
+    fullName: val('fullName'),
+    whatsapp: val('whatsapp'),
+    email: val('email'),
+    role: role,
+    audienceGender: pillValues['audienceGender'] || '',
+    audienceAge: pillValues['audienceAge'] || '',
+    audienceStatus: pillValues['audienceStatus'] || '',
+    audienceNationality: val('audienceNationality'),
+    pitcheeName: val('pitcheeName'),
+    pitcheeAge: val('pitcheeAge'),
+    pitcheeGender: pillValues['pitcheeGender'] || '',
+    relationship: pillValues['relationship'] || '',
+    pitcheeNationality: val('pitcheeNationality'),
+    isWaitlist: isCurrentWaitlist,
+    seats: selectedSeats.map(s => s.id)
+  };
+
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: "POST",
+    body: JSON.stringify(payload)
+  });
+
+  document.getElementById('success-msg').textContent = isCurrentWaitlist
+    ? "You've been added to the waitlist. We will notify you if a slot opens up."
+    : `Your registration and receipt have been submitted. A confirmation will be sent to ${val('email')}.`;
+
+  goToStep(4);
+}
+
+function proceedToPaymentFromSeats() {
+  populateSummary();
+  goToStep(3);
+}
+
+function openModal() {
+  document.getElementById('modal-overlay').classList.add('open');
+  fetchBackendState();
+  goToStep(1);
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  resetAll();
+}
+
+function resetAll() {
+  role = null; selectedSeats = []; attendTogetherVal = ''; pillValues = {};
+  ['fullName','whatsapp','email','audienceNationality','pitcheeName','pitcheeAge','pitcheeNationality','pitcheeLinks','pleadCase','paymentProof'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  clearErrors(); buildSeatMap(); updateCheckoutBar(); goToStep(1);
+}
+
+function clearErrors() { document.querySelectorAll('.err').forEach(e => e.textContent = ''); }
+function clearError(f) { const el = document.getElementById('err-' + f); if (el) el.textContent = ''; }
+function setError(f, m) { const el = document.getElementById('err-' + f); if (el) el.textContent = m; }
+function val(id) { const el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+function goToStep(s) {
+  currentStep = s;
+  document.querySelectorAll('.modal-step').forEach(e => e.classList.remove('active'));
+  document.getElementById('step-' + s).classList.add('active');
+  document.getElementById('back-btn').style.display = (s > 1 && s < 4) ? 'flex' : 'none';
+  document.getElementById('checkout-bar').style.display = s === 2 ? 'block' : 'none';
+}
+
+function goBack() {
+  if (role === 'pitcher' && currentStep === 3) goToStep(1);
+  else goToStep(currentStep - 1);
+}
+
+buildSeatMap();
+</script>
+</body>
+</html>  @media (min-width: 640px) { .wrap { padding: 0 32px; } }
+
+  /* NAV */
+  header.nav {
+    position: sticky; top: 0; z-index: 30;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-badge {
+    width: 36px; height: 36px; border-radius: 999px;
+    background: var(--burgundy); color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .logo-name { font-size: 15px; font-weight: 600; color: var(--burgundy); }
+  
+  .nav-links { display: flex; align-items: center; gap: 32px; margin-left: auto; }
+  .nav-links a { font-size: 14px; color: var(--burgundy); }
+
+  .btn-pill {
+    border-radius: 999px; padding: 10px 20px;
+    font-size: 12px; font-weight: 600; letter-spacing: .04em;
+    background: var(--burgundy); color: var(--cream);
+    transition: opacity 0.2s;
+  }
+  .btn-pill-cream { background: var(--cream); color: var(--burgundy); }
+  .btn-pill:disabled { opacity: .4; cursor: not-allowed; }
+  .btn-full { width: 100%; padding: 14px 0; }
+
+  /* HERO */
+  .hero { background: var(--burgundy); overflow: hidden; position: relative; }
+  .hero .wrap { display: grid; gap: 40px; padding: 64px 20px; }
+  @media (min-width: 640px) { .hero .wrap { padding: 96px 32px; } }
+  @media (min-width: 1024px) {
+    .hero .wrap { grid-template-columns: 1.1fr .9fr; padding: 112px 32px; align-items: center; }
+  }
+
+  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .25em; color: var(--copper2); margin-bottom: 20px; }
+  .eyebrow-dark { color: var(--copper); }
+
+  .hero h1 { font-size: 36px; line-height: 1.12; color: var(--cream); max-width: 560px; margin: 0 0 24px; font-weight: 600; }
+  @media (min-width: 640px) { .hero h1 { font-size: 48px; line-height: 1.1; } }
+
+  .hero p.sub { font-size: 15px; line-height: 1.7; color: #E4D2C8; max-width: 460px; margin: 0 0 36px; }
+
+  .hero-visual { position: relative; display: flex; align-items: flex-end; justify-content: center; }
+  @media (min-width: 1024px) { .hero-visual { justify-content: flex-end; } }
+  .hero-photo {
+    width: 100%; max-width: 380px; height: 260px; border-radius: 24px;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(217,107,67,0.55), transparent 55%),
+      radial-gradient(circle at 75% 70%, rgba(196,83,45,0.4), transparent 60%),
+      linear-gradient(160deg, #3B1117, #1E080C);
+  }
+  @media (min-width: 640px) { .hero-photo { height: 320px; } }
+
+  .event-card {
+    position: absolute; right: 0; bottom: -24px;
+    width: 260px; background: var(--cream); border-radius: 18px;
+    padding: 20px; box-shadow: 0 20px 40px rgba(20,6,8,0.25);
+  }
+  @media (min-width: 640px) { .event-card { width: 290px; } }
+  .badge-next {
+    display: inline-block; border-radius: 999px; padding: 4px 12px;
+    font-size: 10px; font-weight: 600; letter-spacing: .15em;
+    background: var(--copper); color: var(--cream);
+  }
+  .event-card .date { margin: 12px 0 6px; font-size: 18px; font-weight: 600; color: var(--burgundy); }
+  .event-card .venue { font-size: 12px; line-height: 1.6; color: var(--muted); margin: 0; }
+
+  /* VALUE PROP */
+  .value-prop { padding: 64px 0; }
+  @media (min-width: 640px) { .value-prop { padding: 80px 0; } }
+  .value-prop .inner { max-width: 720px; margin: 0 auto; text-align: center; padding: 0 20px; }
+  .value-prop p.big { font-size: 24px; line-height: 1.35; color: var(--burgundy); margin: 0; }
+  @media (min-width: 640px) { .value-prop p.big { font-size: 30px; } }
+
+  /* HOW IT WORKS */
+  .how { background: var(--burgundy); padding: 64px 0; }
+  @media (min-width: 640px) { .how { padding: 96px 0; } }
+  .how .wrap { display: grid; gap: 48px; }
+  @media (min-width: 1024px) { .how .wrap { grid-template-columns: 1fr 1fr; align-items: center; } }
+  .how-photo {
+    height: 280px; border-radius: 24px;
+    background:
+      radial-gradient(circle at 25% 25%, rgba(217,107,67,0.5), transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(196,83,45,0.35), transparent 55%),
+      linear-gradient(155deg, #4A1620, #200A0D);
+  }
+  @media (min-width: 640px) { .how-photo { height: 380px; } }
+  .steps { display: flex; flex-direction: column; gap: 36px; }
+  .step { display: flex; gap: 20px; }
+  .step .num { font-size: 14px; font-weight: 600; color: var(--copper2); }
+  .step .title { font-size: 14px; font-weight: 600; letter-spacing: .1em; color: var(--cream); margin: 0 0 8px; }
+  .step .desc { font-size: 15px; line-height: 1.7; color: #D9C4B8; margin: 0; max-width: 420px; }
+
+  /* FAQ */
+  .faq { padding: 64px 0; }
+  @media (min-width: 640px) { .faq { padding: 96px 0; } }
+  .faq .inner { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+  .faq h2 { font-size: 30px; margin: 0 0 40px; color: var(--burgundy); }
+  .faq-item {
+    border: 1px solid var(--border); border-radius: 14px; background: var(--cream-card);
+    margin-bottom: 12px; overflow: hidden;
+  }
+  .faq-q {
+    width: 100%; background: none; padding: 16px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    text-align: left; font-size: 14px; font-weight: 500; color: var(--burgundy);
+  }
+  .faq-q svg { flex-shrink: 0; transition: transform .2s ease; }
+  .faq-item.open .faq-q svg { transform: rotate(180deg); }
+  .faq-a-wrap { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .faq-item.open .faq-a-wrap { max-height: 500px; }
+  .faq-a { padding: 0 20px 16px; font-size: 14px; line-height: 1.7; color: var(--muted); margin: 0; }
   .faq-a ul { margin: 12px 0 0 20px; padding: 0; }
   .faq-a li { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 8px; }
   .faq-a li:last-child { margin-bottom: 0; }
