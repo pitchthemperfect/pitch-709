@@ -1045,24 +1045,20 @@ async function confirmPayment() {
   };
 
   try {
-    const res = await fetch(GOOGLE_SCRIPT_URL, {
+    // Send request with no-cors mode using URL Search Params to bypass CORS restrictions
+    await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
+      mode: "no-cors",
       headers: {
-        "Content-Type": "text/plain;charset=utf-8"
+        "Content-Type": "application/x-www-form-urlencoded"
       },
-      body: JSON.stringify(payload)
+      body: new URLSearchParams({ payload: JSON.stringify(payload) })
     });
 
-    const result = await res.json();
-
-    if (result.status === "success") {
-      document.getElementById('success-msg').textContent = isCurrentWaitlist
-        ? "You've been added to the waitlist. We will notify you if a slot opens up."
-        : `Your registration and receipt have been submitted. A confirmation will be sent to ${val('email')}.`;
-      goToStep(4);
-    } else {
-      alert("Error: " + (result.message || "Failed to save registration."));
-    }
+    document.getElementById('success-msg').textContent = isCurrentWaitlist
+      ? "You've been added to the waitlist. We will notify you if a slot opens up."
+      : `Your registration and receipt have been submitted. A confirmation will be sent to ${val('email')}.`;
+    goToStep(4);
   } catch (err) {
     console.error("Submission error:", err);
     alert("There was an issue submitting your form. Please try again.");
