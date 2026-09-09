@@ -289,7 +289,7 @@
       <div class="hero-photo"></div>
       <div class="event-card">
         <span class="badge-next">NEXT UP</span>
-        <p class="date serif">26 SEPT · 7 PM</p>
+        <p class="date serif" id="event-date-display">26 SEPT · 7 PM</p>
         <p class="venue">Soul Kitchen Dubai — Marasi Dr, Business Bay, Dubai, United Arab Emirates</p>
       </div>
     </div>
@@ -348,7 +348,7 @@
   <div class="wrap">
     <div class="footer-top">
       <div>
-        <h3 class="serif">See you on the 26th.</h3>
+        <h3 class="serif" id="footer-heading">See you on the 26th.</h3>
         <p class="venue">Soul Kitchen Dubai — Marasi Dr, Business Bay, Dubai, United Arab Emirates</p>
       </div>
       <div class="socials">
@@ -383,7 +383,7 @@
     <div class="modal-body">
       <!-- STEP 1 -->
       <div class="modal-step active" id="step-1">
-        <p style="font-size:14px;color:var(--muted);margin:0 0 24px;">Tell us who you are, then choose how you're joining us on the 26th.</p>
+        <p style="font-size:14px;color:var(--muted);margin:0 0 24px;" id="step-1-subtext">Tell us who you are, then choose how you're joining us.</p>
 
         <div class="field">
           <label for="fullName">Full name</label>
@@ -605,9 +605,46 @@
 </div>
 
 <script>
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw6RS_pgJPgf1SASv7xb8lIUhjDzZ0uqi27ZJEfq8iEmNy7LwIL9JVT0YRv4emGBjWdPw/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzL_6TJiFoM44CwQguJCK4u2S8Q4HFNnlRM3U5Hq9seEG9jt-qwIdRBpt8M7CcvruXh/exec";
 
+// DYNAMIC EVENT DATE CALCULATION
+function getNextEventDate(targetDay = 26) {
+  const now = new Date();
+  let year = now.getFullYear();
+  let month = now.getMonth();
+
+  if (now.getDate() > targetDay) {
+    month++;
+    if (month > 11) {
+      month = 0;
+      year++;
+    }
+  }
+
+  const targetDate = new Date(year, month, targetDay);
+  const monthAbbrs = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+  
+  return {
+    day: targetDay,
+    monthAbbr: monthAbbrs[targetDate.getMonth()],
+    formattedBadge: `${targetDay} ${monthAbbrs[targetDate.getMonth()]} · 7 PM`,
+    formattedDayOrdinal: `${targetDay}${getOrdinalSuffix(targetDay)}`
+  };
+}
+
+function getOrdinalSuffix(i) {
+  const j = i % 10, k = i % 100;
+  if (j === 1 && k !== 11) return "st";
+  if (j === 2 && k !== 12) return "nd";
+  if (j === 3 && k !== 13) return "rd";
+  return "th";
+}
+
+const nextEvent = getNextEventDate(26);
 document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('event-date-display').textContent = nextEvent.formattedBadge;
+document.getElementById('footer-heading').textContent = `See you on the ${nextEvent.formattedDayOrdinal}.`;
+document.getElementById('step-1-subtext').textContent = `Tell us who you are, then choose how you're joining us on the ${nextEvent.formattedDayOrdinal}.`;
 
 const NATIONALITIES = [
   "Afghan","Albanian","Algerian","American","Andorran","Angolan","Antiguan","Argentine","Armenian","Australian","Austrian","Azerbaijani",
@@ -916,7 +953,6 @@ async function confirmPayment() {
     const file = fileInput.files[0];
     fileName = `${val('fullName').replace(/\s+/g, '_')}_${Date.now()}_${file.name}`;
     
-    // Read and compress image
     fileData = await new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = (e) => {
@@ -965,6 +1001,9 @@ async function confirmPayment() {
     pitcheeGender: pillValues['pitcheeGender'] || '',
     relationship: pillValues['relationship'] || '',
     pitcheeNationality: val('pitcheeNationality'),
+    attendTogether: attendTogetherVal,
+    pleadCase: val('pleadCase'),
+    pitcheeLinks: val('pitcheeLinks'),
     isWaitlist: isCurrentWaitlist,
     seats: selectedSeats.map(s => s.id),
     fileData: fileData,
@@ -1009,7 +1048,7 @@ function closeModal() {
 
 function resetAll() {
   role = null; selectedSeats = []; attendTogetherVal = ''; pillValues = {};
-  ['fullName','whatsapp','email','audienceNationality','pitcheeName','pitcheeAge','pitcheeNationality','pitcheeLinks','paymentProof'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  ['fullName','whatsapp','email','audienceNationality','pitcheeName','pitcheeAge','pitcheeNationality','pleadCase','pitcheeLinks','paymentProof'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
   clearErrors(); buildSeatMap(); updateCheckoutBar(); goToStep(1);
 }
 
