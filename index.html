@@ -646,7 +646,7 @@
 </div>
 
 <script>
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzL_6TJiFoM44CwQguJCK4u2S8Q4HFNnlRM3U5Hq9seEG9jt-qwIdRBpt8M7CcvruXh/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw3eW8vipMl20eixD40jal3aOn9V7by7EORrfcY-j4wabOsUevTb563rGOsizBB-1x60g/exec";
 
 // SEATING CAPACITY LIMITS
 const FRONT_MAX_CAPACITY = 24;
@@ -767,13 +767,10 @@ async function fetchBackendState() {
     const res = await fetch(GOOGLE_SCRIPT_URL);
     const data = await res.json();
     
-    // Count existing bookings per zone
-    const bookedSeats = data.bookedSeats || [];
-    bookedFrontCount = bookedSeats.filter(s => s.startsWith('A-') || s.startsWith('B-') || s.startsWith('C-')).length;
-    bookedMainCount = bookedSeats.filter(s => !s.startsWith('A-') && !s.startsWith('B-') && !s.startsWith('C-')).length;
-
-    pitcherMaleFull = data.pitcherMaleFull;
-    pitcherFemaleFull = data.pitcherFemaleFull;
+    bookedFrontCount = data.bookedFrontCount || 0;
+    bookedMainCount = data.bookedMainCount || 0;
+    pitcherMaleFull = data.pitcherMaleFull || false;
+    pitcherFemaleFull = data.pitcherFemaleFull || false;
     watcherFull = data.watcherFull || (bookedFrontCount >= FRONT_MAX_CAPACITY && bookedMainCount >= MAIN_MAX_CAPACITY);
     
     updateTierAvailabilityUI();
