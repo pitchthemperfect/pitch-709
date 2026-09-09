@@ -1010,9 +1010,13 @@ async function confirmPayment() {
     fileName: fileName
   };
 
-  try {
+try {
     await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
+      mode: "no-cors", // <--- ADD THIS LINE
+      headers: {
+        "Content-Type": "text/plain"
+      },
       body: JSON.stringify(payload)
     });
 
@@ -1024,9 +1028,6 @@ async function confirmPayment() {
   } catch (err) {
     console.error("Submission error:", err);
     alert("There was an issue submitting your form. Please try again.");
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.textContent = isCurrentWaitlist ? 'SUBMIT WAITLIST REGISTRATION' : 'CONFIRM PAYMENT & BOOK';
   }
 }
 
