@@ -282,6 +282,74 @@
   </div>
 </section>
 
+<!-- VALUE PROP -->
+<section class="value-prop">
+  <div class="inner">
+    <p class="eyebrow eyebrow-dark" style="margin-bottom:20px;">A BETTER WAY TO MEET PEOPLE</p>
+    <p class="big serif">Pitch Them Perfect turns being single into a reason to go out — not another reason to open an app.</p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="how-photo"></div>
+    <div class="steps">
+      <div class="step">
+        <span class="num">01</span>
+        <div>
+          <h3 class="title">SHOW UP</h3>
+          <p class="desc">Come single, curious, or as a supportive hype-man for someone else. No app, no profile, no swiping required.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="num">02</span>
+        <div>
+          <h3 class="title">GET ON STAGE</h3>
+          <p class="desc">Pitch a friend, tell their story, and make the case for why they deserve someone great — in front of a room that's rooting for you both.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="num">03</span>
+        <div>
+          <h3 class="title">MEET SOMEONE REAL</h3>
+          <p class="desc">The room opens up for real, face-to-face conversations. No screens between you, no awkward silences to fill.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="inner">
+    <p class="eyebrow eyebrow-dark" style="margin-bottom:12px;">GOOD TO KNOW</p>
+    <h2 class="serif">Frequently asked questions</h2>
+    <div id="faq-list"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <h3 class="serif">See you on the 26th.</h3>
+        <p class="venue">Soul Kitchen Dubai — Marasi Dr, Business Bay, Dubai, United Arab Emirates</p>
+      </div>
+      <div class="socials">
+        <a href="#" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a href="#" aria-label="WhatsApp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="year"></span> Pitch Them Perfect. All rights reserved.</div>
+  </div>
+</footer>
+
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-backdrop" onclick="closeModal()"></div>
@@ -523,10 +591,63 @@
 </div>
 
 <script>
-// GOOGLE APPS SCRIPT WEB APP ENDPOINT
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx98-x3316kN9J6gWwj15ktAAuvvQXYVESuXuCHK2KZzE5juGOnuEx6KUH7c9-ZHCxmag/exec";
 
 document.getElementById('year').textContent = new Date().getFullYear();
+
+const NATIONALITIES = [
+  "Afghan","Albanian","Algerian","American","Andorran","Angolan","Antiguan","Argentine","Armenian","Australian","Austrian","Azerbaijani",
+  "Bahamian","Bahraini","Bangladeshi","Barbadian","Belarusian","Belgian","Belizean","Beninese","Bhutanese","Bolivian","Bosnian","Brazilian",
+  "British","Bruneian","Bulgarian","Burkinabe","Burmese","Burundian","Cambodian","Cameroonian","Canadian","Cape Verdean","Central African",
+  "Chadian","Chilean","Chinese","Colombian","Comoran","Congolese","Costa Rican","Croatian","Cuban","Cypriot","Czech","Danish","Djiboutian",
+  "Dominican","Dutch","East Timorese","Ecuadorean","Egyptian","Emirati","Equatorial Guinean","Eritrean","Estonian","Ethiopian","Fijian",
+  "Filipino","Finnish","French","Gabonese","Gambian","Georgian","German","Ghanaian","Greek","Grenadian","Guatemalan","Guinean","Guyanese",
+  "Haitian","Honduran","Hungarian","Icelander","Indian","Indonesian","Iranian","Iraqi","Irish","Israeli","Italian","Ivorian","Jamaican",
+  "Japanese","Jordanian","Kazakhstani","Kenyan","Kuwaiti","Kyrgyz","Laotian","Latvian","Lebanese","Liberian","Libyan","Liechtensteiner",
+  "Lithuanian","Luxembourgish","Macedonian","Malagasy","Malawian","Malaysian","Maldivian","Malian","Maltese","Marshallese","Mauritanian",
+  "Mauritian","Mexican","Micronesian","Moldovan","Monacan","Mongolian","Montenegrin","Moroccan","Mozambican","Namibian","Nauruan","Nepalese",
+  "New Zealander","Nicaraguan","Nigerien","Nigerian","North Korean","Norwegian","Omani","Pakistani","Palauan","Palestinian","Panamanian",
+  "Papua New Guinean","Paraguayan","Peruvian","Polish","Portuguese","Qatari","Romanian","Russian","Rwandan","Saint Lucian","Salvadoran",
+  "Samoan","San Marinese","Saudi","Senegalese","Serbian","Seychellois","Sierra Leonean","Singaporean","Slovak","Slovenian","Solomon Islander",
+  "Somali","South African","South Korean","Spanish","Sri Lankan","Sudanese","Surinamese","Swazi","Swedish","Swiss","Syrian","Taiwanese",
+  "Tajik","Tanzanian","Thai","Togolese","Tongan","Trinidadian","Tunisian","Turkish","Turkmen","Tuvaluan","Ugandan","Ukrainian","Uruguayan",
+  "Uzbek","Vanuatu","Venezuelan","Vietnamese","Yemeni","Zambian","Zimbabwean"
+];
+
+function populateNationalities() {
+  document.querySelectorAll('.nationality-select').forEach(select => {
+    select.innerHTML = '<option value="">Select nationality</option>';
+    NATIONALITIES.forEach(nat => {
+      const opt = document.createElement('option');
+      opt.value = nat;
+      opt.textContent = nat;
+      select.appendChild(opt);
+    });
+  });
+}
+populateNationalities();
+
+const FAQS = [
+  { q: "Is it only for singles?", a: "Mostly, but not exclusively! Singles are definitely welcome, but couples can join too." },
+  { q: "Is there a dress code?", a: "Come as you are, or come dressed to be noticed. Smart-casual is average." },
+  { q: "What should I prepare?", a: "Just bring yourself, an open mind, and your best energy." },
+  { q: "What if I register and suddenly can't make it?", a: "We offer refunds based on when you cancel: 24+ hrs (Full refund), 24-5 hrs (60% refund), <5 hrs (No refund)." },
+  { q: "Can I change my seats after booking?", a: "Reach out to us on WhatsApp at least 24 hours before the event." }
+];
+
+const faqList = document.getElementById('faq-list');
+FAQS.forEach((item, i) => {
+  const div = document.createElement('div');
+  div.className = 'faq-item' + (i === 0 ? ' open' : '');
+  div.innerHTML = `
+    <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+      <span>${item.q}</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C4532D" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="faq-a-wrap"><div class="faq-a">${item.a}</div></div>
+  `;
+  faqList.appendChild(div);
+});
 
 const ROW_NAMES = ['I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'];
 const MAX_SEATS_ALLOWED = 5;
@@ -547,7 +668,6 @@ let currentStep = 1;
 let attendTogetherVal = '';
 let pillValues = {};
 
-// Fetch state from Google Sheet backend
 async function fetchBackendState() {
   try {
     const res = await fetch(GOOGLE_SCRIPT_URL);
@@ -558,7 +678,7 @@ async function fetchBackendState() {
     watcherFull = data.watcherFull;
     buildSeatMap();
   } catch (err) {
-    console.error("Error fetching state:", err);
+    console.error("Error fetching backend state:", err);
   }
 }
 
@@ -760,6 +880,13 @@ function populateSummary() {
   document.getElementById('ziina-calculated-amount').textContent = `${total} AED`;
 }
 
+function handleFileSelected(input) {
+  if (input.files && input.files[0]) {
+    document.getElementById('file-name-display').textContent = 'Attached: ' + input.files[0].name;
+    clearError('paymentProof');
+  }
+}
+
 async function confirmPayment() {
   if (!isCurrentWaitlist) {
     const fileInput = document.getElementById('paymentProof');
@@ -841,1111 +968,5 @@ function goBack() {
 
 buildSeatMap();
 </script>
-</body>
-</html>  @media (min-width: 640px) { .wrap { padding: 0 32px; } }
-
-  /* NAV */
-  header.nav {
-    position: sticky; top: 0; z-index: 30;
-    background: var(--cream);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
-  .logo { display: flex; align-items: center; gap: 10px; }
-  .logo-badge {
-    width: 36px; height: 36px; border-radius: 999px;
-    background: var(--burgundy); color: var(--cream);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
-  .logo-name { font-size: 15px; font-weight: 600; color: var(--burgundy); }
-  
-  .nav-links { display: flex; align-items: center; gap: 32px; margin-left: auto; }
-  .nav-links a { font-size: 14px; color: var(--burgundy); }
-
-  .btn-pill {
-    border-radius: 999px; padding: 10px 20px;
-    font-size: 12px; font-weight: 600; letter-spacing: .04em;
-    background: var(--burgundy); color: var(--cream);
-    transition: opacity 0.2s;
-  }
-  .btn-pill-cream { background: var(--cream); color: var(--burgundy); }
-  .btn-pill:disabled { opacity: .4; cursor: not-allowed; }
-  .btn-full { width: 100%; padding: 14px 0; }
-
-  /* HERO */
-  .hero { background: var(--burgundy); overflow: hidden; position: relative; }
-  .hero .wrap { display: grid; gap: 40px; padding: 64px 20px; }
-  @media (min-width: 640px) { .hero .wrap { padding: 96px 32px; } }
-  @media (min-width: 1024px) {
-    .hero .wrap { grid-template-columns: 1.1fr .9fr; padding: 112px 32px; align-items: center; }
-  }
-
-  .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .25em; color: var(--copper2); margin-bottom: 20px; }
-  .eyebrow-dark { color: var(--copper); }
-
-  .hero h1 { font-size: 36px; line-height: 1.12; color: var(--cream); max-width: 560px; margin: 0 0 24px; font-weight: 600; }
-  @media (min-width: 640px) { .hero h1 { font-size: 48px; line-height: 1.1; } }
-
-  .hero p.sub { font-size: 15px; line-height: 1.7; color: #E4D2C8; max-width: 460px; margin: 0 0 36px; }
-
-  .hero-visual { position: relative; display: flex; align-items: flex-end; justify-content: center; }
-  @media (min-width: 1024px) { .hero-visual { justify-content: flex-end; } }
-  .hero-photo {
-    width: 100%; max-width: 380px; height: 260px; border-radius: 24px;
-    background:
-      radial-gradient(circle at 30% 20%, rgba(217,107,67,0.55), transparent 55%),
-      radial-gradient(circle at 75% 70%, rgba(196,83,45,0.4), transparent 60%),
-      linear-gradient(160deg, #3B1117, #1E080C);
-  }
-  @media (min-width: 640px) { .hero-photo { height: 320px; } }
-
-  .event-card {
-    position: absolute; right: 0; bottom: -24px;
-    width: 260px; background: var(--cream); border-radius: 18px;
-    padding: 20px; box-shadow: 0 20px 40px rgba(20,6,8,0.25);
-  }
-  @media (min-width: 640px) { .event-card { width: 290px; } }
-  .badge-next {
-    display: inline-block; border-radius: 999px; padding: 4px 12px;
-    font-size: 10px; font-weight: 600; letter-spacing: .15em;
-    background: var(--copper); color: var(--cream);
-  }
-  .event-card .date { margin: 12px 0 6px; font-size: 18px; font-weight: 600; color: var(--burgundy); }
-  .event-card .venue { font-size: 12px; line-height: 1.6; color: var(--muted); margin: 0; }
-
-  /* VALUE PROP */
-  .value-prop { padding: 64px 0; }
-  @media (min-width: 640px) { .value-prop { padding: 80px 0; } }
-  .value-prop .inner { max-width: 720px; margin: 0 auto; text-align: center; padding: 0 20px; }
-  .value-prop p.big { font-size: 24px; line-height: 1.35; color: var(--burgundy); margin: 0; }
-  @media (min-width: 640px) { .value-prop p.big { font-size: 30px; } }
-
-  /* HOW IT WORKS */
-  .how { background: var(--burgundy); padding: 64px 0; }
-  @media (min-width: 640px) { .how { padding: 96px 0; } }
-  .how .wrap { display: grid; gap: 48px; }
-  @media (min-width: 1024px) { .how .wrap { grid-template-columns: 1fr 1fr; align-items: center; } }
-  .how-photo {
-    height: 280px; border-radius: 24px;
-    background:
-      radial-gradient(circle at 25% 25%, rgba(217,107,67,0.5), transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(196,83,45,0.35), transparent 55%),
-      linear-gradient(155deg, #4A1620, #200A0D);
-  }
-  @media (min-width: 640px) { .how-photo { height: 380px; } }
-  .steps { display: flex; flex-direction: column; gap: 36px; }
-  .step { display: flex; gap: 20px; }
-  .step .num { font-size: 14px; font-weight: 600; color: var(--copper2); }
-  .step .title { font-size: 14px; font-weight: 600; letter-spacing: .1em; color: var(--cream); margin: 0 0 8px; }
-  .step .desc { font-size: 15px; line-height: 1.7; color: #D9C4B8; margin: 0; max-width: 420px; }
-
-  /* FAQ */
-  .faq { padding: 64px 0; }
-  @media (min-width: 640px) { .faq { padding: 96px 0; } }
-  .faq .inner { max-width: 640px; margin: 0 auto; padding: 0 20px; }
-  .faq h2 { font-size: 30px; margin: 0 0 40px; color: var(--burgundy); }
-  .faq-item {
-    border: 1px solid var(--border); border-radius: 14px; background: var(--cream-card);
-    margin-bottom: 12px; overflow: hidden;
-  }
-  .faq-q {
-    width: 100%; background: none; padding: 16px 20px;
-    display: flex; align-items: center; justify-content: space-between;
-    text-align: left; font-size: 14px; font-weight: 500; color: var(--burgundy);
-  }
-  .faq-q svg { flex-shrink: 0; transition: transform .2s ease; }
-  .faq-item.open .faq-q svg { transform: rotate(180deg); }
-  .faq-a-wrap { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
-  .faq-item.open .faq-a-wrap { max-height: 500px; }
-  .faq-a { padding: 0 20px 16px; font-size: 14px; line-height: 1.7; color: var(--muted); margin: 0; }
-  .faq-a ul { margin: 12px 0 0 20px; padding: 0; }
-  .faq-a li { font-size: 14px; line-height: 1.7; color: var(--muted); margin-bottom: 8px; }
-  .faq-a li:last-child { margin-bottom: 0; }
-
-  /* FOOTER */
-  footer { background: var(--burgundy); padding: 56px 0 0; }
-  .footer-top { display: flex; flex-direction: column; gap: 32px; justify-content: space-between; padding-bottom: 40px; }
-  @media (min-width: 640px) { .footer-top { flex-direction: row; align-items: flex-start; } }
-  .footer-top h3 { color: var(--cream); font-size: 26px; margin: 0 0 8px; }
-  .footer-top .venue { color: #C9AFA1; font-size: 14px; line-height: 1.7; max-width: 340px; margin: 0; }
-  .socials { display: flex; align-items: center; gap: 16px; }
-  .socials a { display: flex; align-items: center; justify-content: center; }
-  .footer-bottom {
-    border-top: 1px solid #4A222A; padding: 24px 0;
-    font-size: 12px; color: #9C8577;
-  }
-
-  /* MODAL */
-  .modal-overlay {
-    position: fixed; inset: 0; z-index: 50; display: none;
-    justify-content: flex-end;
-  }
-  .modal-overlay.open { display: flex; }
-  .modal-backdrop { position: absolute; inset: 0; background: rgba(20,6,8,0.55); }
-  .modal-drawer {
-    position: relative; height: 100%; width: 100%; max-width: 520px;
-    background: var(--cream); display: flex; flex-direction: column;
-    z-index: 2;
-  }
-
-  .modal-header {
-    background: var(--cream);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 24px; flex-shrink: 0;
-  }
-  .modal-header .left { display: flex; align-items: center; gap: 12px; }
-  .modal-header .title { font-size: 15px; font-weight: 600; color: var(--burgundy); }
-  .icon-btn { background: none; padding: 4px; display: flex; }
-
-  .modal-body { flex: 1; padding: 24px; overflow-y: auto; }
-  .modal-body::-webkit-scrollbar { width: 6px; }
-  .modal-body::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 999px; }
-
-  .modal-step { display: none; }
-  .modal-step.active { display: block; }
-
-  .field { margin-bottom: 20px; }
-  .field label { display: block; font-size: 14px; font-weight: 500; color: var(--burgundy); margin-bottom: 8px; }
-  .field .err { margin-top: 4px; font-size: 12px; color: var(--error); }
-  .input, select.input, textarea.input {
-    width: 100%; border-radius: 10px; border: 1px solid var(--border-soft);
-    padding: 10px 14px; font-size: 14px; outline: none; background: #fff; color: var(--burgundy);
-    font-family: inherit;
-  }
-  .input.error { border-color: var(--error); }
-  textarea.input { resize: none; }
-  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-
-  .role-heading { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 28px 0 12px; }
-  .role-card {
-    border: 1px solid var(--border-soft); border-radius: 14px; background: #fff;
-    padding: 16px 20px; text-align: left; width: 100%; display: block; margin-bottom: 12px;
-    transition: all 0.2s ease;
-  }
-  .role-card.active { border-color: var(--copper); background: #F6E4DA; }
-  .role-card .rtitle { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 0 0 4px; }
-  .role-card .rsub { font-size: 12px; color: var(--muted2); margin: 0; }
-
-  .pitcher-box, .watcher-box {
-    border: 1px solid var(--border); border-radius: 14px; background: var(--cream-card);
-    padding: 20px; margin-top: 24px;
-  }
-  .pitcher-box .heading, .watcher-box .heading { font-size: 15px; font-weight: 600; color: var(--burgundy); margin: 0 0 18px; }
-
-  /* PILL BUTTON GROUP */
-  .pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
-  .pill-btn {
-    border-radius: 999px; border: 1px solid var(--border-soft); background: #fff;
-    padding: 8px 16px; font-size: 13px; color: var(--burgundy); transition: all 0.15s ease;
-  }
-  .pill-btn.active { background: var(--copper); border-color: var(--copper); color: var(--cream); font-weight: 500; }
-
-  .checkbox-field { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; }
-  .checkbox-field input[type="checkbox"] { margin-top: 3px; accent-color: var(--copper); }
-  .checkbox-field label { font-size: 13px; line-height: 1.5; color: var(--burgundy); margin: 0; }
-
-  /* PAYMENT BOX & PROOF UPLOAD */
-  .payment-instructions-box {
-    border: 1px solid var(--border); border-radius: 12px; background: #fff;
-    padding: 18px 20px; margin-bottom: 20px; text-align: center;
-  }
-  .payment-instructions-box p { margin: 0 0 10px; font-size: 13px; color: var(--muted); line-height: 1.5; }
-  .payment-instructions-box .ziina-notice {
-    font-size: 13px; font-weight: 600; color: var(--burgundy); margin-bottom: 14px;
-  }
-  .pay-link-btn {
-    display: inline-block; background: var(--copper); color: var(--cream);
-    padding: 12px 24px; border-radius: 999px; font-size: 13px; font-weight: 600; transition: background 0.2s;
-  }
-  .pay-link-btn:hover { background: var(--copper2); }
-
-  .file-upload-box {
-    border: 2px dashed var(--border-soft); border-radius: 12px; background: #fff;
-    padding: 20px; text-align: center; cursor: pointer; transition: border-color 0.2s;
-  }
-  .file-upload-box:hover { border-color: var(--copper); }
-  .file-upload-box.error { border-color: var(--error); }
-  .file-upload-box input[type="file"] { display: none; }
-  .file-upload-box p { margin: 0; font-size: 13px; color: var(--muted); }
-  .file-name-display { font-size: 12px; font-weight: 600; color: var(--copper); margin-top: 6px; }
-
-  .summary-card {
-    border: 1px solid var(--border); border-radius: 14px; background: var(--cream-card);
-    padding: 20px; margin-bottom: 20px;
-  }
-  .summary-card .heading { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 0 0 12px; }
-  .summary-row { display: flex; justify-content: space-between; gap: 16px; font-size: 14px; margin-bottom: 6px; }
-  .summary-row .label { color: var(--muted2); }
-  .summary-row .value { color: var(--burgundy); font-weight: 500; text-align: right; }
-
-  .total-bar {
-    display: flex; align-items: center; justify-content: space-between;
-    background: var(--burgundy); border-radius: 14px; padding: 16px 20px; margin-bottom: 20px;
-  }
-  .total-bar .label { font-size: 14px; font-weight: 500; color: var(--cream); }
-  .total-bar .amount { font-size: 18px; font-weight: 600; color: var(--cream); }
-
-  .success-wrap { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 40px 0; }
-  .success-icon {
-    width: 56px; height: 56px; border-radius: 999px; background: var(--copper);
-    display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
-  }
-  .success-wrap h3 { font-size: 24px; color: var(--burgundy); margin: 0 0 8px; }
-  .success-wrap p { max-width: 280px; font-size: 14px; line-height: 1.7; color: var(--muted); margin: 0; }
-
-  /* FLOOR PLAN SEAT MAP */
-  .floor-plan-container {
-    display: flex; gap: 12px; justify-content: center; align-items: stretch;
-    margin-bottom: 24px; padding: 10px 0;
-  }
-  .bar-element {
-    width: 32px; background: #EDE5D8; border: 1px solid var(--border-soft);
-    border-radius: 6px; display: flex; align-items: center; justify-content: center;
-    writing-mode: vertical-rl; transform: rotate(180deg);
-    font-size: 11px; font-weight: 700; letter-spacing: 0.25em; color: var(--burgundy);
-  }
-  .seating-layout { display: flex; flex-direction: column; align-items: center; flex: 1; }
-  
-  .stage-banner-floor {
-    width: 100%; border-radius: 6px; padding: 14px 0;
-    text-align: center; font-size: 14px; font-weight: 700; letter-spacing: .25em;
-    background: var(--burgundy); color: var(--cream); margin-top: 14px;
-  }
-  .stage-arrow { text-align: center; font-size: 16px; color: var(--burgundy); margin-top: 6px; }
-
-  .seat-rows { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; }
-  .seat-row { display: flex; align-items: center; gap: 6px; }
-  .row-label { width: 16px; text-align: right; font-size: 11px; font-weight: 600; color: var(--muted2); }
-  .seat-grid { display: flex; gap: 5px; }
-  
-  .seat {
-    width: 26px; height: 26px; border-radius: 5px; border: 1px solid;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 10px; font-weight: 500; transition: all 0.15s ease;
-  }
-  @media (min-width: 480px) {
-    .seat { width: 30px; height: 30px; font-size: 11px; }
-  }
-
-  .seat.front { background: #F1D9CB; border-color: #E3B79A; color: #5A3522; cursor: pointer; }
-  .seat.main { background: #EAE2D3; border-color: #D6C7A8; color: #4A4031; cursor: pointer; }
-  .seat.selected { background: var(--copper) !important; border-color: var(--copper) !important; color: #fff !important; }
-  .seat.occupied { background: #E9E4DA; border-color: #D8D0C2; color: #A89F91; cursor: not-allowed; }
-
-  .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 18px; margin-top: 24px; font-size: 12px; }
-  .legend-item { display: flex; align-items: center; gap: 6px; color: #6B5B4B; }
-  .legend-dot { width: 12px; height: 12px; border-radius: 3px; border: 1px solid; }
-
-  .checkout-bar {
-    background: var(--cream); border-top: 1px solid var(--border);
-    padding: 16px 24px; flex-shrink: 0;
-  }
-  .checkout-items { max-height: 96px; overflow-y: auto; font-size: 12px; line-height: 1.7; color: var(--muted); margin-bottom: 12px; }
-  .checkout-summary { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .checkout-summary .count { font-size: 14px; color: var(--burgundy); }
-  .checkout-summary .amount { font-size: 18px; font-weight: 600; color: var(--burgundy); }
-
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
-  .hero-anim > * { animation: fadeUp .7s ease both; }
-  .hero-anim > *:nth-child(2) { animation-delay: .08s; }
-  .hero-anim > *:nth-child(3) { animation-delay: .16s; }
-  .hero-anim > *:nth-child(4) { animation-delay: .24s; }
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<header class="nav">
-  <div class="wrap">
-    <div class="nav-inner">
-      <div class="logo">
-        <span class="logo-badge serif">P</span>
-        <span class="logo-name serif">Pitch Them Perfect</span>
-      </div>
-      <nav class="nav-links">
-        <a href="#how">How It Works</a>
-        <a href="#faq">FAQ</a>
-        <button class="btn-pill" onclick="openModal()">GET YOUR TICKETS</button>
-      </nav>
-    </div>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-anim">
-      <p class="eyebrow">PITCH THEM PERFECT · DUBAI</p>
-      <h1>Your best friend deserves better than the apps. Pitch them live.</h1>
-      <p class="sub">No profiles, no algorithms, no awkward swiping. Just a room full of people willing to stand up, tell the truth about someone they love, and let a live audience decide who's worth meeting. Real stories, real laughs, real connections.</p>
-      <button class="btn-pill btn-pill-cream" onclick="openModal()">GET YOUR TICKETS</button>
-    </div>
-    <div class="hero-visual">
-      <div class="hero-photo"></div>
-      <div class="event-card">
-        <span class="badge-next">NEXT UP</span>
-        <p class="date serif">26 SEPT · 7 PM</p>
-        <p class="venue">Soul Kitchen Dubai — Marasi Dr, Business Bay, Dubai, United Arab Emirates</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- VALUE PROP -->
-<section class="value-prop">
-  <div class="inner">
-    <p class="eyebrow eyebrow-dark" style="margin-bottom:20px;">A BETTER WAY TO MEET PEOPLE</p>
-    <p class="big serif">Pitch Them Perfect turns being single into a reason to go out — not another reason to open an app.</p>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="wrap">
-    <div class="how-photo"></div>
-    <div class="steps">
-      <div class="step">
-        <span class="num">01</span>
-        <div>
-          <h3 class="title">SHOW UP</h3>
-          <p class="desc">Come single, curious, or as a supportive hype-man for someone else. No app, no profile, no swiping required.</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="num">02</span>
-        <div>
-          <h3 class="title">GET ON STAGE</h3>
-          <p class="desc">Pitch a friend, tell their story, and make the case for why they deserve someone great — in front of a room that's rooting for you both.</p>
-        </div>
-      </div>
-      <div class="step">
-        <span class="num">03</span>
-        <div>
-          <h3 class="title">MEET SOMEONE REAL</h3>
-          <p class="desc">The room opens up for real, face-to-face conversations. No screens between you, no awkward silences to fill.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq" id="faq">
-  <div class="inner">
-    <p class="eyebrow eyebrow-dark" style="margin-bottom:12px;">GOOD TO KNOW</p>
-    <h2 class="serif">Frequently asked questions</h2>
-    <div id="faq-list"></div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="footer-top">
-      <div>
-        <h3 class="serif">See you on the 26th.</h3>
-        <p class="venue">Soul Kitchen Dubai — Marasi Dr, Business Bay, Dubai, United Arab Emirates</p>
-      </div>
-      <div class="socials">
-        <a href="#" aria-label="Instagram">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-        </a>
-        <a href="#" aria-label="WhatsApp">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="footer-bottom">© <span id="year"></span> Pitch Them Perfect. All rights reserved.</div>
-  </div>
-</footer>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal-backdrop" onclick="closeModal()"></div>
-  <div class="modal-drawer">
-    <div class="modal-header">
-      <div class="left">
-        <button class="icon-btn" id="back-btn" onclick="goBack()" style="display:none;">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2E0D12" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-        </button>
-        <span class="title serif" id="modal-title">Register</span>
-      </div>
-      <button class="icon-btn" onclick="closeModal()">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2E0D12" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-
-    <div class="modal-body">
-      <!-- STEP 1 -->
-      <div class="modal-step active" id="step-1">
-        <p style="font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 24px;">Tell us who you are, then choose how you're joining us on the 26th.</p>
-
-        <div class="field">
-          <label for="fullName">Full name</label>
-          <input class="input" id="fullName" placeholder="Your full name" />
-          <div class="err" id="err-fullName"></div>
-        </div>
-        <div class="field">
-          <label for="whatsapp">WhatsApp number</label>
-          <input class="input" id="whatsapp" type="tel" placeholder="+971 5X XXX XXXX" />
-          <div class="err" id="err-whatsapp"></div>
-        </div>
-        <div class="field">
-          <label for="email">Email address</label>
-          <input class="input" id="email" type="email" placeholder="you@email.com" />
-          <div class="err" id="err-email"></div>
-        </div>
-
-        <p class="role-heading">How are you joining us?</p>
-        <div class="err" id="err-role" style="margin-bottom:8px;"></div>
-
-        <button type="button" class="role-card" id="role-pitcher" onclick="selectRole('pitcher')">
-          <p class="rtitle">I'm here to pitch someone</p>
-          <p class="rsub">Pitcher package · 250 AED for 2 pax · reserved stage-side seats</p>
-        </button>
-        <button type="button" class="role-card" id="role-watcher" onclick="selectRole('watcher')">
-          <p class="rtitle">I'm here to watch the pitches</p>
-          <p class="rsub">Watcher ticket · choose your seats (up to 5 seats)</p>
-        </button>
-
-        <!-- WATCHER AUDIENCE DETAILS -->
-        <div class="watcher-box" id="watcher-fields" style="display:none;">
-          <p class="heading">Audience details</p>
-          
-          <div class="field">
-            <label>Are you:</label>
-            <div class="pill-group" data-field="audienceGender">
-              <button type="button" class="pill-btn" onclick="setPill('audienceGender', 'Male', this)">Male</button>
-              <button type="button" class="pill-btn" onclick="setPill('audienceGender', 'Female', this)">Female</button>
-            </div>
-            <div class="err" id="err-audienceGender"></div>
-          </div>
-
-          <div class="field">
-            <label>Age category</label>
-            <div class="pill-group" data-field="audienceAge">
-              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '21-25', this)">21-25</button>
-              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '26-30', this)">26-30</button>
-              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '31-35', this)">31-35</button>
-              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '36-40', this)">36-40</button>
-              <button type="button" class="pill-btn" onclick="setPill('audienceAge', '40+', this)">40+</button>
-            </div>
-            <div class="err" id="err-audienceAge"></div>
-          </div>
-
-          <div class="field">
-            <label>Status</label>
-            <div class="pill-group" data-field="audienceStatus">
-              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'Single', this)">Single</button>
-              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'Married', this)">Married</button>
-              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'Divorced', this)">Divorced</button>
-              <button type="button" class="pill-btn" onclick="setPill('audienceStatus', 'It\'s complicated', this)">It's complicated</button>
-            </div>
-            <div class="err" id="err-audienceStatus"></div>
-          </div>
-
-          <div class="field">
-            <label for="audienceNationality">Nationality</label>
-            <select class="input nationality-select" id="audienceNationality">
-              <option value="">Select nationality</option>
-            </select>
-            <div class="err" id="err-audienceNationality"></div>
-          </div>
-
-          <div class="checkbox-field">
-            <input type="checkbox" id="watcherConsent" />
-            <label for="watcherConsent">I'm happy for Pitch Them Perfect to contact me via WhatsApp and email about this event and future editions. *</label>
-          </div>
-          <div class="err" id="err-watcherConsent"></div>
-        </div>
-
-        <!-- PITCHER DETAILS -->
-        <div class="pitcher-box" id="pitcher-fields" style="display:none;">
-          <p class="heading">Tell us about your pitchee</p>
-          
-          <div class="grid-2">
-            <div class="field">
-              <label for="pitcheeName">Pitchee name</label>
-              <input class="input" id="pitcheeName" placeholder="Their name" />
-              <div class="err" id="err-pitcheeName"></div>
-            </div>
-            <div class="field">
-              <label for="pitcheeAge">Pitchee age</label>
-              <input class="input" id="pitcheeAge" placeholder="Age" />
-              <div class="err" id="err-pitcheeAge"></div>
-            </div>
-          </div>
-
-          <div class="field">
-            <label>Their gender</label>
-            <div class="pill-group" data-field="pitcheeGender">
-              <button type="button" class="pill-btn" onclick="setPill('pitcheeGender', 'Male', this)">Male</button>
-              <button type="button" class="pill-btn" onclick="setPill('pitcheeGender', 'Female', this)">Female</button>
-            </div>
-            <div class="err" id="err-pitcheeGender"></div>
-          </div>
-
-          <div class="field">
-            <label>Relationship to pitchee</label>
-            <div class="pill-group" data-field="relationship">
-              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Friend', this)">Friend</button>
-              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Family', this)">Family</button>
-              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Colleague', this)">Colleague</button>
-              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Other', this)">Other</button>
-            </div>
-            <div class="err" id="err-relationship"></div>
-          </div>
-
-          <div class="field">
-            <label for="pitcheeNationality">Pitchee nationality</label>
-            <select class="input nationality-select" id="pitcheeNationality">
-              <option value="">Select nationality</option>
-            </select>
-            <div class="err" id="err-pitcheeNationality"></div>
-          </div>
-
-          <div class="field">
-            <label>Will both of you attend together?</label>
-            <div class="pill-group" data-field="attendTogether">
-              <button type="button" class="pill-btn" onclick="setAttendTogether('Yes', this)">Yes</button>
-              <button type="button" class="pill-btn" onclick="setAttendTogether('No', this)">No</button>
-            </div>
-            <div class="err" id="err-attendTogether"></div>
-          </div>
-
-          <div class="field">
-            <label for="pleadCase">Tell us about them & pitch them! *</label>
-            <textarea class="input" id="pleadCase" rows="6" placeholder="Who are they? What makes them special?&#10;&#10;Why should the room fall in love with them?&#10;&#10;• Make it charming, funny, heartfelt — whatever makes your pitch unforgettable"></textarea>
-            <div class="err" id="err-pleadCase"></div>
-          </div>
-
-          <div class="field">
-            <label for="pitcheeLinks">Share any links that help your case (Optional)</label>
-            <input class="input" id="pitcheeLinks" placeholder="Instagram, Linkedin, portfolio, articles, videos, or anything else" />
-          </div>
-
-          <div class="checkbox-field">
-            <input type="checkbox" id="pitcherConsent" />
-            <label for="pitcherConsent">I confirm I have my friend's permission to nominate them. *</label>
-          </div>
-          <div class="err" id="err-pitcherConsent"></div>
-        </div>
-
-        <button class="btn-pill btn-full" style="margin-top:32px;" id="step1-cta" onclick="handleStep1Continue()">CONTINUE TO SEAT SELECTION →</button>
-      </div>
-
-      <!-- STEP 2 (SEAT SELECTION) -->
-      <div class="modal-step" id="step-2">
-        <p style="font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 20px;">Tap open seats to select them (up to 5 seats per booking). Tap again to remove.</p>
-        
-        <div class="floor-plan-container">
-          <div class="bar-element">BAR</div>
-          <div class="seating-layout">
-            <div class="seat-rows" id="seat-rows"></div>
-            <div class="stage-arrow">▲</div>
-            <div class="stage-banner-floor">STAGE</div>
-          </div>
-        </div>
-
-        <div class="legend">
-          <div class="legend-item"><span class="legend-dot" style="background:#F1D9CB;border-color:#E3B79A;"></span>Front view · 155 AED</div>
-          <div class="legend-item"><span class="legend-dot" style="background:#EAE2D3;border-color:#D6C7A8;"></span>Main view · 130 AED</div>
-          <div class="legend-item"><span class="legend-dot" style="background:#C4532D;border-color:#C4532D;"></span>Selected</div>
-          <div class="legend-item"><span class="legend-dot" style="background:#E9E4DA;border-color:#D8D0C2;"></span>Already booked</div>
-        </div>
-      </div>
-
-      <!-- STEP 3 (ZIINA PAYMENT & PROOF UPLOAD) -->
-      <div class="modal-step" id="step-3">
-        <p style="font-size:14px;line-height:1.7;color:var(--muted);margin:0 0 20px;">Review your selection, pay the exact total via Ziina, and attach your payment receipt below.</p>
-        
-        <div class="summary-card">
-          <p class="heading">Contact</p>
-          <div class="summary-row"><span class="label">Name</span><span class="value" id="sum-fullName">—</span></div>
-          <div class="summary-row"><span class="label">WhatsApp</span><span class="value" id="sum-whatsapp">—</span></div>
-          <div class="summary-row"><span class="label">Email</span><span class="value" id="sum-email">—</span></div>
-        </div>
-        
-        <div class="summary-card" id="sum-pitcher-box" style="display:none;">
-          <p class="heading">Pitcher package</p>
-          <div class="summary-row"><span class="label">Pitching</span><span class="value" id="sum-pitchee">—</span></div>
-          <div class="summary-row"><span class="label">Nationality</span><span class="value" id="sum-nationality">—</span></div>
-          <div class="summary-row"><span class="label">Attending together</span><span class="value" id="sum-attend">—</span></div>
-          <div class="summary-row"><span class="label">Seats</span><span class="value">2 stage-side seats (reserved)</span></div>
-        </div>
-        
-        <div class="summary-card" id="sum-watcher-box" style="display:none;">
-          <p class="heading">Selected seats</p>
-          <div id="sum-seats-list"></div>
-        </div>
-
-        <div class="total-bar">
-          <span class="label">Total due</span>
-          <span class="amount serif" id="sum-total">0 AED</span>
-        </div>
-
-        <!-- ZIINA OPEN AMOUNT PAYMENT LINK INSTRUCTIONS -->
-        <div class="payment-instructions-box">
-          <p class="ziina-notice">Please enter exactly <span id="ziina-calculated-amount" style="color:var(--copper);">0 AED</span> on Ziina:</p>
-          <p>Tap the link below to open Ziina, enter your total, and complete payment.</p>
-          <a href="https://pay.ziina.com/yourbrand" target="_blank" class="pay-link-btn" id="ziina-link">PAY VIA ZIINA →</a>
-        </div>
-
-        <!-- PROOF OF PAYMENT UPLOAD -->
-        <div class="field" style="margin-bottom: 24px;">
-          <label>Proof of Payment *</label>
-          <div class="file-upload-box" id="upload-box" onclick="document.getElementById('paymentProof').click()">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4532D" stroke-width="2" style="margin: 0 auto 8px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            <p>Click to upload payment receipt or screenshot</p>
-            <div class="file-name-display" id="file-name-display"></div>
-            <input type="file" id="paymentProof" accept="image/*,.pdf" onchange="handleFileSelected(this)" />
-          </div>
-          <div class="err" id="err-paymentProof"></div>
-        </div>
-
-        <button class="btn-pill btn-full" id="pay-btn" onclick="confirmPayment()">CONFIRM PAYMENT & BOOK</button>
-      </div>
-
-      <!-- STEP 4 -->
-      <div class="modal-step" id="step-4">
-        <div class="success-wrap">
-          <div class="success-icon">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <h3 class="serif">You're on the list.</h3>
-          <p id="success-msg">Your payment proof has been submitted. A confirmation will be sent to your email shortly.</p>
-          <button class="btn-pill" style="margin-top:32px;padding:12px 28px;" onclick="closeModal()">DONE</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- checkout bar for step 2 -->
-    <div class="checkout-bar" id="checkout-bar" style="display:none;">
-      <div class="checkout-items" id="checkout-items"></div>
-      <div class="checkout-summary">
-        <span class="count" id="checkout-count">0 seats selected</span>
-        <span class="amount serif" id="checkout-total">0 AED</span>
-      </div>
-      <button class="btn-pill btn-full" id="checkout-cta" onclick="proceedToPaymentFromSeats()" disabled>PROCEED TO PAYMENT (0 AED)</button>
-    </div>
-  </div>
-</div>
-
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-
-/* NATIONALITIES LIST */
-const NATIONALITIES = [
-  "Afghan","Albanian","Algerian","American","Andorran","Angolan","Antiguan","Argentine","Armenian","Australian","Austrian","Azerbaijani",
-  "Bahamian","Bahraini","Bangladeshi","Barbadian","Belarusian","Belgian","Belizean","Beninese","Bhutanese","Bolivian","Bosnian","Brazilian",
-  "British","Bruneian","Bulgarian","Burkinabe","Burmese","Burundian","Cambodian","Cameroonian","Canadian","Cape Verdean","Central African",
-  "Chadian","Chilean","Chinese","Colombian","Comoran","Congolese","Costa Rican","Croatian","Cuban","Cypriot","Czech","Danish","Djiboutian",
-  "Dominican","Dutch","East Timorese","Ecuadorean","Egyptian","Emirati","Equatorial Guinean","Eritrean","Estonian","Ethiopian","Fijian",
-  "Filipino","Finnish","French","Gabonese","Gambian","Georgian","German","Ghanaian","Greek","Grenadian","Guatemalan","Guinean","Guyanese",
-  "Haitian","Honduran","Hungarian","Icelander","Indian","Indonesian","Iranian","Iraqi","Irish","Israeli","Italian","Ivorian","Jamaican",
-  "Japanese","Jordanian","Kazakhstani","Kenyan","Kuwaiti","Kyrgyz","Laotian","Latvian","Lebanese","Liberian","Libyan","Liechtensteiner",
-  "Lithuanian","Luxembourgish","Macedonian","Malagasy","Malawian","Malaysian","Maldivian","Malian","Maltese","Marshallese","Mauritanian",
-  "Mauritian","Mexican","Micronesian","Moldovan","Monacan","Mongolian","Montenegrin","Moroccan","Mozambican","Namibian","Nauruan","Nepalese",
-  "New Zealander","Nicaraguan","Nigerien","Nigerian","North Korean","Norwegian","Omani","Pakistani","Palauan","Palestinian","Panamanian",
-  "Papua New Guinean","Paraguayan","Peruvian","Polish","Portuguese","Qatari","Romanian","Russian","Rwandan","Saint Lucian","Salvadoran",
-  "Samoan","San Marinese","Saudi","Senegalese","Serbian","Seychellois","Sierra Leonean","Singaporean","Slovak","Slovenian","Solomon Islander",
-  "Somali","South African","South Korean","Spanish","Sri Lankan","Sudanese","Surinamese","Swazi","Swedish","Swiss","Syrian","Taiwanese",
-  "Tajik","Tanzanian","Thai","Togolese","Tongan","Trinidadian","Tunisian","Turkish","Turkmen","Tuvaluan","Ugandan","Ukrainian","Uruguayan",
-  "Uzbek","Vanuatu","Venezuelan","Vietnamese","Yemeni","Zambian","Zimbabwean"
-];
-
-function populateNationalities() {
-  document.querySelectorAll('.nationality-select').forEach(select => {
-    select.innerHTML = '<option value="">Select nationality</option>';
-    NATIONALITIES.forEach(nat => {
-      const opt = document.createElement('option');
-      opt.value = nat;
-      opt.textContent = nat;
-      select.appendChild(opt);
-    });
-  });
-}
-populateNationalities();
-
-/* FAQ */
-const FAQS = [
-  { 
-    q: "Is it only for singles?", 
-    a: "Mostly, but not exclusively! Singles are definitely welcome, but couples can join too — whether you're looking for a fun night out or coming along to pitch your single friend." 
-  },
-  { 
-    q: "Is there a dress code?", 
-    a: "Come as you are, or come dressed to be noticed. Smart-casual is the average, but the stage has seen everything from suits to sequins." 
-  },
-  { 
-    q: "What should I prepare?", 
-    a: "Just bring yourself, an open mind, and your best energy. Come ready for a fun night, good conversations, and maybe a little unexpected chemistry. 😉" 
-  },
-  { 
-    q: "What if I register and suddenly can't make it?", 
-    a: "No worries! We offer refunds based on when you cancel:<ul><li><strong>More than 24 hours before the event:</strong> Full refund, minus the bank processing fee.</li><li><strong>Between 24 and 5 hours before the event:</strong> 60% refund, minus the bank processing fee.</li><li><strong>Less than 5 hours before the event:</strong> No refund.</li></ul>" 
-  },
-  { 
-    q: "Can I change my seats after booking?", 
-    a: "Reach out to us on WhatsApp at least 24 hours before the event and we'll do our best to move things around, subject to availability." 
-  }
-];
-
-const faqList = document.getElementById('faq-list');
-FAQS.forEach((item, i) => {
-  const div = document.createElement('div');
-  div.className = 'faq-item' + (i === 0 ? ' open' : '');
-  div.innerHTML = `
-    <button class="faq-q" onclick="this.parentElement.classList.toggle('open')">
-      <span>${item.q}</span>
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C4532D" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-    <div class="faq-a-wrap"><div class="faq-a">${item.a}</div></div>
-  `;
-  faqList.appendChild(div);
-});
-
-/* FLOOR PLAN CONFIG (Rows I to A, 8 seats per row) */
-const ROW_NAMES = ['I', 'H', 'G', 'F', 'E', 'D', 'C', 'B', 'A'];
-const OCCUPIED = new Set(['I-2', 'G-5', 'D-3', 'B-7', 'A-4']);
-const MAX_SEATS_ALLOWED = 5;
-
-const tierOf = (rowName) => (rowName === 'A' || rowName === 'B' || rowName === 'C') ? 'front' : 'main';
-const priceOf = (rowName) => (rowName === 'A' || rowName === 'B' || rowName === 'C') ? 155 : 130;
-const tierLabel = (rowName) => (rowName === 'A' || rowName === 'B' || rowName === 'C') ? 'Front View' : 'Main View';
-
-let selectedSeats = [];
-
-function buildSeatMap() {
-  const container = document.getElementById('seat-rows');
-  container.innerHTML = '';
-
-  ROW_NAMES.forEach(rowName => {
-    const rowEl = document.createElement('div');
-    rowEl.className = 'seat-row';
-
-    const label = document.createElement('span');
-    label.className = 'row-label';
-    label.textContent = rowName;
-    rowEl.appendChild(label);
-
-    const grid = document.createElement('div');
-    grid.className = 'seat-grid';
-    for (let seatNum = 1; seatNum <= 8; seatNum++) {
-      grid.appendChild(makeSeatBtn(rowName, seatNum));
-    }
-    rowEl.appendChild(grid);
-
-    container.appendChild(rowEl);
-  });
-}
-
-function makeSeatBtn(rowName, seatNum) {
-  const id = `${rowName}-${seatNum}`;
-  const btn = document.createElement('button');
-  btn.type = 'button';
-  btn.id = `seat-${id}`;
-  btn.textContent = seatNum;
-
-  if (OCCUPIED.has(id)) {
-    btn.className = 'seat occupied';
-    btn.disabled = true;
-    btn.title = 'Already booked';
-  } else {
-    const isSelected = selectedSeats.some(s => s.id === id);
-    btn.className = `seat ${tierOf(rowName)}` + (isSelected ? ' selected' : '');
-    btn.title = `Row ${rowName}, Seat ${seatNum} — ${priceOf(rowName)} AED`;
-    btn.onclick = () => toggleSeat(rowName, seatNum);
-  }
-  return btn;
-}
-
-function toggleSeat(rowName, seatNum) {
-  const id = `${rowName}-${seatNum}`;
-  const idx = selectedSeats.findIndex(s => s.id === id);
-
-  if (idx >= 0) {
-    selectedSeats.splice(idx, 1);
-  } else {
-    if (selectedSeats.length >= MAX_SEATS_ALLOWED) {
-      alert(`You can select a maximum of ${MAX_SEATS_ALLOWED} seats per booking.`);
-      return;
-    }
-    selectedSeats.push({ id, row: rowName, seat: seatNum, tier: tierOf(rowName), price: priceOf(rowName) });
-  }
-
-  // Update UI visual selection states
-  ROW_NAMES.forEach(r => {
-    for (let s = 1; s <= 8; s++) {
-      const b = document.getElementById(`seat-${r}-${s}`);
-      if (b && !b.classList.contains('occupied')) {
-        const sel = selectedSeats.some(x => x.id === `${r}-${s}`);
-        b.classList.toggle('selected', sel);
-      }
-    }
-  });
-
-  updateCheckoutBar();
-}
-
-function seatsByRowGrouped() {
-  const map = {};
-  selectedSeats.slice().sort((a,b) => a.row.localeCompare(b.row) || a.seat - b.seat).forEach(s => {
-    if (!map[s.row]) map[s.row] = [];
-    map[s.row].push(s.seat);
-  });
-  return Object.entries(map).map(([row, seats]) => ({ row, seats, tier: tierLabel(row) }));
-}
-
-function seatTotal() {
-  return selectedSeats.reduce((sum, s) => sum + s.price, 0);
-}
-
-function updateCheckoutBar() {
-  const grouped = seatsByRowGrouped();
-  const itemsEl = document.getElementById('checkout-items');
-  itemsEl.innerHTML = grouped.map(r =>
-    `<div>Row ${r.row} (Seat${r.seats.length > 1 ? 's' : ''} ${r.seats.join(', ')}) — ${r.tier}</div>`
-  ).join('');
-
-  document.getElementById('checkout-count').textContent = `${selectedSeats.length} seat${selectedSeats.length !== 1 ? 's' : ''} selected`;
-  const total = seatTotal();
-  document.getElementById('checkout-total').textContent = `${total} AED`;
-  const cta = document.getElementById('checkout-cta');
-  cta.textContent = `PROCEED TO PAYMENT (${total} AED)`;
-  cta.disabled = selectedSeats.length === 0;
-}
-
-/* FORM STATE */
-let role = null;
-let currentStep = 1;
-let attendTogetherVal = '';
-let pillValues = {};
-
-function setPill(field, value, btnEl) {
-  pillValues[field] = value;
-  const parent = btnEl.closest('.pill-group');
-  parent.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
-  btnEl.classList.add('active');
-  clearError(field);
-}
-
-function setAttendTogether(val, btnEl) {
-  attendTogetherVal = val;
-  if (btnEl) {
-    const parent = btnEl.closest('.pill-group');
-    parent.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
-    btnEl.classList.add('active');
-  }
-  clearError('attendTogether');
-}
-
-function openModal() {
-  document.getElementById('modal-overlay').classList.add('open');
-  goToStep(1);
-}
-
-function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('open');
-  resetAll();
-}
-
-function resetAll() {
-  role = null;
-  selectedSeats = [];
-  attendTogetherVal = '';
-  pillValues = {};
-  currentStep = 1;
-
-  ['fullName','whatsapp','email','audienceNationality','pitcheeName','pitcheeAge','pitcheeNationality','pitcheeLinks','pleadCase','paymentProof']
-    .forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-
-  document.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('watcherConsent').checked = false;
-  document.getElementById('pitcherConsent').checked = false;
-  document.getElementById('file-name-display').textContent = '';
-  document.getElementById('upload-box').classList.remove('error');
-
-  document.getElementById('role-pitcher').classList.remove('active');
-  document.getElementById('role-watcher').classList.remove('active');
-  document.getElementById('pitcher-fields').style.display = 'none';
-  document.getElementById('watcher-fields').style.display = 'none';
-  document.getElementById('step1-cta').textContent = 'CONTINUE TO SEAT SELECTION →';
-
-  clearErrors();
-  buildSeatMap();
-  updateCheckoutBar();
-  goToStep(1);
-}
-
-function selectRole(r) {
-  role = r;
-  document.getElementById('role-pitcher').classList.toggle('active', r === 'pitcher');
-  document.getElementById('role-watcher').classList.toggle('active', r === 'watcher');
-  document.getElementById('pitcher-fields').style.display = r === 'pitcher' ? 'block' : 'none';
-  document.getElementById('watcher-fields').style.display = r === 'watcher' ? 'block' : 'none';
-  
-  document.getElementById('step1-cta').textContent = r === 'pitcher'
-    ? 'PROCEED TO CHECKOUT (250 AED) →'
-    : 'CONTINUE TO SEAT SELECTION →';
-  clearError('role');
-}
-
-function handleFileSelected(input) {
-  if (input.files && input.files[0]) {
-    document.getElementById('file-name-display').textContent = 'Attached: ' + input.files[0].name;
-    clearError('paymentProof');
-    document.getElementById('upload-box').classList.remove('error');
-  }
-}
-
-function clearErrors() {
-  document.querySelectorAll('.err').forEach(e => e.textContent = '');
-  document.querySelectorAll('.input').forEach(e => e.classList.remove('error'));
-}
-
-function clearError(field) {
-  const errEl = document.getElementById('err-' + field);
-  if (errEl) errEl.textContent = '';
-  const inputEl = document.getElementById(field);
-  if (inputEl) inputEl.classList.remove('error');
-}
-
-function setError(field, msg) {
-  const errEl = document.getElementById('err-' + field);
-  if (errEl) errEl.textContent = msg;
-  const inputEl = document.getElementById(field);
-  if (inputEl) inputEl.classList.add('error');
-}
-
-function val(id) {
-  const el = document.getElementById(id);
-  return el ? el.value.trim() : '';
-}
-
-function validateStep1() {
-  clearErrors();
-  let ok = true;
-  if (!val('fullName')) { setError('fullName', 'Enter your full name.'); ok = false; }
-  if (!val('whatsapp')) { setError('whatsapp', 'Enter a WhatsApp number.'); ok = false; }
-  if (!val('email')) { setError('email', 'Enter an email address.'); ok = false; }
-  if (!role) { document.getElementById('err-role').textContent = "Choose whether you're pitching or watching."; ok = false; }
-
-  if (role === 'watcher') {
-    if (!pillValues['audienceGender']) { setError('audienceGender', 'Select your gender.'); ok = false; }
-    if (!pillValues['audienceAge']) { setError('audienceAge', 'Select an age category.'); ok = false; }
-    if (!pillValues['audienceStatus']) { setError('audienceStatus', 'Select your status.'); ok = false; }
-    if (!val('audienceNationality')) { setError('audienceNationality', 'Select your nationality.'); ok = false; }
-    if (!document.getElementById('watcherConsent').checked) {
-      document.getElementById('err-watcherConsent').textContent = "Please consent to contact regarding this event.";
-      ok = false;
-    }
-  }
-
-  if (role === 'pitcher') {
-    if (!val('pitcheeName')) { setError('pitcheeName', 'Who are you pitching?'); ok = false; }
-    if (!val('pitcheeAge')) { setError('pitcheeAge', 'Enter their age.'); ok = false; }
-    if (!pillValues['pitcheeGender']) { setError('pitcheeGender', 'Select their gender.'); ok = false; }
-    if (!pillValues['relationship']) { setError('relationship', 'Select relationship.'); ok = false; }
-    if (!val('pitcheeNationality')) { setError('pitcheeNationality', 'Select their nationality.'); ok = false; }
-    if (!attendTogetherVal) { document.getElementById('err-attendTogether').textContent = "Let us know if you're attending together."; ok = false; }
-    if (!val('pleadCase')) { setError('pleadCase', 'Tell us about them & pitch them.'); ok = false; }
-    if (!document.getElementById('pitcherConsent').checked) {
-      document.getElementById('err-pitcherConsent').textContent = "Confirmation of friend's permission is required.";
-      ok = false;
-    }
-  }
-  return ok;
-}
-
-function handleStep1Continue() {
-  if (!validateStep1()) return;
-  if (role === 'pitcher') {
-    populateSummary();
-    goToStep(3);
-  } else {
-    goToStep(2);
-  }
-}
-
-function proceedToPaymentFromSeats() {
-  if (selectedSeats.length === 0) return;
-  populateSummary();
-  goToStep(3);
-}
-
-function populateSummary() {
-  document.getElementById('sum-fullName').textContent = val('fullName') || '—';
-  document.getElementById('sum-whatsapp').textContent = val('whatsapp') || '—';
-  document.getElementById('sum-email').textContent = val('email') || '—';
-
-  const pitcherBox = document.getElementById('sum-pitcher-box');
-  const watcherBox = document.getElementById('sum-watcher-box');
-  let total = 0;
-
-  if (role === 'pitcher') {
-    pitcherBox.style.display = 'block';
-    watcherBox.style.display = 'none';
-    document.getElementById('sum-pitchee').textContent = `${val('pitcheeName')} (${val('pitcheeAge')}, ${pillValues['pitcheeGender'] || ''})`;
-    document.getElementById('sum-nationality').textContent = val('pitcheeNationality') || '—';
-    document.getElementById('sum-attend').textContent = attendTogetherVal || '—';
-    total = 250;
-  } else {
-    pitcherBox.style.display = 'none';
-    watcherBox.style.display = 'block';
-    const listEl = document.getElementById('sum-seats-list');
-    listEl.innerHTML = seatsByRowGrouped().map(r =>
-      `<div class="summary-row"><span class="label">Row ${r.row} · ${r.tier}</span><span class="value">Seat${r.seats.length > 1 ? 's' : ''} ${r.seats.join(', ')}</span></div>`
-    ).join('');
-    total = seatTotal();
-  }
-
-  const formattedTotal = `${total} AED`;
-  document.getElementById('sum-total').textContent = formattedTotal;
-  document.getElementById('ziina-calculated-amount').textContent = formattedTotal;
-  document.getElementById('pay-btn').textContent = `CONFIRM PAYMENT & BOOK`;
-}
-
-function confirmPayment() {
-  const fileInput = document.getElementById('paymentProof');
-  if (!fileInput.files || fileInput.files.length === 0) {
-    document.getElementById('err-paymentProof').textContent = 'Please attach your proof of payment receipt.';
-    document.getElementById('upload-box').classList.add('error');
-    return;
-  }
-
-  document.getElementById('success-msg').textContent =
-    `Your payment proof has been submitted. A confirmation is on its way to ${val('email') || 'your inbox'}.`;
-  goToStep(4);
-}
-
-function goToStep(step) {
-  currentStep = step;
-  document.querySelectorAll('.modal-step').forEach(s => s.classList.remove('active'));
-  document.getElementById('step-' + step).classList.add('active');
-
-  const titles = { 1: 'Register', 2: 'Pick your seats', 3: 'Payment summary', 4: "You're in" };
-  document.getElementById('modal-title').textContent = titles[step];
-
-  document.getElementById('back-btn').style.display = (step > 1 && step < 4) ? 'flex' : 'none';
-  document.getElementById('checkout-bar').style.display = step === 2 ? 'block' : 'none';
-
-  if (step === 2) updateCheckoutBar();
-}
-
-function goBack() {
-  if (role === 'pitcher' && currentStep === 3) {
-    goToStep(1);
-  } else {
-    goToStep(currentStep - 1);
-  }
-}
-
-/* Initialization */
-buildSeatMap();
-</script>
-
 </body>
 </html>
