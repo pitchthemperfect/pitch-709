@@ -902,6 +902,7 @@ function handleFileSelected(input) {
 }
 
 async function confirmPayment() {
+  const submitBtn = document.getElementById('pay-btn');
   const fileInput = document.getElementById('paymentProof');
   let fileData = null;
   let fileName = "";
@@ -923,6 +924,10 @@ async function confirmPayment() {
     });
   }
 
+  // Disable button to prevent double submissions
+  submitBtn.disabled = true;
+  submitBtn.textContent = "SUBMITTING...";
+
   const payload = {
     fullName: val('fullName'),
     whatsapp: val('whatsapp'),
@@ -943,16 +948,24 @@ async function confirmPayment() {
     fileName: fileName
   };
 
-  fetch(GOOGLE_SCRIPT_URL, {
-    method: "POST",
-    body: JSON.stringify(payload)
-  });
+  try {
+    await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      body: JSON.stringify(payload)
+    });
 
-  document.getElementById('success-msg').textContent = isCurrentWaitlist
-    ? "You've been added to the waitlist. We will notify you if a slot opens up."
-    : `Your registration and receipt have been submitted. A confirmation will be sent to ${val('email')}.`;
+    document.getElementById('success-msg').textContent = isCurrentWaitlist
+      ? "You've been added to the waitlist. We will notify you if a slot opens up."
+      : `Your registration and receipt have been submitted. A confirmation will be sent to ${val('email')}.`;
 
-  goToStep(4);
+    goToStep(4);
+  } catch (err) {
+    console.error("Submission error:", err);
+    alert("There was an issue submitting your form. Please try again.");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = isCurrentWaitlist ? 'SUBMIT WAITLIST REGISTRATION' : 'CONFIRM PAYMENT & BOOK';
+  }
 }
 
 function proceedToPaymentFromSeats() {
@@ -973,7 +986,7 @@ function closeModal() {
 
 function resetAll() {
   role = null; selectedSeats = []; attendTogetherVal = ''; pillValues = {};
-  ['fullName','whatsapp','email','audienceNationality','pitcheeName','pitcheeAge','pitcheeNationality','pitcheeLinks','pleadCase','paymentProof'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+  ['fullName','whatsapp','email','audienceNationality','pitcheeName','pitcheeAge','pitcheeNationality','pitcheeLinks','paymentProof'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
   clearErrors(); buildSeatMap(); updateCheckoutBar(); goToStep(1);
 }
 
