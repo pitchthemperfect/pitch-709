@@ -190,7 +190,7 @@
   .role-card {
     border: 1px solid var(--border-soft); border-radius: 14px; background: #fff;
     padding: 16px 20px; text-align: left; width: 100%; display: block; margin-bottom: 12px;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease; cursor: pointer;
   }
   .role-card.active { border-color: var(--copper); background: #F6E4DA; }
   .role-card .rtitle { font-size: 14px; font-weight: 500; color: var(--burgundy); margin: 0 0 4px; }
@@ -203,7 +203,7 @@
   .pill-btn {
     border-radius: 999px; border: 1px solid var(--border-soft); background: #fff;
     padding: 8px 16px; font-size: 14px; font-weight: 400; color: var(--burgundy);
-    transition: all 0.15s ease;
+    transition: all 0.15s ease; cursor: pointer;
   }
   .pill-btn.active { background: var(--copper); border-color: var(--copper); color: var(--cream); font-weight: 500; }
 
@@ -230,24 +230,30 @@
   .total-bar .label { font-size: 14px; font-weight: 500; color: var(--cream); }
   .total-bar .amount { font-size: 16px; font-weight: 600; color: var(--cream); font-family: 'Inter', system-ui, sans-serif; }
 
-  /* ZONE-BASED TIER CARDS & MAP PREVIEW */
-  .tier-card {
+  /* ZONE-BASED TIER SELECTION (RADIO CARDS) */
+  .tier-select-card {
     border: 1px solid var(--border-soft); border-radius: 14px; background: #fff;
-    padding: 16px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 20px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; transition: all 0.2s ease;
   }
-  .tier-card.disabled { opacity: 0.6; background: #FAF9F6; }
+  .tier-select-card:hover { border-color: var(--copper2); }
+  .tier-select-card.active { border-color: var(--copper); background: #F6E4DA; }
+  .tier-select-card.disabled { opacity: 0.5; background: #FAF9F6; cursor: not-allowed; border-color: var(--border-soft); }
+  
   .tier-info .tier-title { font-size: 15px; font-weight: 600; color: var(--burgundy); margin: 0 0 4px; }
   .tier-info .tier-sub { font-size: 12px; color: var(--muted2); margin: 0 0 4px; }
   .tier-info .tier-price { font-size: 14px; font-weight: 600; color: var(--copper); }
-  .stepper { display: flex; align-items: center; gap: 10px; }
-  .stepper-btn {
-    width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--border-soft);
-    background: var(--cream); color: var(--burgundy); font-size: 16px; font-weight: 600;
-    display: flex; align-items: center; justify-content: center; cursor: pointer;
+  
+  .radio-indicator {
+    width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--border-soft);
+    display: flex; align-items: center; justify-content: center; background: #fff; flex-shrink: 0;
   }
-  .stepper-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-  .stepper-val { font-size: 15px; font-weight: 600; min-width: 20px; text-align: center; }
+  .tier-select-card.active .radio-indicator { border-color: var(--copper); background: var(--copper); }
+  .tier-select-card.active .radio-indicator::after {
+    content: ""; width: 8px; height: 8px; border-radius: 50%; background: #fff;
+  }
 
+  /* MAP PREVIEW */
   .map-illustration {
     border: 1px solid var(--border); border-radius: 14px; background: var(--cream-card);
     padding: 16px; margin-top: 20px; text-align: center;
@@ -256,9 +262,11 @@
   .map-diagram { display: flex; gap: 10px; align-items: center; max-width: 300px; margin: 0 auto; }
   .map-bar { width: 28px; height: 100px; background: #EDE5D8; border: 1px solid var(--border-soft); border-radius: 6px; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; color: var(--burgundy); display: flex; align-items: center; justify-content: center; }
   .map-zones { flex: 1; display: flex; flex-direction: column; gap: 8px; }
-  .map-zone-box { border-radius: 6px; padding: 10px; font-size: 12px; font-weight: 600; }
-  .map-zone-box.front { background: #F1D9CB; border: 1px solid #E3B79A; color: var(--burgundy); }
+  .map-zone-box { border-radius: 6px; padding: 10px; font-size: 12px; font-weight: 600; transition: all 0.2s ease; }
+  .map-zone-box.front { background: #EAE2D3; border: 1px solid #D6C7A8; color: var(--burgundy); }
+  .map-zone-box.front.highlight { background: #F1D9CB; border: 2px solid var(--copper); font-weight: 700; }
   .map-zone-box.main { background: #EAE2D3; border: 1px solid #D6C7A8; color: var(--burgundy); }
+  .map-zone-box.main.highlight { background: #F1D9CB; border: 2px solid var(--copper); font-weight: 700; }
   .map-stage-box { background: var(--burgundy); color: var(--cream); border-radius: 6px; padding: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; margin-top: 4px; }
 
   .checkout-bar { background: var(--cream); border-top: 1px solid var(--border); padding: 16px 24px; }
@@ -421,7 +429,7 @@
         </button>
         <button type="button" class="role-card" id="role-watcher" onclick="selectRole('watcher')">
           <p class="rtitle">I'm here to watch the pitches</p>
-          <p class="rsub">Watcher ticket · choose zone tiers (up to 5 tickets)</p>
+          <p class="rsub">Watcher ticket · 1 ticket per person (select section next)</p>
         </button>
 
         <!-- WATCHER AUDIENCE DETAILS -->
@@ -535,38 +543,30 @@
         <button class="btn-pill btn-full" style="margin-top:32px;" id="step1-cta" onclick="handleStep1Continue()">CONTINUE TO SELECTION →</button>
       </div>
 
-      <!-- STEP 2 (FREE SEATING / TIER SELECTION) -->
+      <!-- STEP 2 (SECTION SELECTION - 1 TICKET LIMIT) -->
       <div class="modal-step" id="step-2">
         <p style="font-size:14px;color:var(--muted);margin:0 0 16px;">
-          Select ticket quantities (up to 5 total). Seats are unassigned within your selected zone (first come, first served on event day).
+          Select your ticket zone (limit 1 ticket per person). Seats are unassigned within your selected zone (first come, first served on event day).
         </p>
 
         <!-- FRONT VIEW TIER CARD -->
-        <div class="tier-card" id="card-front">
+        <div class="tier-select-card" id="card-front" onclick="selectWatcherZone('front')">
           <div class="tier-info">
             <div class="tier-title">Front View Zone</div>
             <div class="tier-sub">Rows A – C · Closest to Stage</div>
             <div class="tier-price">155 AED <span style="font-size:11px;font-weight:normal;color:var(--muted2);" id="front-remaining-label"></span></div>
           </div>
-          <div class="stepper">
-            <button class="stepper-btn" onclick="adjustTierCount('front', -1)">−</button>
-            <span class="stepper-val" id="count-front">0</span>
-            <button class="stepper-btn" id="btn-plus-front" onclick="adjustTierCount('front', 1)">+</button>
-          </div>
+          <div class="radio-indicator"></div>
         </div>
 
         <!-- MAIN VIEW TIER CARD -->
-        <div class="tier-card" id="card-main">
+        <div class="tier-select-card" id="card-main" onclick="selectWatcherZone('main')">
           <div class="tier-info">
             <div class="tier-title">Main View Zone</div>
             <div class="tier-sub">Rows D – I · Standard Seating</div>
             <div class="tier-price">130 AED <span style="font-size:11px;font-weight:normal;color:var(--muted2);" id="main-remaining-label"></span></div>
           </div>
-          <div class="stepper">
-            <button class="stepper-btn" onclick="adjustTierCount('main', -1)">−</button>
-            <span class="stepper-val" id="count-main">0</span>
-            <button class="stepper-btn" id="btn-plus-main" onclick="adjustTierCount('main', 1)">+</button>
-          </div>
+          <div class="radio-indicator"></div>
         </div>
 
         <!-- ZONE LAYOUT ILLUSTRATION -->
@@ -575,8 +575,8 @@
           <div class="map-diagram">
             <div class="map-bar">BAR</div>
             <div class="map-zones">
-              <div class="map-zone-box main">MAIN VIEW (Rows D–I)</div>
-              <div class="map-zone-box front">FRONT VIEW (Rows A–C)</div>
+              <div class="map-zone-box main" id="map-box-main">MAIN VIEW (Rows D–I)</div>
+              <div class="map-zone-box front" id="map-box-front">FRONT VIEW (Rows A–C)</div>
               <div class="map-stage-box">STAGE</div>
             </div>
           </div>
@@ -599,7 +599,7 @@
             <div class="summary-row"><span class="label">Seats</span><span class="value">2 stage-side seats (reserved)</span></div>
           </div>
           <div class="summary-card" id="sum-watcher-box" style="display:none;">
-            <p class="heading" style="font-size:15px;font-weight:600;margin-bottom:12px;">Selected tickets</p>
+            <p class="heading" style="font-size:15px;font-weight:600;margin-bottom:12px;">Selected ticket</p>
             <div id="sum-seats-list"></div>
           </div>
           <div class="total-bar">
@@ -608,7 +608,7 @@
           </div>
           <div class="payment-instructions-box">
             <p>Please enter exactly <strong id="ziina-calculated-amount" style="color:var(--copper);">0 AED</strong> on Ziina:</p>
-            <a href="https://pay.ziina.com/yourbrand" target="_blank" class="pay-link-btn">PAY VIA ZIINA →</a>
+            <a href="#" id="ziina-pay-button" target="_blank" class="pay-link-btn">PAY VIA ZIINA →</a>
           </div>
           <div class="field" style="margin-bottom: 24px;">
             <label style="font-size:14px;font-weight:500;">Proof of Payment *</label>
@@ -635,7 +635,7 @@
 
     <!-- CHECKOUT BAR FOR STEP 2 -->
     <div class="checkout-bar" id="checkout-bar" style="display:none;">
-      <div class="checkout-items" id="checkout-items"></div>
+      <div class="checkout-items" id="checkout-items">No section selected</div>
       <div class="checkout-summary">
         <span class="count" id="checkout-count">0 tickets selected</span>
         <span class="amount" id="checkout-total">0 AED</span>
@@ -648,10 +648,16 @@
 <script>
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw3eW8vipMl20eixD40jal3aOn9V7by7EORrfcY-j4wabOsUevTb563rGOsizBB-1x60g/exec";
 
+// DIRECT ZIINA PAYMENT LINKS
+const ZIINA_LINKS = {
+  front: "https://pay.ziina.com/dvlp/PNDsp_gNx?source=app",
+  main: "https://pay.ziina.com/dvlp/YI7yquhc2?source=app",
+  pitcher: "https://pay.ziina.com/dvlp/cYj91m-pE?source=app"
+};
+
 // SEATING CAPACITY LIMITS
 const FRONT_MAX_CAPACITY = 24;
 const MAIN_MAX_CAPACITY = 48;
-const MAX_TICKETS_PER_BOOKING = 5;
 
 // DYNAMIC EVENT DATE CALCULATION
 function getNextEventDate(targetDay = 26) {
@@ -746,7 +752,7 @@ FAQS.forEach((item, i) => {
   faqList.appendChild(div);
 });
 
-// ZONE SELECTION STATE & AVAILABILITY
+// SELECTION STATE
 let bookedFrontCount = 0;
 let bookedMainCount = 0;
 let pitcherMaleFull = false;
@@ -754,8 +760,7 @@ let pitcherFemaleFull = false;
 let watcherFull = false;
 let isCurrentWaitlist = false;
 
-let selectedFront = 0;
-let selectedMain = 0;
+let watcherSelectedZone = null; // 'front' or 'main'
 
 let role = null;
 let currentStep = 1;
@@ -786,52 +791,59 @@ function updateTierAvailabilityUI() {
   document.getElementById('front-remaining-label').textContent = frontAvail > 0 ? `(${frontAvail} left)` : '(Full)';
   document.getElementById('main-remaining-label').textContent = mainAvail > 0 ? `(${mainAvail} left)` : '(Full)';
 
-  document.getElementById('card-front').classList.toggle('disabled', frontAvail === 0);
-  document.getElementById('card-main').classList.toggle('disabled', mainAvail === 0);
+  const frontCard = document.getElementById('card-front');
+  const mainCard = document.getElementById('card-main');
+
+  if (frontAvail === 0) {
+    frontCard.classList.add('disabled');
+    frontCard.onclick = null;
+  }
+  if (mainAvail === 0) {
+    mainCard.classList.add('disabled');
+    mainCard.onclick = null;
+  }
 }
 
-function adjustTierCount(tier, delta) {
-  const totalSelected = selectedFront + selectedMain;
+function selectWatcherZone(zone) {
   const frontAvail = Math.max(0, FRONT_MAX_CAPACITY - bookedFrontCount);
   const mainAvail = Math.max(0, MAIN_MAX_CAPACITY - bookedMainCount);
 
-  if (tier === 'front') {
-    if (delta > 0) {
-      if (selectedFront >= frontAvail) { alert("No more seats available in Front View."); return; }
-      if (totalSelected >= MAX_TICKETS_PER_BOOKING) { alert(`Maximum of ${MAX_TICKETS_PER_BOOKING} tickets permitted per booking.`); return; }
-      selectedFront++;
-    } else if (selectedFront > 0) {
-      selectedFront--;
-    }
-  } else if (tier === 'main') {
-    if (delta > 0) {
-      if (selectedMain >= mainAvail) { alert("No more seats available in Main View."); return; }
-      if (totalSelected >= MAX_TICKETS_PER_BOOKING) { alert(`Maximum of ${MAX_TICKETS_PER_BOOKING} tickets permitted per booking.`); return; }
-      selectedMain++;
-    } else if (selectedMain > 0) {
-      selectedMain--;
-    }
-  }
+  if (zone === 'front' && frontAvail <= 0) return;
+  if (zone === 'main' && mainAvail <= 0) return;
 
-  document.getElementById('count-front').textContent = selectedFront;
-  document.getElementById('count-main').textContent = selectedMain;
+  watcherSelectedZone = zone;
+
+  document.getElementById('card-front').classList.toggle('active', zone === 'front');
+  document.getElementById('card-main').classList.toggle('active', zone === 'main');
+
+  document.getElementById('map-box-front').classList.toggle('highlight', zone === 'front');
+  document.getElementById('map-box-main').classList.toggle('highlight', zone === 'main');
+
   updateCheckoutBar();
 }
 
 function updateCheckoutBar() {
-  const totalTickets = selectedFront + selectedMain;
   const itemsEl = document.getElementById('checkout-items');
-  let details = [];
+  const countEl = document.getElementById('checkout-count');
+  const totalEl = document.getElementById('checkout-total');
+  const ctaBtn = document.getElementById('checkout-cta');
 
-  if (selectedFront > 0) details.push(`${selectedFront}× Front View (155 AED ea)`);
-  if (selectedMain > 0) details.push(`${selectedMain}× Main View (130 AED ea)`);
-
-  itemsEl.innerHTML = details.join('<br>') || 'No tickets selected';
-  document.getElementById('checkout-count').textContent = `${totalTickets} ticket(s) selected`;
-  
-  const totalPrice = (selectedFront * 155) + (selectedMain * 130);
-  document.getElementById('checkout-total').textContent = `${totalPrice} AED`;
-  document.getElementById('checkout-cta').disabled = totalTickets === 0;
+  if (watcherSelectedZone === 'front') {
+    itemsEl.innerHTML = "Front View Zone (Rows A–C) — 155 AED";
+    countEl.textContent = "1 ticket selected";
+    totalEl.textContent = "155 AED";
+    ctaBtn.disabled = false;
+  } else if (watcherSelectedZone === 'main') {
+    itemsEl.innerHTML = "Main View Zone (Rows D–I) — 130 AED";
+    countEl.textContent = "1 ticket selected";
+    totalEl.textContent = "130 AED";
+    ctaBtn.disabled = false;
+  } else {
+    itemsEl.innerHTML = "No section selected";
+    countEl.textContent = "0 tickets selected";
+    totalEl.textContent = "0 AED";
+    ctaBtn.disabled = true;
+  }
 }
 
 function setPill(field, value, btnEl) {
@@ -943,25 +955,32 @@ function populateSummary() {
   document.getElementById('pay-btn').textContent = 'CONFIRM PAYMENT & BOOK';
 
   let total = 0;
+  let ziinaUrl = "";
+
   if (role === 'pitcher') {
     document.getElementById('sum-pitcher-box').style.display = 'block';
     document.getElementById('sum-watcher-box').style.display = 'none';
     document.getElementById('sum-pitchee').textContent = val('pitcheeName');
     total = 250;
+    ziinaUrl = ZIINA_LINKS.pitcher;
   } else {
     document.getElementById('sum-pitcher-box').style.display = 'none';
     document.getElementById('sum-watcher-box').style.display = 'block';
     
-    let summaryListHtml = '';
-    if (selectedFront > 0) summaryListHtml += `<div class="summary-row"><span class="label">${selectedFront}× Front View Zone</span><span class="value">${selectedFront * 155} AED</span></div>`;
-    if (selectedMain > 0) summaryListHtml += `<div class="summary-row"><span class="label">${selectedMain}× Main View Zone</span><span class="value">${selectedMain * 130} AED</span></div>`;
-    
-    document.getElementById('sum-seats-list').innerHTML = summaryListHtml;
-    total = (selectedFront * 155) + (selectedMain * 130);
+    if (watcherSelectedZone === 'front') {
+      document.getElementById('sum-seats-list').innerHTML = `<div class="summary-row"><span class="label">1× Front View Zone</span><span class="value">155 AED</span></div>`;
+      total = 155;
+      ziinaUrl = ZIINA_LINKS.front;
+    } else if (watcherSelectedZone === 'main') {
+      document.getElementById('sum-seats-list').innerHTML = `<div class="summary-row"><span class="label">1× Main View Zone</span><span class="value">130 AED</span></div>`;
+      total = 130;
+      ziinaUrl = ZIINA_LINKS.main;
+    }
   }
 
   document.getElementById('sum-total').textContent = `${total} AED`;
   document.getElementById('ziina-calculated-amount').textContent = `${total} AED`;
+  document.getElementById('ziina-pay-button').href = ziinaUrl;
 }
 
 function handleFileSelected(input) {
@@ -1020,6 +1039,8 @@ async function confirmPayment() {
   submitBtn.disabled = true;
   submitBtn.textContent = "SUBMITTING...";
 
+  const selectedZoneLabel = role === 'pitcher' ? 'Pitcher' : (watcherSelectedZone === 'front' ? 'Front View Zone' : 'Main View Zone');
+
   const payload = {
     fullName: val('fullName'),
     whatsapp: val('whatsapp'),
@@ -1038,14 +1059,14 @@ async function confirmPayment() {
     pleadCase: val('pleadCase'),
     pitcheeLinks: val('pitcheeLinks'),
     isWaitlist: isCurrentWaitlist,
-    selectedFrontQty: selectedFront,
-    selectedMainQty: selectedMain,
+    selectedZone: selectedZoneLabel,
+    selectedFrontQty: (role === 'watcher' && watcherSelectedZone === 'front') ? 1 : 0,
+    selectedMainQty: (role === 'watcher' && watcherSelectedZone === 'main') ? 1 : 0,
     fileData: fileData,
     fileName: fileName
   };
 
   try {
-    // Send request with no-cors mode using URL Search Params to bypass CORS restrictions
     await fetch(GOOGLE_SCRIPT_URL, {
       method: "POST",
       mode: "no-cors",
@@ -1085,11 +1106,24 @@ function closeModal() {
 }
 
 function resetAll() {
-  role = null; selectedFront = 0; selectedMain = 0; attendTogetherVal = ''; pillValues = {};
-  ['fullName','whatsapp','email','audienceNationality','pitcheeName','pitcheeAge','pitcheeNationality','pleadCase','pitcheeLinks','paymentProof'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
-  document.getElementById('count-front').textContent = '0';
-  document.getElementById('count-main').textContent = '0';
-  clearErrors(); updateCheckoutBar(); goToStep(1);
+  role = null; 
+  watcherSelectedZone = null; 
+  attendTogetherVal = ''; 
+  pillValues = {};
+
+  ['fullName','whatsapp','email','audienceNationality','pitcheeName','pitcheeAge','pitcheeNationality','pleadCase','pitcheeLinks','paymentProof'].forEach(id => { 
+    const el = document.getElementById(id); 
+    if (el) el.value = ''; 
+  });
+
+  document.getElementById('card-front').classList.remove('active');
+  document.getElementById('card-main').classList.remove('active');
+  document.getElementById('map-box-front').classList.remove('highlight');
+  document.getElementById('map-box-main').classList.remove('highlight');
+
+  clearErrors(); 
+  updateCheckoutBar(); 
+  goToStep(1);
 }
 
 function clearErrors() { document.querySelectorAll('.err').forEach(e => e.textContent = ''); }
