@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pitch Them Perfect — Dubai</title>
+<title>Pitch Them Perfect & Confessions — Dubai</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
@@ -76,19 +76,8 @@
     .hero .wrap { grid-template-columns: 1.1fr .9fr; padding: 100px 32px; align-items: center; }
   }
 
-  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .25em; color: var(--copper2); margin-bottom: 12px; text-transform: uppercase; }
+  .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: .25em; color: var(--copper2); margin-bottom: 20px; text-transform: uppercase; }
   .eyebrow-dark { color: var(--copper); }
-
-  /* HERO DUAL BADGES */
-  .hero-badges { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-  .hero-badge-pill {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 999px; padding: 5px 14px; font-size: 12px; font-weight: 500; color: var(--cream);
-  }
-  .hero-badge-pill.highlight {
-    background: rgba(196,83,45,0.25); border-color: var(--copper2); color: #F6E4DA;
-  }
 
   .hero h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.1; color: var(--cream); margin: 0 0 20px; font-weight: 600; }
   .hero p.sub { font-size: 15px; line-height: 1.6; color: #E4D2C8; max-width: 500px; margin: 0 0 12px; }
@@ -127,7 +116,7 @@
   .value-prop .inner { max-width: 760px; margin: 0 auto; text-align: center; padding: 0 20px; }
   .value-prop p.big { font-size: clamp(22px, 3.5vw, 32px); line-height: 1.35; color: var(--burgundy); margin: 0; font-weight: 500; }
 
-  /* HOW IT WORKS / TABBED SECTION */
+  /* HOW IT WORKS (TABBED) */
   .how { background: var(--burgundy); padding: 96px 0; color: var(--cream); }
   .how .wrap { display: grid; gap: 56px; }
   @media (min-width: 1024px) { .how .wrap { grid-template-columns: 1fr 1fr; align-items: center; } }
@@ -147,8 +136,6 @@
   .step .num { font-size: 14px; font-weight: 700; color: var(--copper2); font-family: monospace; }
   .step .title { font-size: 14px; font-weight: 600; letter-spacing: .1em; color: var(--cream); margin: 0 0 6px; text-transform: uppercase; }
   .step .desc { font-size: 14px; line-height: 1.6; color: #D9C4B8; margin: 0; }
-
-  .tab-footer-note { font-size: 12px; color: #B39B8E; margin-top: 12px; font-style: italic; }
 
   /* FAQ */
   .faq { padding: 96px 0; }
@@ -324,12 +311,6 @@
   <div class="wrap">
     <div>
       <p class="eyebrow">PITCH THEM PERFECT · DUBAI</p>
-      
-      <!-- HERO BADGES -->
-      <div class="hero-badges">
-        <span class="hero-badge-pill">🎤 Pitch Them Perfect</span>
-        <span class="hero-badge-pill highlight">💬 Confessions — New</span>
-      </div>
 
       <h1>Your best friend deserves better than the apps. Pitch them live.</h1>
       
@@ -374,7 +355,7 @@
       <div class="how-tabs-container">
         <div class="how-tabs">
           <button class="how-tab-btn active" id="tab-btn-pitch" onclick="switchTab('pitch')">Pitch Them Perfect</button>
-          <button class="how-tab-btn" id="tab-btn-confessions" onclick="switchTab('confessions')">Confessions 🎤 New</button>
+          <button class="how-tab-btn" id="tab-btn-confessions" onclick="switchTab('confessions')">Confessions</button>
         </div>
       </div>
 
@@ -426,7 +407,6 @@
             <p class="desc">Equal parts comedy and cautionary tale — the stories that never make it past your group chat.</p>
           </div>
         </div>
-        <p class="tab-footer-note">Included with your ticket. No sign-up needed — just show up.</p>
       </div>
 
     </div>
@@ -809,7 +789,6 @@ function populateNationalities() {
 }
 populateNationalities();
 
-// INCLUDES NEW CONFESSIONS FAQs
 const FAQS = [
   { 
     q: "Is it only for singles?", 
@@ -855,7 +834,6 @@ FAQS.forEach((item, i) => {
   faqList.appendChild(div);
 });
 
-// TAB SWITCHING FUNCTION
 function switchTab(tab) {
   document.getElementById('tab-btn-pitch').classList.toggle('active', tab === 'pitch');
   document.getElementById('tab-btn-confessions').classList.toggle('active', tab === 'confessions');
