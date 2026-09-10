@@ -44,13 +44,7 @@
   }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
   .logo { display: flex; align-items: center; gap: 10px; }
-  .logo-badge {
-    width: 36px; height: 36px; border-radius: 999px;
-    background: var(--burgundy); color: var(--cream);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px;
-  }
-  .logo-name { font-size: 15px; font-weight: 600; color: var(--burgundy); }
+  .logo-name { font-size: 18px; font-weight: 600; color: var(--burgundy); }
   
   .nav-links { display: flex; align-items: center; gap: 32px; margin-left: auto; }
   .nav-links a { font-size: 14px; color: var(--burgundy); }
@@ -83,14 +77,42 @@
 
   .hero-visual { position: relative; display: flex; align-items: flex-end; justify-content: center; }
   @media (min-width: 1024px) { .hero-visual { justify-content: flex-end; } }
-  .hero-photo {
-    width: 100%; max-width: 380px; height: 260px; border-radius: 24px;
+  
+  .hero-photo, .how-photo {
+    width: 100%;
+    border-radius: 24px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background:
       radial-gradient(circle at 30% 20%, rgba(217,107,67,0.55), transparent 55%),
       radial-gradient(circle at 75% 70%, rgba(196,83,45,0.4), transparent 60%),
       linear-gradient(160deg, #3B1117, #1E080C);
   }
+
+  .hero-photo {
+    max-width: 380px;
+    height: 260px;
+  }
   @media (min-width: 640px) { .hero-photo { height: 320px; } }
+
+  .how-photo {
+    height: 280px;
+  }
+  @media (min-width: 640px) { .how-photo { height: 380px; } }
+
+  .hero-logo-img {
+    max-width: 75%;
+    max-height: 75%;
+    object-fit: contain;
+  }
+
+  .how-section-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   .event-card {
     position: absolute; right: 0; bottom: -24px;
@@ -118,14 +140,6 @@
   @media (min-width: 640px) { .how { padding: 96px 0; } }
   .how .wrap { display: grid; gap: 48px; }
   @media (min-width: 1024px) { .how .wrap { grid-template-columns: 1fr 1fr; align-items: center; } }
-  .how-photo {
-    height: 280px; border-radius: 24px;
-    background:
-      radial-gradient(circle at 25% 25%, rgba(217,107,67,0.5), transparent 50%),
-      radial-gradient(circle at 80% 80%, rgba(196,83,45,0.35), transparent 55%),
-      linear-gradient(155deg, #4A1620, #200A0D);
-  }
-  @media (min-width: 640px) { .how-photo { height: 380px; } }
   .steps { display: flex; flex-direction: column; gap: 36px; }
   .step { display: flex; gap: 20px; }
   .step .num { font-size: 14px; font-weight: 600; color: var(--copper2); }
@@ -206,6 +220,7 @@
     transition: all 0.15s ease; cursor: pointer;
   }
   .pill-btn.active { background: var(--copper); border-color: var(--copper); color: var(--cream); font-weight: 500; }
+  .pill-btn.disabled { opacity: 0.5; cursor: not-allowed; border-color: var(--border-soft); }
 
   .checkbox-field { display: flex; align-items: flex-start; gap: 10px; margin-top: 16px; }
   .checkbox-field input[type="checkbox"] { margin-top: 3px; accent-color: var(--copper); }
@@ -230,7 +245,7 @@
   .total-bar .label { font-size: 14px; font-weight: 500; color: var(--cream); }
   .total-bar .amount { font-size: 16px; font-weight: 600; color: var(--cream); font-family: 'Inter', system-ui, sans-serif; }
 
-  /* ZONE-BASED TIER SELECTION (RADIO CARDS) */
+  /* ZONE SELECTION CARDS */
   .tier-select-card {
     border: 1px solid var(--border-soft); border-radius: 14px; background: #fff;
     padding: 16px 20px; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between;
@@ -283,7 +298,7 @@
   <div class="wrap">
     <div class="nav-inner">
       <div class="logo">
-        <span class="logo-name serif" style="font-size: 18px;">Pitch Them Perfect</span>
+        <span class="logo-name serif">Pitch Them Perfect</span>
       </div>
       <nav class="nav-links">
         <a href="#how">How It Works</a>
@@ -304,16 +319,17 @@
       <button class="btn-pill btn-pill-cream" onclick="openModal()">GET YOUR TICKETS</button>
     </div>
     <div class="hero-visual">
-<div class="hero-visual">
-  <div class="hero-photo">
-    <img src="pitchlogo.PNG" alt="Pitch Them Perfect Logo" class="hero-logo-img" />
+      <div class="hero-photo">
+        <img src="pitchlogo.PNG" alt="Pitch Them Perfect Logo" class="hero-logo-img" />
+      </div>
+      <div class="event-card">
+        <span class="badge-next">NEXT UP</span>
+        <p class="date serif" id="event-date-display">26 SEPT · 7 PM</p>
+        <p class="venue">Soul Kitchen Dubai — Marasi Dr, Business Bay, Dubai, United Arab Emirates</p>
+      </div>
+    </div>
   </div>
-  <div class="event-card">
-    <span class="badge-next">NEXT UP</span>
-    <p class="date serif" id="event-date-display">26 SEPT · 7 PM</p>
-    <p class="venue">Soul Kitchen Dubai — Marasi Dr, Business Bay, Dubai, United Arab Emirates</p>
-  </div>
-</div>
+</section>
 
 <!-- VALUE PROP -->
 <section class="value-prop">
@@ -326,9 +342,9 @@
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
   <div class="wrap">
-    <div class="how-photo"></div>
-    <img src="event-photo.jpg" alt="Pitch Them Perfect Event" class="how-section-img" />
-</div>
+    <div class="how-photo">
+      <img src="event-photo.jpg" alt="Pitch Them Perfect Event" class="how-section-img" />
+    </div>
     <div class="steps">
       <div class="step">
         <span class="num">01</span>
@@ -373,13 +389,13 @@
         <p class="venue">Soul Kitchen Dubai — Marasi Dr, Business Bay, Dubai, United Arab Emirates</p>
       </div>
       <div class="socials">
-  <a href="https://www.instagram.com/pitchthemperfect/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-  </a>
-  <a href="https://wa.link/st3x4f" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-  </a>
-</div>
+        <a href="https://www.instagram.com/pitchthemperfect/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a href="https://wa.link/st3x4f" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FAFAF7" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+      </div>
     </div>
     <div class="footer-bottom">© <span id="year"></span> Pitch Them Perfect. All rights reserved.</div>
   </div>
@@ -496,10 +512,10 @@
             </div>
           </div>
           <div class="field">
-            <label>Their gender</label>
+            <label>Their gender (Limit 5 Male / 5 Female)</label>
             <div class="pill-group" data-field="pitcheeGender">
-              <button type="button" class="pill-btn" onclick="handlePitcheeGenderSelect('Male', this)">Male</button>
-              <button type="button" class="pill-btn" onclick="handlePitcheeGenderSelect('Female', this)">Female</button>
+              <button type="button" class="pill-btn" id="btn-pitchee-male" onclick="handlePitcheeGenderSelect('Male', this)">Male <span id="label-male-remaining"></span></button>
+              <button type="button" class="pill-btn" id="btn-pitchee-female" onclick="handlePitcheeGenderSelect('Female', this)">Female <span id="label-female-remaining"></span></button>
             </div>
             <div class="err" id="err-pitcheeGender"></div>
           </div>
@@ -657,9 +673,11 @@ const ZIINA_LINKS = {
   pitcher: "https://pay.ziina.com/dvlp/cYj91m-pE?source=app"
 };
 
-// SEATING CAPACITY LIMITS
+// CAPACITY LIMITS
 const FRONT_MAX_CAPACITY = 24;
 const MAIN_MAX_CAPACITY = 48;
+const PITCHER_MALE_MAX = 5;
+const PITCHER_FEMALE_MAX = 5;
 
 // DYNAMIC EVENT DATE CALCULATION
 function getNextEventDate(targetDay = 26) {
@@ -754,15 +772,18 @@ FAQS.forEach((item, i) => {
   faqList.appendChild(div);
 });
 
-// SELECTION STATE
+// SELECTION STATE & AVAILABILITY
 let bookedFrontCount = 0;
 let bookedMainCount = 0;
+let bookedPitcherMaleCount = 0;
+let bookedPitcherFemaleCount = 0;
+
 let pitcherMaleFull = false;
 let pitcherFemaleFull = false;
 let watcherFull = false;
 let isCurrentWaitlist = false;
 
-let watcherSelectedZone = null; // 'front' or 'main'
+let watcherSelectedZone = null;
 
 let role = null;
 let currentStep = 1;
@@ -776,20 +797,26 @@ async function fetchBackendState() {
     
     bookedFrontCount = data.bookedFrontCount || 0;
     bookedMainCount = data.bookedMainCount || 0;
-    pitcherMaleFull = data.pitcherMaleFull || false;
-    pitcherFemaleFull = data.pitcherFemaleFull || false;
+    bookedPitcherMaleCount = data.bookedPitcherMaleCount || 0;
+    bookedPitcherFemaleCount = data.bookedPitcherFemaleCount || 0;
+
+    pitcherMaleFull = data.pitcherMaleFull || (bookedPitcherMaleCount >= PITCHER_MALE_MAX);
+    pitcherFemaleFull = data.pitcherFemaleFull || (bookedPitcherFemaleCount >= PITCHER_FEMALE_MAX);
     watcherFull = data.watcherFull || (bookedFrontCount >= FRONT_MAX_CAPACITY && bookedMainCount >= MAIN_MAX_CAPACITY);
     
-    updateTierAvailabilityUI();
+    updateAvailabilityUI();
   } catch (err) {
     console.error("Error fetching backend state:", err);
   }
 }
 
-function updateTierAvailabilityUI() {
+function updateAvailabilityUI() {
   const frontAvail = Math.max(0, FRONT_MAX_CAPACITY - bookedFrontCount);
   const mainAvail = Math.max(0, MAIN_MAX_CAPACITY - bookedMainCount);
+  const pitcherMaleAvail = Math.max(0, PITCHER_MALE_MAX - bookedPitcherMaleCount);
+  const pitcherFemaleAvail = Math.max(0, PITCHER_FEMALE_MAX - bookedPitcherFemaleCount);
 
+  // Watcher UI
   document.getElementById('front-remaining-label').textContent = frontAvail > 0 ? `(${frontAvail} left)` : '(Full)';
   document.getElementById('main-remaining-label').textContent = mainAvail > 0 ? `(${mainAvail} left)` : '(Full)';
 
@@ -804,6 +831,10 @@ function updateTierAvailabilityUI() {
     mainCard.classList.add('disabled');
     mainCard.onclick = null;
   }
+
+  // Pitcher Gender Limits UI
+  document.getElementById('label-male-remaining').textContent = pitcherMaleAvail > 0 ? `(${pitcherMaleAvail} left)` : '(Full)';
+  document.getElementById('label-female-remaining').textContent = pitcherFemaleAvail > 0 ? `(${pitcherFemaleAvail} left)` : '(Full)';
 }
 
 function selectWatcherZone(zone) {
@@ -872,9 +903,11 @@ function handlePitcheeGenderSelect(gender, btnEl) {
   if ((gender === 'Male' && pitcherMaleFull) || (gender === 'Female' && pitcherFemaleFull)) {
     banner.style.display = 'block';
     isCurrentWaitlist = true;
+    document.getElementById('step1-cta').textContent = 'JOIN PITCHER WAITLIST →';
   } else {
     banner.style.display = 'none';
     isCurrentWaitlist = false;
+    document.getElementById('step1-cta').textContent = 'PROCEED TO CHECKOUT (250 AED) →';
   }
 }
 
