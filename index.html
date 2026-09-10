@@ -492,68 +492,68 @@
           <div class="err" id="err-watcherConsent"></div>
         </div>
 
-<!-- PITCHER DETAILS -->
-<div class="pitcher-box" id="pitcher-fields" style="display:none;">
-  <div class="waitlist-banner" id="pitcher-waitlist-banner">ℹ Slots for this pitchee gender are currently full. Submitting will add you to our <strong>Waitlist</strong>.</div>
-  <p class="heading">Tell us about your pitchee</p>
-  <div class="grid-2">
-    <div class="field">
-      <label for="pitcheeName">Pitchee name</label>
-      <input class="input" id="pitcheeName" placeholder="Their name" />
-      <div class="err" id="err-pitcheeName"></div>
-    </div>
-    <div class="field">
-      <label for="pitcheeAge">Pitchee age</label>
-      <input class="input" id="pitcheeAge" placeholder="Age" />
-      <div class="err" id="err-pitcheeAge"></div>
-    </div>
-  </div>
-  <div class="field">
-    <label>Their gender</label>
-    <div class="pill-group" data-field="pitcheeGender">
-      <button type="button" class="pill-btn" id="btn-pitchee-male" onclick="handlePitcheeGenderSelect('Male', this)">Male</button>
-      <button type="button" class="pill-btn" id="btn-pitchee-female" onclick="handlePitcheeGenderSelect('Female', this)">Female</button>
-    </div>
-    <div class="err" id="err-pitcheeGender"></div>
-  </div>
-  <div class="field">
-    <label>Relationship to pitchee</label>
-    <div class="pill-group" data-field="relationship">
-      <button type="button" class="pill-btn" onclick="setPill('relationship', 'Friend', this)">Friend</button>
-      <button type="button" class="pill-btn" onclick="setPill('relationship', 'Family', this)">Family</button>
-      <button type="button" class="pill-btn" onclick="setPill('relationship', 'Colleague', this)">Colleague</button>
-      <button type="button" class="pill-btn" onclick="setPill('relationship', 'Other', this)">Other</button>
-    </div>
-    <div class="err" id="err-relationship"></div>
-  </div>
-  <div class="field">
-    <label for="pitcheeNationality">Pitchee nationality</label>
-    <select class="input nationality-select" id="pitcheeNationality"><option value="">Select nationality</option></select>
-    <div class="err" id="err-pitcheeNationality"></div>
-  </div>
-  <div class="field">
-    <label>Will both of you attend together?</label>
-    <div class="pill-group" data-field="attendTogether">
-      <button type="button" class="pill-btn" onclick="setAttendTogether('Yes', this)">Yes</button>
-      <button type="button" class="pill-btn" onclick="setAttendTogether('No', this)">No</button>
-    </div>
-    <div class="err" id="err-attendTogether"></div>
-  </div>
-  <div class="field">
-    <label for="pleadCase">Tell us about them & pitch them! *</label>
-    <textarea class="input" id="pleadCase" rows="4" placeholder="Why should the room fall in love with them?"></textarea>
-    <div class="err" id="err-pleadCase"></div>
-  </div>
-  <div class="field">
-    <label for="pitcheeLinks">Share any links (Optional)</label>
-    <input class="input" id="pitcheeLinks" placeholder="Instagram, LinkedIn, etc." />
-  </div>
-  <div class="checkbox-field">
-    <input type="checkbox" id="pitcherConsent" />
-    <label for="pitcherConsent">I confirm I have my friend's permission to nominate them. *</label>
-  </div>
-  <div class="err" id="err-pitcherConsent"></div>
-</div>
+        <!-- PITCHER DETAILS (CLEAN UI) -->
+        <div class="pitcher-box" id="pitcher-fields" style="display:none;">
+          <div class="waitlist-banner" id="pitcher-waitlist-banner">ℹ Slots for this pitchee gender are currently full. Submitting will add you to our <strong>Waitlist</strong>.</div>
+          <p class="heading">Tell us about your pitchee</p>
+          <div class="grid-2">
+            <div class="field">
+              <label for="pitcheeName">Pitchee name</label>
+              <input class="input" id="pitcheeName" placeholder="Their name" />
+              <div class="err" id="err-pitcheeName"></div>
+            </div>
+            <div class="field">
+              <label for="pitcheeAge">Pitchee age</label>
+              <input class="input" id="pitcheeAge" placeholder="Age" />
+              <div class="err" id="err-pitcheeAge"></div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Their gender</label>
+            <div class="pill-group" data-field="pitcheeGender">
+              <button type="button" class="pill-btn" id="btn-pitchee-male" onclick="handlePitcheeGenderSelect('Male', this)">Male</button>
+              <button type="button" class="pill-btn" id="btn-pitchee-female" onclick="handlePitcheeGenderSelect('Female', this)">Female</button>
+            </div>
+            <div class="err" id="err-pitcheeGender"></div>
+          </div>
+          <div class="field">
+            <label>Relationship to pitchee</label>
+            <div class="pill-group" data-field="relationship">
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Friend', this)">Friend</button>
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Family', this)">Family</button>
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Colleague', this)">Colleague</button>
+              <button type="button" class="pill-btn" onclick="setPill('relationship', 'Other', this)">Other</button>
+            </div>
+            <div class="err" id="err-relationship"></div>
+          </div>
+          <div class="field">
+            <label for="pitcheeNationality">Pitchee nationality</label>
+            <select class="input nationality-select" id="pitcheeNationality"><option value="">Select nationality</option></select>
+            <div class="err" id="err-pitcheeNationality"></div>
+          </div>
+          <div class="field">
+            <label>Will both of you attend together?</label>
+            <div class="pill-group" data-field="attendTogether">
+              <button type="button" class="pill-btn" onclick="setAttendTogether('Yes', this)">Yes</button>
+              <button type="button" class="pill-btn" onclick="setAttendTogether('No', this)">No</button>
+            </div>
+            <div class="err" id="err-attendTogether"></div>
+          </div>
+          <div class="field">
+            <label for="pleadCase">Tell us about them & pitch them! *</label>
+            <textarea class="input" id="pleadCase" rows="4" placeholder="Why should the room fall in love with them?"></textarea>
+            <div class="err" id="err-pleadCase"></div>
+          </div>
+          <div class="field">
+            <label for="pitcheeLinks">Share any links (Optional)</label>
+            <input class="input" id="pitcheeLinks" placeholder="Instagram, LinkedIn, etc." />
+          </div>
+          <div class="checkbox-field">
+            <input type="checkbox" id="pitcherConsent" />
+            <label for="pitcherConsent">I confirm I have my friend's permission to nominate them. *</label>
+          </div>
+          <div class="err" id="err-pitcherConsent"></div>
+        </div>
 
         <button class="btn-pill btn-full" style="margin-top:32px;" id="step1-cta" onclick="handleStep1Continue()">CONTINUE TO SELECTION →</button>
       </div>
@@ -748,11 +748,26 @@ function populateNationalities() {
 populateNationalities();
 
 const FAQS = [
-  { q: "Is it only for singles?", a: "Mostly, but not exclusively! Singles are definitely welcome, but couples can join too — whether you're looking for a fun night out or coming along to pitch your single friend" },
-  { q: "Is there a dress code?", a: "Come as you are, or come dressed to be noticed. Smart-casual is average." },
-  { q: "What should I prepare?", a: "Just bring yourself, an open mind, and your best energy. Come ready for a fun night, good conversations, and maybe a little unexpected chemistry😉" },
-  { q: "What if I register and suddenly can't make it?", a: "No worries! We offer refunds based on when you cancel:<br>• More than 24 hours before the event: Full refund, minus the bank processing fee.<br>• Between 24 and 5 hours before the event: 60% refund, minus the bank processing fee.<br>• Less than 5 hours before the event: No refund." },
-  { q: "Can I change my seats after booking?", a: "Our seating system is free seating, so you’re welcome to choose any available seat within your booked section.<br>If you’d like to change to a different section, please contact us via WhatsApp at least 24 hours before the event, and we’ll be happy to assist." }
+  { 
+    q: "Is it only for singles?", 
+    a: "Mostly, but not exclusively! Singles are definitely welcome, but couples can join too — whether you're looking for a fun night out or coming along to pitch your single friend." 
+  },
+  { 
+    q: "Is there a dress code?", 
+    a: "Come as you are, or come dressed to be noticed. Smart-casual is average." 
+  },
+  { 
+    q: "What should I prepare?", 
+    a: "Just bring yourself, an open mind, and your best energy. Come ready for a fun night, good conversations, and maybe a little unexpected chemistry😉" 
+  },
+  { 
+    q: "What if I register and suddenly can't make it?", 
+    a: "No worries! We offer refunds based on when you cancel:<br>• More than 24 hours before the event: Full refund, minus the bank processing fee.<br>• Between 24 and 5 hours before the event: 60% refund, minus the bank processing fee.<br>• Less than 5 hours before the event: No refund." 
+  },
+  { 
+    q: "Can I change my seats after booking?", 
+    a: "Our seating system is free seating, so you’re welcome to choose any available seat within your booked section.<br>If you’d like to change to a different section, please contact us via WhatsApp at least 24 hours before the event, and we’ll be happy to assist." 
+  }
 ];
 
 const faqList = document.getElementById('faq-list');
@@ -810,10 +825,8 @@ async function fetchBackendState() {
 function updateAvailabilityUI() {
   const frontAvail = Math.max(0, FRONT_MAX_CAPACITY - bookedFrontCount);
   const mainAvail = Math.max(0, MAIN_MAX_CAPACITY - bookedMainCount);
-  const pitcherMaleAvail = Math.max(0, PITCHER_MALE_MAX - bookedPitcherMaleCount);
-  const pitcherFemaleAvail = Math.max(0, PITCHER_FEMALE_MAX - bookedPitcherFemaleCount);
 
-  // Watcher UI
+  // Watcher UI availability labels
   document.getElementById('front-remaining-label').textContent = frontAvail > 0 ? `(${frontAvail} left)` : '(Full)';
   document.getElementById('main-remaining-label').textContent = mainAvail > 0 ? `(${mainAvail} left)` : '(Full)';
 
@@ -828,10 +841,6 @@ function updateAvailabilityUI() {
     mainCard.classList.add('disabled');
     mainCard.onclick = null;
   }
-
-  // Pitcher Gender Limits UI
-  document.getElementById('label-male-remaining').textContent = pitcherMaleAvail > 0 ? `(${pitcherMaleAvail} left)` : '(Full)';
-  document.getElementById('label-female-remaining').textContent = pitcherFemaleAvail > 0 ? `(${pitcherFemaleAvail} left)` : '(Full)';
 }
 
 function selectWatcherZone(zone) {
